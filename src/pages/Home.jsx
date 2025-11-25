@@ -15,12 +15,13 @@ import Skills from "../components/Skills";
 import Projects from "../components/Projects";
 import Experience from "../components/Experience";
 import Contact from "../components/Contact";
+import profileImage from '../../assets/profile_pic.png';
 
 
 import { Link } from "react-router-dom";
 
 function Home() {
-  const { name, roles, location, heroTagline, socialLinks, profileImage } = heroData;
+  const { name, roles, location, heroTagline, socialLinks} = heroData;
   const { about } = aboutData;
 
   return (
