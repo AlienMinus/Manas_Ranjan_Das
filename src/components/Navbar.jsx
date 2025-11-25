@@ -1,7 +1,7 @@
 // src/components/Navbar.jsx
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "../assets/ProfilePic.png"; // if you added a logo
+import Logo from "../assets/profile_pic.png"; // if you added a logo
 
 function Navbar() {
   const links = [

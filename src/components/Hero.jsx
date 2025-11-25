@@ -24,7 +24,7 @@ function Hero({ name, roles, tagline, location, socialLinks, profileImage }) {
       <div className="hero__content">
         <p className="hero__hello">Hi, I'm</p>
         <div className="hero__left">
-          <a href="http://localhost:5173/admin">
+          <a href="https://manas-ranjan-das-hcwj.vercel.app/admin">
             <img src={profileImage} alt="Profile" className="hero__image" />
           </a>
         </div>
