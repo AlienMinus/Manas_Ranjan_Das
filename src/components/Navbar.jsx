@@ -10,7 +10,8 @@ function Navbar() {
     { label: "Skills", path: "/skills" },
     { label: "Projects", path: "/projects" },
     { label: "Experience", path: "/experience" },
-    { label: "Contact", path: "/contact" }
+    { label: "Contact", path: "/contact" },
+    {label: "Admin", path: "/admin" }
   ];
 
   return (
