@@ -15,7 +15,7 @@ function AdminPage() {
     if (!authed && !withLoading) return;
     if (withLoading) setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/admin/messages", {
+      const res = await fetch("https://manas.up.railway.app/api/admin/messages", {
         headers: {
           "x-admin-password": password,
         },
@@ -42,7 +42,7 @@ function AdminPage() {
     setStatus(null);
 
     try {
-      const res = await fetch("http://localhost:5000/api/admin/messages", {
+      const res = await fetch("https://manas.up.railway.app/api/admin/messages", {
         headers: {
           "x-admin-password": password,
         },
@@ -86,7 +86,7 @@ function AdminPage() {
     try {
       setLoading(true);
       const res = await fetch(
-        `http://localhost:5000/api/admin/messages/${encodeURIComponent(
+        `https://manas.up.railway.app/api/admin/messages/${encodeURIComponent(
           timestamp
         )}`,
         {
