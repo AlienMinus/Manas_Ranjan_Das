@@ -11,7 +11,13 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Minus$ecureAdmin1THz";
 
 
 // Middleware
-app.use(cors({ origin: "https://manas-ranjan-das.vercel.app/" })); // Vite default port
+app.use(
+  cors({
+    origin: "https://manas-ranjan-das.vercel.app",
+    methods: ["GET", "POST", "DELETE"],
+    allowedHeaders: ["Content-Type", "x-admin-password"],
+  })
+); // Vite default port
 app.use(express.json()); // Parse JSON bodies
 
 // Path to CSV file (adjust if your structure is different)
@@ -159,5 +165,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
+  console.log(`Server listening on https://manas-ranjan-das-hcwj.vercel.app/`);
 });
