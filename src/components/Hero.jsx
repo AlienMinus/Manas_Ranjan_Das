@@ -1,5 +1,5 @@
 // src/components/Hero.jsx
-
+import profileImage from "../assets/profile_pic.png"; 
 import React, { useState, useEffect } from "react";
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
@@ -10,7 +10,6 @@ function getIconComponent(item) {
 }
 
 function Hero({ name, roles, tagline, location, socialLinks}) {
-  const profileImage = require("../assets/profile_pic.png");
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
