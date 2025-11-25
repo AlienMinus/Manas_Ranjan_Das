@@ -21,7 +21,7 @@ app.use(
 app.use(express.json()); // Parse JSON bodies
 
 // Path to CSV file (adjust if your structure is different)
-const csvPath = path.join(__dirname,"./", "data", "response.csv");
+const csvPath = path.join(__dirname, "data", "response.csv");
 
 // Ensure CSV file exists with header
 function ensureCsvExists() {
