@@ -20,7 +20,7 @@ import Contact from "../components/Contact";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const { name, roles, location, heroTagline, socialLinks, profileImage } = heroData;
+  const { name, roles, location, heroTagline, socialLinks} = heroData;
   const { about } = aboutData;
 
   return (
@@ -33,7 +33,6 @@ function Home() {
         location={location}
         tagline={heroTagline}
         socialLinks={socialLinks}
-        profileImage={profileImage}
       />
 
 

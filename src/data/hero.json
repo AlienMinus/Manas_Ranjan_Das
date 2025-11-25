@@ -3,7 +3,6 @@
   "roles": ["Full-Stack Developer", "Researcher", "AI Engineer", "IoT Enthusiast"],
   "location": "Cuttack, India",
   "heroTagline": "I build intelligent systems that connect hardware, software, and people.",
-  "profileImage": "./src/assets/profile_pic.png",
   "socialLinks": [
     {
       "platform": "GitHub",
