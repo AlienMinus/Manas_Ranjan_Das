@@ -85,7 +85,7 @@ echo "timestamp,name,email,message" > src/data/response.csv
 ```
 
 ### 3️⃣ Configure Admin Password
-Inside server/server.js:
+Inside `server/server.js`:
 ```bash
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "changeme123";
 ```
@@ -102,10 +102,11 @@ npm run server
 ```
 
 ## 🔗 API Endpoints
-|Method |	Endpoint	| Description |
-|POST	| /api/contact |	Store form message to CSV |
-|GET	| /api/admin/messages	| Fetch all messages (admin only) |
-|DELETE	| /api/admin/messages/:timestamp	| Delete specific message |
+| Method  | Endpoint                                  | Description                     |
+|---------|-------------------------------------------|---------------------------------|
+| POST    | `/api/contact`                            | Store form message to CSV       |
+| GET     | `/api/admin/messages`                     | Fetch all messages (admin only) |
+| DELETE  | `/api/admin/messages/:timestamp`          | Delete specific message         |
 
 ### ➡ Required request header:
 ```http
