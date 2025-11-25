@@ -1,0 +1,38 @@
+[
+  {
+    "category": "Programming",
+    "items": [
+      { "name": "Python", "iconLib": "si", "icon": "SiPython" },
+      { "name": "C", "iconLib": "si", "icon": "SiC" },
+      { "name": "C++", "iconLib": "si", "icon": "SiCplusplus" },
+      { "name": "JavaScript", "iconLib": "si", "icon": "SiJavascript" },
+      { "name": "React", "iconLib": "si", "icon": "SiReact" },
+      { "name": "Node.js", "iconLib": "si", "icon": "SiNodedotjs" }
+    ]
+  },
+  {
+    "category": "Electronics & IoT",
+    "items": [
+      { "name": "Arduino", "iconLib": "si", "icon": "SiArduino" },
+      { "name": "Embedded Systems", "iconLib": "fa", "icon": "FaMicrochip" },
+      { "name": "Power Electronics", "iconLib": "fa", "icon": "FaBolt" }
+    ]
+  },
+  {
+    "category": "Tools",
+    "items": [
+      { "name": "Git", "iconLib": "si", "icon": "SiGit" },
+      { "name": "Docker", "iconLib": "si", "icon": "SiDocker" },
+      { "name": "MATLAB", "iconLib": "si", "icon": "SiLibreofficemath" },
+      { "name": "Figma", "iconLib": "si", "icon": "SiFigma" }
+    ]
+  },
+  {
+    "category": "Softskills",
+    "items": [
+      { "name": "Leadership", "iconLib": "md", "icon": "MdLeaderboard" },
+      { "name": "Communication", "iconLib": "si", "icon": "SiGooglemessages" },
+      { "name": "Teamwork", "iconLib": "bs", "icon": "BsMicrosoftTeams" }
+    ]
+  }
+]

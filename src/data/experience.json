@@ -1,0 +1,24 @@
+[
+  {
+    "role": "Research Intern",
+    "company": "HBCSE, TIFR",
+    "duration": "2024 – Present",
+    "iconLib": "fa",
+    "icon": "FaFlask",
+    "details": [
+      "Developing education research informed resources for high school physics.",
+      "Designing interactive simulations to visualize abstract physics concepts."
+    ]
+  },
+  {
+    "role": "Research Strategist",
+    "company": "Centre for Applied Research, ABIT",
+    "duration": "2023 – Present",
+    "iconLib": "fa",
+    "icon": "FaLightbulb",
+    "details": [
+      "Working on sustainable IoT and intelligent automation.",
+      "Collaborating with multidisciplinary teams to build real-world prototypes."
+    ]
+  }
+]

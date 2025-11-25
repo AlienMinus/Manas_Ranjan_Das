@@ -1,0 +1,27 @@
+{
+  "name": "Manas Ranjan Das",
+  "roles": ["Full-Stack Developer", "Researcher", "AI Engineer", "IoT Enthusiast"],
+  "location": "Cuttack, India",
+  "heroTagline": "I build intelligent systems that connect hardware, software, and people.",
+  "profileImage": "/src/assets/ProfilePic.png",
+  "socialLinks": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/AlienMinus",
+      "iconLib": "fa",
+      "icon": "FaGithub"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/in/manas-r-das/",
+      "iconLib": "fa",
+      "icon": "FaLinkedin"
+    },
+    {
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/detective_lucky_official/",
+      "iconLib": "fa",
+      "icon": "FaInstagram"
+    }
+  ]
+}

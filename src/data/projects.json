@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Smart IoT Energy Node",
+    "description": "An energy-harvesting IoT node that monitors power usage and optimizes energy consumption.",
+    "techStack": ["React", "Node.js", "MongoDB", "ESP32"],
+    "github": "https://github.com/your-username/iot-energy-node",
+    "demo": "https://your-demo-link.com",
+    "tags": ["IoT", "Energy", "Full-Stack"],
+    "image": "/src/assets/projects/iot-node.jpg"
+  },
+  {
+    "title": "AI-Powered PCB Component Detector",
+    "description": "Computer vision-based PCB component recognition and labeling tool.",
+    "techStack": ["Python", "OpenCV", "YOLO"],
+    "github": "https://github.com/your-username/pcb-detector",
+    "demo": "",
+    "tags": ["Computer Vision", "Deep Learning"],
+    "image": "/src/assets/projects/pcb-detector.jpg"
+  }
+]
