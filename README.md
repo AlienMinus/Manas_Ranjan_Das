@@ -1,16 +1,144 @@
-# React + Vite
+# 📌 Personal Portfolio Website – Full-Stack (React + Node.js)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, fully responsive personal portfolio website showcasing skills, experience, projects, and contact details — integrated with a lightweight backend for message storage and an admin dashboard with authentication.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## React Compiler
+### Frontend
+- ⚛️ React + Vite
+- React Router (Multipage navigation)
+- Modern CSS — dark theme
+- React Icons
+- Fully responsive design
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Backend
+- 🟩 Node.js + Express.js
+- CSV storage (`src/data/response.csv`)
+- Admin-protected route
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+### 🌟 Portfolio UI
+- Dynamic hero section with rotating job titles
+- Profile image inline with heading
+- Skills listed with icons
+- Projects card gallery
+- Experience timeline
+- Full contact form with validation
+
+### 💬 Contact Functionality
+- Saves submissions into CSV file
+- No external database needed
+
+### 🔐 Admin Dashboard
+- Password-protected secure login
+- View all messages in table format
+- Auto-refresh every 2 seconds
+- Delete individual messages
+- Logout instantly clears access
+
+---
+
+## 📁 Folder Structure
+
+```bash
+.
+├── src/
+│   ├── assets/               # Images & icons
+│   ├── components/           # Main UI components
+│   ├── pages/                # Routes: Home + Admin
+│   ├── data/
+│   │   ├── response.csv      # Contact messages
+│   │   ├── hero.json         # Hero section data
+│   │   ├── skills.json       # Skills data
+│   │   └── ...
+│   ├── App.css
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── server/
+│   └── server.js             # Backend server
+│
+├── package.json
+└── README.md
+```
+
+---
+
+## ⚙️ Setup Instructions
+### 1️⃣ Install dependencies
+```bash
+npm install
+cd server
+npm install
+cd ..
+```
+
+### 2️⃣ Ensure CSV file exists
+```bash
+mkdir -p src/data
+echo "timestamp,name,email,message" > src/data/response.csv
+```
+
+### 3️⃣ Configure Admin Password
+Inside server/server.js:
+```bash
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "changeme123";
+```
+
+### 4️⃣ Run the Project
+Open two terminals:
+#### Frontend
+```bash
+npm run dev
+```
+#### Backend
+```bash
+npm run server
+```
+
+## 🔗 API Endpoints
+|Method |	Endpoint	| Description |
+|POST	| /api/contact |	Store form message to CSV |
+|GET	| /api/admin/messages	| Fetch all messages (admin only) |
+|DELETE	| /api/admin/messages/:timestamp	| Delete specific message |
+
+### ➡ Required request header:
+```http
+x-admin-password: <your-password>
+```
+
+## 🔒 Security Notes
+- Sensitive endpoints blocked without password
+- Server-side field validation
+- Recommended to store password in .env for deployment
+
+## 🧩 Roadmap / Future Enhancements
+- Nodemailer email notifications 📩
+- Search + filter in Admin Panel
+- Mark messages as read
+- Deploy to Netlify + Render / Vercel
+- Light/Dark theme toggle
+
+## 🧑‍💻 Author
+Manas Ranjan Das <br/>
+Electrical & Computer Engineer <br/>
+Cuttack, India <br/>
+
+## 🏁 License
+Issued under the Apache License. <br/>
+Free to modify and use for learning and academic purposes. <br/>
+
+
+
+
+
+
+
+
+
+
