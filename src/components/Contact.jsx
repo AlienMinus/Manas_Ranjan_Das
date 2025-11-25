@@ -21,7 +21,7 @@ function Contact({ contact }) {
     setStatus(null);
 
     try {
-      const res = await fetch("https://manas.up.railway.app/api/contact", {
+      const res = await fetch("https://manas-ranjan-das-hcwj.vercel.app/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
