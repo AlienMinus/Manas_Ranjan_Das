@@ -2,7 +2,11 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-require("dotenv").config();
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -48,6 +52,15 @@ const Message = mongoose.model("Message", MessageSchema);
 // =========================
 // 📌 ROUTES
 // =========================
+
+// Health Check
+app.get("/health", (req, res) =>
+  res.json({
+    status: "OK",
+    mongo: mongoose.connection.readyState,
+    environment: process.env.NODE_ENV || "development",
+  })
+);
 
 // 📩 Save contact form message
 app.post("/api/contact", async (req, res) => {
