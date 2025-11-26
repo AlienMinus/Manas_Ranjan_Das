@@ -1,5 +1,5 @@
 // src/components/Hero.jsx
-import profileImage from "../assets/profile_pic.png"; 
+import profileImage from "../assets/profile_pic.png";
 import React, { useState, useEffect } from "react";
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
@@ -9,7 +9,7 @@ function getIconComponent(item) {
   return library[item.icon] || null;
 }
 
-function Hero({ name, roles, tagline, location, socialLinks}) {
+function Hero({ name, roles, tagline, location, socialLinks }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -25,9 +25,7 @@ function Hero({ name, roles, tagline, location, socialLinks}) {
       <div className="hero__content">
         <p className="hero__hello">Hi, I'm</p>
         <div className="hero__left">
-          <a href="https://manas-ranjan-das.vercel.app/admin">
-            <img src={profileImage} alt="Profile" className="hero__image" />
-          </a>
+          <img src={profileImage} alt="Profile" className="hero__image" />
         </div>
         <h1 className="hero__name">{name}</h1>
         <h2 className="hero__role fade-text">
