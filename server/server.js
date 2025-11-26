@@ -1,149 +1,85 @@
 // server/server.js
 const express = require("express");
 const cors = require("cors");
-const fs = require("fs");
-const path = require("path");
+const mongoose = require("mongoose");
+require("dotenv").config();
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
+// SECURITY
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Minus$ecureAdmin1THz";
 
+// FRONTEND ORIGIN FOR CORS
+const FRONTEND_ORIGIN =
+  process.env.FRONTEND_ORIGIN || "https://manas-ranjan-das.vercel.app";
 
-// Middleware
+// ====== MIDDLEWARE ======
 app.use(
   cors({
-    origin: "https://manas-ranjan-das.vercel.app",
-    methods: ["GET", "POST", "DELETE"],
+    origin: [FRONTEND_ORIGIN, "http://localhost:5173"],
     allowedHeaders: ["Content-Type", "x-admin-password"],
+    methods: ["GET", "POST", "DELETE"],
   })
-); // Vite default port
-app.use(express.json()); // Parse JSON bodies
+);
 
-// Path to CSV file (adjust if your structure is different)
-const csvPath = path.join(__dirname, "data", "response.csv");
+app.use(express.json());
 
-// Ensure CSV file exists with header
-function ensureCsvExists() {
-  if (!fs.existsSync(csvPath)) {
-    const header = "timestamp,name,email,message\n";
-    fs.writeFileSync(csvPath, header, "utf8");
-  }
-}
+// ====== MongoDB Connection ======
+const MONGODB_URI = process.env.MONGODB_URI;
 
-// Helper to escape CSV values (basic)
-function escapeCsv(value) {
-  if (value == null) return "";
-  const str = String(value).replace(/\r?\n|\r/g, " "); // remove newlines
-  if (str.includes(",") || str.includes('"')) {
-    return `"${str.replace(/"/g, '""')}"`;
-  }
-  return str;
-}
+mongoose
+  .connect(MONGODB_URI)
+  .then(() => console.log("✅ Connected to MongoDB Atlas"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// Append a new row to CSV
-function appendToCsv({ name, email, message }) {
-  ensureCsvExists();
-  const timestamp = new Date().toISOString();
-  const row = [
-    escapeCsv(timestamp),
-    escapeCsv(name),
-    escapeCsv(email),
-    escapeCsv(message),
-  ].join(",") + "\n";
+// ====== Mongo Schema ======
+const MessageSchema = new mongoose.Schema(
+  {
+    name: String,
+    email: String,
+    message: String,
+  },
+  { timestamps: true }
+);
 
-  fs.appendFileSync(csvPath, row, "utf8");
-}
+const Message = mongoose.model("Message", MessageSchema);
 
-function readCsvAsJson() {
-  ensureCsvExists();
-  const content = fs.readFileSync(csvPath, "utf8");
+// =========================
+// 📌 ROUTES
+// =========================
 
-  // Handle Windows & Unix newlines and remove trailing blank lines
-  const lines = content.split(/\r?\n/).filter(Boolean);
+// Health Check
+app.get("/health", (req, res) =>
+  res.json({
+    status: "OK",
+    mongo: mongoose.connection.readyState,
+    environment: process.env.NODE_ENV || "development",
+  })
+);
 
-  if (lines.length <= 1) return []; // only header or empty
-
-  // Trim header cells to avoid "message\r"
-  const header = lines[0]
-    .split(",")
-    .map((h) => h.trim());
-
-  const rows = lines.slice(1);
-
-  return rows.map((line) => {
-    // Split on commas not inside quotes
-    const cols = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-
-    const obj = {};
-    header.forEach((key, idx) => {
-      let value = cols[idx] || "";
-      // Remove surrounding quotes and unescape "" -> "
-      value = value.replace(/^"|"$/g, "").replace(/""/g, '"').trim();
-      obj[key] = value;
-    });
-    return obj;
-  });
-}
-
-// DELETE a message by timestamp (admin only)
-app.delete("/api/admin/messages/:timestamp", (req, res) => {
-  const password = req.headers["x-admin-password"];
-  const timestampToDelete = req.params.timestamp;
-
-  if (!password || password !== ADMIN_PASSWORD) {
-    return res.status(401).json({ success: false, error: "Unauthorized" });
-  }
-
+// 📩 Save contact form message
+app.post("/api/contact", async (req, res) => {
   try {
-    ensureCsvExists();
-    const content = fs.readFileSync(csvPath, "utf8");
+    const { name, email, message } = req.body;
 
-    const lines = content.split(/\r?\n/).filter(Boolean);
-    if (lines.length <= 1) {
-      return res.json({ success: true, deleted: 0 });
+    if (!name || !email || !message) {
+      return res
+        .status(400)
+        .json({ success: false, error: "Missing required fields" });
     }
 
-    const header = lines[0];
-    const rows = lines.slice(1);
+    const saved = await Message.create({ name, email, message });
 
-    // keep rows whose first column (timestamp) != timestampToDelete
-    const keptRows = rows.filter((line) => {
-      const cols = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-      const ts = (cols[0] || "").replace(/^"|"$/g, "").trim();
-      return ts !== timestampToDelete;
-    });
-
-    const newContent = [header, ...keptRows].join("\n") + "\n";
-    fs.writeFileSync(csvPath, newContent, "utf8");
-
-    return res.json({ success: true, deleted: rows.length - keptRows.length });
+    res.json({ success: true, id: saved._id, createdAt: saved.createdAt });
   } catch (err) {
-    console.error("Error deleting from CSV:", err);
-    return res.status(500).json({ success: false, error: "Server error" });
+    console.error("Error saving message:", err);
+    res.status(500).json({ success: false, error: "Server error" });
   }
 });
 
-
-// Route: handle contact form
-app.post("/api/contact", (req, res) => {
-  const { name, email, message } = req.body || {};
-
-  if (!name || !email || !message) {
-    return res.status(400).json({ success: false, error: "Missing fields" });
-  }
-
-  try {
-    appendToCsv({ name, email, message });
-    return res.json({ success: true });
-  } catch (err) {
-    console.error("Error writing to CSV:", err);
-    return res.status(500).json({ success: false, error: "Server error" });
-  }
-});
-
-// Admin route: view all messages
-app.get("/api/admin/messages", (req, res) => {
+// 🔐 Admin: Get all messages
+app.get("/api/admin/messages", async (req, res) => {
   const password = req.headers["x-admin-password"];
 
   if (!password || password !== ADMIN_PASSWORD) {
@@ -151,19 +87,36 @@ app.get("/api/admin/messages", (req, res) => {
   }
 
   try {
-    const data = readCsvAsJson();
-    return res.json({ success: true, messages: data });
+    const messages = await Message.find().sort({ createdAt: -1 });
+    res.json({ success: true, messages });
   } catch (err) {
-    console.error("Error reading CSV:", err);
-    return res.status(500).json({ success: false, error: "Server error" });
+    console.error("Error fetching messages:", err);
+    res.status(500).json({ success: false, error: "Server error" });
   }
 });
 
+// 🗑️ Delete message
+app.delete("/api/admin/messages/:id", async (req, res) => {
+  const password = req.headers["x-admin-password"];
 
-app.get("/", (req, res) => {
-  res.send("Contact backend is running ✅");
+  if (!password || password !== ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, error: "Unauthorized" });
+  }
+
+  try {
+    const deleted = await Message.findByIdAndDelete(req.params.id);
+    res.json({ success: true, deleted: !!deleted });
+  } catch (err) {
+    console.error("Error deleting message:", err);
+    res.status(500).json({ success: false, error: "Server error" });
+  }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on https://manas-ranjan-das-hcwj.vercel.app/`);
-});
+// Base Route
+app.get("/", (req, res) =>
+  res.send("Portfolio Contact API (MongoDB) is running 🚀")
+);
+
+app.listen(PORT, () =>
+  console.log(`📡 Server running on port ${PORT} (Mode: MongoDB)`)
+);

@@ -11,11 +11,13 @@ function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [lastUpdated, setLastUpdated] = useState(null);
 
+  const API_BASE = "https://manas-ranjan-das.onrender.com/";
+
   const fetchMessages = async (withLoading = false) => {
     if (!authed && !withLoading) return;
     if (withLoading) setLoading(true);
     try {
-      const res = await fetch("https://manas-ranjan-das.onrender.com/api/admin/messages", {
+      const res = await fetch(`${API_BASE}api/admin/messages`, {
         headers: {
           "x-admin-password": password,
         },
@@ -42,7 +44,7 @@ function AdminPage() {
     setStatus(null);
 
     try {
-      const res = await fetch("https://manas-ranjan-das.onrender.com/api/admin/messages", {
+      const res = await fetch(`${API_BASE}api/admin/messages`, {
         headers: {
           "x-admin-password": password,
         },
@@ -86,7 +88,7 @@ function AdminPage() {
     try {
       setLoading(true);
       const res = await fetch(
-        `https://manas-ranjan-das.onrender.com/api/admin/messages/${encodeURIComponent(
+        `${API_BASE}api/admin/messages/${encodeURIComponent(
           timestamp
         )}`,
         {
