@@ -1,4 +1,3 @@
-// Admin page to view data from src/data/response.csv
 // src/pages/AdminPage.jsx
 import React, { useState, useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
@@ -11,13 +10,18 @@ function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [lastUpdated, setLastUpdated] = useState(null);
 
-  const API_BASE = "https://manas-ranjan-das.onrender.com/";
+  const API_BASE = "https://manas-ranjan-das.onrender.com";
+
+  const formatDate = (isoString) => {
+    if (!isoString) return "";
+    return new Date(isoString).toLocaleString();
+  };
 
   const fetchMessages = async (withLoading = false) => {
     if (!authed && !withLoading) return;
     if (withLoading) setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}api/admin/messages`, {
+      const res = await fetch(`${API_BASE}/api/admin/messages`, {
         headers: {
           "x-admin-password": password,
         },
@@ -44,7 +48,7 @@ function AdminPage() {
     setStatus(null);
 
     try {
-      const res = await fetch(`${API_BASE}api/admin/messages`, {
+      const res = await fetch(`${API_BASE}/api/admin/messages`, {
         headers: {
           "x-admin-password": password,
         },
@@ -76,8 +80,8 @@ function AdminPage() {
     fetchMessages(true);
   };
 
-  // 🗑️ Delete single message
-  const handleDelete = async (timestamp) => {
+  // 🗑️ Delete single message (by Mongo _id)
+  const handleDelete = async (id) => {
     if (!authed) return;
 
     const confirmDelete = window.confirm(
@@ -87,17 +91,12 @@ function AdminPage() {
 
     try {
       setLoading(true);
-      const res = await fetch(
-        `${API_BASE}api/admin/messages/${encodeURIComponent(
-          timestamp
-        )}`,
-        {
-          method: "DELETE",
-          headers: {
-            "x-admin-password": password,
-          },
-        }
-      );
+      const res = await fetch(`${API_BASE}/api/admin/messages/${id}`, {
+        method: "DELETE",
+        headers: {
+          "x-admin-password": password,
+        },
+      });
 
       const data = await res.json();
       if (!res.ok || !data.success) {
@@ -105,9 +104,7 @@ function AdminPage() {
       }
 
       // Optimistically update local state
-      setMessages((prev) =>
-        prev.filter((m) => m.timestamp !== timestamp)
-      );
+      setMessages((prev) => prev.filter((m) => m._id !== id));
       setStatus(null);
     } catch (err) {
       console.error(err);
@@ -215,7 +212,7 @@ function AdminPage() {
               <table className="admin-table">
                 <thead>
                   <tr>
-                    <th>Timestamp</th>
+                    <th>Created At</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Message</th>
@@ -223,9 +220,9 @@ function AdminPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {messages.map((m, idx) => (
-                    <tr key={idx}>
-                      <td>{m.timestamp}</td>
+                  {messages.map((m) => (
+                    <tr key={m._id}>
+                      <td>{formatDate(m.createdAt)}</td>
                       <td>{m.name}</td>
                       <td>{m.email}</td>
                       <td>{m.message}</td>
@@ -233,7 +230,7 @@ function AdminPage() {
                         <button
                           type="button"
                           className="icon-btn icon-btn--danger"
-                          onClick={() => handleDelete(m.timestamp)}
+                          onClick={() => handleDelete(m._id)}
                           title="Delete message"
                         >
                           <FaTrash size={14} />
