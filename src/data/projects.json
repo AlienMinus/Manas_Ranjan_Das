@@ -3,18 +3,18 @@
     "title": "Smart IoT Energy Node",
     "description": "An energy-harvesting IoT node that monitors power usage and optimizes energy consumption.",
     "techStack": ["React", "Node.js", "MongoDB", "ESP32"],
-    "github": "https://github.com/your-username/iot-energy-node",
-    "demo": "https://your-demo-link.com",
+    "github": "https://github.com/AlienMinus/Hybrid_Energy_Harvesting",
+    "demo": "https://www.tinkercad.com/things/iSb7pbn4yAd-hybrid-energy-harvesting?sharecode=kQYxOVV0ykoa2XMiaSJjqOq4GL8vrXyJhKwKqsxgcLw",
     "tags": ["IoT", "Energy", "Full-Stack"],
-    "image": "/src/assets/projects/iot-node.jpg"
+    "image": "https://repository-images.githubusercontent.com/961572504/b86be566-ef5f-430b-a652-9ace33da3b34"
   },
   {
     "title": "AI-Powered PCB Component Detector",
     "description": "Computer vision-based PCB component recognition and labeling tool.",
     "techStack": ["Python", "OpenCV", "YOLO"],
-    "github": "https://github.com/your-username/pcb-detector",
-    "demo": "",
+    "github": "https://github.com/AlienMinus/PCB-Detection_v4",
+    "demo": "https://pcb-detection-v4.streamlit.app/",
     "tags": ["Computer Vision", "Deep Learning"],
-    "image": "/src/assets/projects/pcb-detector.jpg"
+    "image": "https://repository-images.githubusercontent.com/1003428815/250e1d15-1f8f-4dba-ad85-9fe004b51eda"
   }
 ]
