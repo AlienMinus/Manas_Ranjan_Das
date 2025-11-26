@@ -49,15 +49,6 @@ const Message = mongoose.model("Message", MessageSchema);
 // 📌 ROUTES
 // =========================
 
-// Health Check
-app.get("/health", (req, res) =>
-  res.json({
-    status: "OK",
-    mongo: mongoose.connection.readyState,
-    environment: process.env.NODE_ENV || "development",
-  })
-);
-
 // 📩 Save contact form message
 app.post("/api/contact", async (req, res) => {
   try {
