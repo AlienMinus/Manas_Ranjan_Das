@@ -1,11 +1,20 @@
 [
   {
+    "title": "Manas Ranjan Das - Portfolio",
+    "description": "Personal Portfolio- All about Manas Ranjan Das(Me).",
+    "techStack": ["MongoDB", "Express", "React", "Node.js"],
+    "github": "https://github.com/AlienMinus/Manas_Ranjan_Das",
+    "demo": "https://manas-ranjan-das.vercel.app/",
+    "tags": ["Full-Stack", "Portfolio", "MERN"],
+    "image": "https://repository-images.githubusercontent.com/1103730604/3cd878e0-9693-4481-a44e-1691e43015d1"
+  },
+  {
     "title": "Smart IoT Energy Node",
     "description": "An energy-harvesting IoT node that monitors power usage and optimizes energy consumption.",
-    "techStack": ["React", "Node.js", "MongoDB", "ESP32"],
+    "techStack": ["IoT", "Energy Harvesting", "Arduino"],
     "github": "https://github.com/AlienMinus/Hybrid_Energy_Harvesting",
     "demo": "https://www.tinkercad.com/things/iSb7pbn4yAd-hybrid-energy-harvesting?sharecode=kQYxOVV0ykoa2XMiaSJjqOq4GL8vrXyJhKwKqsxgcLw",
-    "tags": ["IoT", "Energy", "Full-Stack"],
+    "tags": ["IoT", "Energy", "Arduino"],
     "image": "https://repository-images.githubusercontent.com/961572504/b86be566-ef5f-430b-a652-9ace33da3b34"
   },
   {
@@ -16,5 +25,212 @@
     "demo": "https://pcb-detection-v4.streamlit.app/",
     "tags": ["Computer Vision", "Deep Learning"],
     "image": "https://repository-images.githubusercontent.com/1003428815/250e1d15-1f8f-4dba-ad85-9fe004b51eda"
+  },
+  {
+    "title": "Nexus - AI Powered Voice Assistant",
+    "description": "AI powered voice assistant.",
+    "techStack": ["Python", "Speech Recognition", "OpenAI GPT-3"],
+    "github": "https://github.com/AlienMinus/Nexus",
+    "demo": "",
+    "tags": ["AI", "Voice Assistant", "Python"],
+    "image": "https://repository-images.githubusercontent.com/1083464089/e06493f4-e53b-4d80-80c6-09384cba25ad"
+  },
+  {
+    "title": "Emotion-Detection-Browser-Extention",
+    "description": "Emotion detection browser extension using ML pipeline.",
+    "techStack": ["Python", "Machine Learning", "Browser Extension"],
+    "github": "https://github.com/AlienMinus/Emotion-Detection-Browser-Extention",
+    "demo": "",
+    "tags": ["Browser Extension", "Emotion Detection", "Machine Learning"],
+    "image": "https://repository-images.githubusercontent.com/1068544059/6514098e-c0b0-4bd8-926e-adb0c58f4e0c"
+  },
+  {
+    "title": "Retail-Sales-Forecast",
+    "description": "A machine learning model to forecast retail sales based on historical data.",
+    "techStack": ["Python", "Machine Learning", "Pandas"],
+    "github": "https://github.com/AlienMinus/Retail-Sales-Forecast",
+    "demo": "https://retail-sales-forecast.streamlit.app/",
+    "tags": ["Machine Learning", "Retail", "Forecasting"],
+    "image": "https://repository-images.githubusercontent.com/1011586037/0614e59f-fa2f-4283-8dcf-90fa8925fbb8"
+  },
+  {
+    "title": "Email-Spam-Browser-Extention",
+    "description": "A Chrome extension powered by a Machine Learning model to detect spam emails in real-time.",
+    "techStack": ["Python", "Naive Bayes", "Machine Learning", "Browser Extension"],
+    "github": "https://github.com/AlienMinus/Email_Spam_Extension",
+    "demo": "",
+    "tags": ["Machine Learning", "Browser Extension", "Spam Detection"],
+    "image": "https://repository-images.githubusercontent.com/1013204578/29631f94-0f99-4f3c-af01-97c5c8fee2fd"
+  },
+  {
+    "title": "InspyrX -The Gamified Learning Platform",
+    "description": "Empowering Rural Education Through Interactive, Accessible, and Gamified Learning Tools.",
+    "techStack": ["Python", "Streamlit", "Games", "Scratch3", "API", "GeoGebra"],
+    "github": "https://github.com/AlienMinus/InspyrX-_Gamified-Education",
+    "demo": "https://inspyrx.streamlit.app/",
+    "tags": ["Education", "Gamification", "Learning Platform"],
+    "image": "https://repository-images.githubusercontent.com/1047490913/4970ece4-6a4f-4221-9d41-ba9f98b42423"
+  },
+  {
+    "title": "Piano",
+    "description": "A virtual piano application built with Python's Streamlit library.",
+    "techStack": ["Python", "Streamlit", "Pygame"],
+    "github": "https://github.com/AlienMinus/Piano",
+    "demo": "https://minus-piano.streamlit.app/",
+    "tags": ["Music", "Piano", "Streamlit"],
+    "image": "https://repository-images.githubusercontent.com/1036111426/a23eca3a-5a4f-40e5-9295-72a68c608ceb"
+  },
+  {
+    "title": "Lunaria Landing Page",
+    "description": "This project is a modern, responsive, and interactive static website for a fictional lunar tourism company.",
+    "techStack": ["Front-End", "HTML", "CSS", "JavaScript"],
+    "github": "https://github.com/AlienMinus/lunaria-landing",
+    "demo": "https://lunaria-landing.vercel.app/",
+    "tags": ["Front-End", "HTML", "CSS", "JavaScript"],
+    "image": "https://repository-images.githubusercontent.com/1023033906/401c9eaa-497c-475b-9cfa-5d9340357bc1"
+  },
+  {
+    "title": "On-Screen Drawing App",
+    "description": "Lets you draw on-screen using just your index finger and a webcam! Built using OpenCV and MediaPipe.",
+    "techStack": ["Python", "OpenCV", "MediaPipe"],
+    "github": "https://github.com/AlienMinus/finger-drawing",
+    "demo": "",
+    "tags": ["Computer Vision", "Drawing App", "OpenCV"],
+    "image": "https://repository-images.githubusercontent.com/1019482322/7ffcc49b-23dc-4342-8d10-0091fb81deb6"
+  },
+  {
+    "title": "Onscreen Keyboard",
+    "description": "An on-screen keyboard that allows users to type using hand gestures detected via a webcam.",
+    "techStack": ["Python", "OpenCV", "MediaPipe"],
+    "github": "https://github.com/AlienMinus/gesture_keyboard",
+    "demo": "",
+    "tags": ["Computer Vision", "Onscreen Keyboard", "OpenCV"],
+    "image": "https://repository-images.githubusercontent.com/1019472595/2cef7ffc-3184-46fd-9c8c-9ce54d9ee094"
+  },
+  {
+    "title": "Hand Gesture Detection",
+    "description": "A hand gesture recognition system using computer vision techniques.",
+    "techStack": ["Python", "OpenCV", "MediaPipe"],
+    "github": "https://github.com/AlienMinus/hand-gesture-detection",
+    "demo": "",
+    "tags": ["Computer Vision", "Hand Gesture Recognition", "OpenCV"],
+    "image": "https://repository-images.githubusercontent.com/1019466489/cf66d64d-38eb-41bb-8fe0-da996c74309a"
+  },
+  {
+    "title": "Amoeba - Chat Application",
+    "description": "A real-time chat application built with Python & Streamlit.",
+    "techStack": ["Python", "Streamlit", "SQLite"],
+    "github": "https://github.com/AlienMinus/Amoeba-My_Chat_App",
+    "demo": "https://amoeba-my-chat-app.streamlit.app/",
+    "tags": ["Chat Application", "Real-Time", "Streamlit"],
+    "image": "https://repository-images.githubusercontent.com/1006169542/67ff4753-1588-4f97-8378-94d187966105"
+  },
+  {
+    "title": "GeoGebra Classic 6",
+    "description": "GeoGebra Classic 6 is a dynamic mathematics software that combines geometry, algebra, calculus, and statistics in a single platform.",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS", "GeoGebra- API"],
+    "github": "https://github.com/AlienMinus/GeoGebra-Classic-6",
+    "demo": "https://alienminus.github.io/GeoGebra-Classic-6/",
+    "tags": ["Mathematics", "Dynamic Software", "GeoGebra"],
+    "image": "https://repository-images.githubusercontent.com/958754007/d74e128a-9abf-46c6-b7ec-2d1a8fc00cf3"
+  },
+  {
+    "title": "Terminal",
+    "description": "A simple terminal emulator built with Frontend JS",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS"],
+    "github": "https://github.com/AlienMinus/Terminal",
+    "demo": "https://alienminus.github.io/Terminal/",
+    "tags": ["Front-End", "Terminal", "JavaScript"],
+    "image": "https://repository-images.githubusercontent.com/948466201/545d80e2-3501-425b-aebd-363913ba6a08"
+    },
+  {
+    "title": "Google Search Clone",
+    "description": "A clone of the Google Search homepage built with Frontend JS.",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS"],
+    "github": "https://github.com/AlienMinus/Google",
+    "demo": "https://alienminus.github.io/Google/",
+    "tags": ["Front-End", "Google Clone", "JavaScript"],
+    "image": "https://repository-images.githubusercontent.com/931403149/e5cb0505-4efa-47fd-b807-518868eba1d2"
+  },
+  {
+    "title": "QR Code Generator",
+    "description": "A simple QR code generator built with Frontend JS.",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS"],
+    "github": "https://github.com/AlienMinus/QR_Code",
+    "demo": "https://alienminus.github.io/QR_Code/",
+    "tags": ["Front-End", "QR Code", "JavaScript"],
+    "image": "https://repository-images.githubusercontent.com/922514912/32b710cc-532d-4eb5-af5a-e555083967d2"
+  },
+  {
+    "title": "Glimpse - My Camera App",
+    "description": "A camera application built with Frontend JS.",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS"],
+    "github": "https://github.com/AlienMinus/Glimpse-My_Camera_App",
+    "demo": "https://alienminus.github.io/Glimpse-My_Camera_App/",
+    "tags": ["Front-End", "Camera App", "JavaScript"],
+    "image": "https://repository-images.githubusercontent.com/925519895/ae502323-4d83-4d68-9936-459dc2afad15"
+  },
+  {
+    "title": "Minus_Art_Gallery",
+    "description": "A Display a Canvas with Its Draw Tool Frontend JS.",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS"],
+    "github": "https://github.com/AlienMinus/Minus_Art_Gallery",
+    "demo": "https://alienminus.github.io/Minus_Art_Gallery/",
+    "tags": ["Front-End", "Art Gallery", "JavaScript"],
+    "image": "https://repository-images.githubusercontent.com/924526206/946a247d-090e-4c66-9e77-ff87218caa34"
+  },
+  {
+    "title": "Rain Player",
+    "description": "A music player with monsoon collection built with Frontend JS.",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS"],
+    "github": "https://github.com/AlienMinus/Rain_Player",
+    "demo": "https://alienminus.github.io/Rain_Player/",
+    "tags": ["Front-End", "Music Player", "JavaScript"],
+    "image": "https://repository-images.githubusercontent.com/923487327/4741ef59-0cf6-4c1a-8448-be27c9ecab6a"
+  },
+  {
+    "title": "Weathy - Weather App",
+    "description": "A weather application built with Frontend JS.",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS", "Weather-API"],
+    "github": "https://github.com/AlienMinus/Weather_App",
+    "demo": "https://alienminus.github.io/Weather_App/",
+    "tags": ["Front-End", "Weather App", "JavaScript"],
+    "image": "https://repository-images.githubusercontent.com/923156456/152cb48d-485a-49cd-8e5f-d73440bb80c6"
+  },
+  {
+    "title": "Geoid - Geo Location App",
+    "description": "Check Your Live Co-ordinates & navigate on Map",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS", "geoLocation-API"],
+    "github": "https://github.com/AlienMinus/Geoid",
+    "demo": "https://alienminus.github.io/Geoid/",
+    "tags": ["Front-End", "Geo Location App", "JavaScript"],
+    "image": "https://repository-images.githubusercontent.com/923042422/70bd3cb9-bcee-4c42-9eb4-ee61b3e73cbc"
+  },
+  {
+    "title": "Minus Ordinary Calculator",
+    "description": "A simple calculator built with Frontend JS for simple arithmetic calculation.",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS"],
+    "github": "https://github.com/AlienMinus/Minus_Ordinary_Calculator",
+    "demo": "https://alienminus.github.io/Minus_Ordinary_Calculator/",
+    "tags": ["Front-End", "Calculator", "JavaScript"],
+    "image": "https://repository-images.githubusercontent.com/874675099/d4eaeb88-0a65-4b29-a2f2-68c6942f246e"
+  },
+  {
+    "title": "Clock Walk",
+    "description": "A Clock app to show both analog & digital date & time.",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS"],
+    "github": "https://github.com/AlienMinus/Clock_Walk",
+    "demo": "https://alienminus.github.io/Clock_Walk/",
+    "tags": ["Front-End", "Clock App", "JavaScript"],
+    "image": "https://repository-images.githubusercontent.com/874593633/5d3f1ace-bee4-4343-8f31-07a914cea6d3"
+  },
+  {
+    "title": "Minus - TodoList App",
+    "description": "A simple TodoList application built with Flask to manage daily tasks.",
+    "techStack": ["Front-End", "JavaScript", "HTML", "CSS", "Flask"],
+    "github": "https://github.com/AlienMinus/Todolist",
+    "demo": "https://minus-todolist.onrender.com/",
+    "tags": ["Front-End", "TodoList App", "JavaScript", "Flask"],
+    "image": "https://repository-images.githubusercontent.com/946324993/050ab140-18e1-4600-a808-f942f013c492"
   }
 ]
