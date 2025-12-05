@@ -26,5 +26,42 @@
       "degree": "Nursery & Pre-Primary School Education (ICSE Board)",
       "year": "2009 - 2011"
     }
-  ]
+  ],
+  "personal_details": {
+    "Name": "Manas Ranjan Das",
+    "DOB": "December 6th, 2005",
+    "Father's Name": "Lokanath Das",
+    "Father's Occupation": "Machine Operator at 'The Sakala' - Daily Newspaper, BBSR.",
+    "Mother's Name": "Puspalata Das",
+    "Mother's Occupation": "Homemaker",
+    "Gender": "Male",
+    "Address": "Dasarathipatana, Daulatabad, Choudwar, Cuttack, Odisha, India - 754026",
+    "Blood Group": "B+ve",
+    "Religion": "Hinduism",
+    "Nationality": "Indian",
+    "Hobbies": "Reading, Traveling, Coding, Music",
+    "Interests": "Technology, Science, Innovation, Environment",
+    "Marital Status": "Single",
+    "Languages Known": "English, Hindi, Odia",
+    "Highest Qualification": "B.Tech in Electrical & Computer Engineering (Pursuing)"
+  },
+  "achievements": {
+    "JEE Mains 2023": "Secured All India Rank '154047' among 10 Lakh+ candidates.",
+    "12th Board Examination 2023": "Achieved 87.5% in CHSE Odisha Board.",
+    "10th Board Examination 2021": "Achieved 86.33% in BSE Odisha Board.",
+    "NIUS Physics Summer Program 2024": "Selected as one of the 71 participants nationwide for the prestigious NIUS Physics Summer Enrichment Program organized by HBCSE-TIFR.",
+    "1st Research Paper Publication": "Co-authored and published my first research paper on 'Optimizing fuzzy power system stabilizers for microgrid frequency stability using improved water cycle algorithm' in Engineering Research Express.",
+    "2nd Research Paper": "Authored my second research paper on 'A Hybrid Energy Harvesting System using IoT' in IoT National Conclave.",
+    "Mastered ChatGPT": "Became proficient in utilizing ChatGPT for various applications including content creation, coding assistance, and problem-solving -JUNO Certified.",
+    "Research": "Selected for a two-year Research Internship at HBCSE-TIFR to develop educational resources and interactive simulations for high school physics.",
+    "Research-Poster": "Presented a research poster on 'Neural Processing Unit(NPU)' on the occation of IAC 2024 at NITTTR Kolkata Extension Centre, Govt. Polytechnic Campus, BHUBANESWAR.",
+    "Masters in Business Administration (MBA)": "Completed MBA in Academy Europe Open University, Germany."
+  },
+  "posts":{
+    "CEO": "Aerial.Vue Corporation - Student driven start-up focused on Technical Innovations, Skill Development and Sustainable Solutions.",
+    "Co-Founder & Director of R&D": "InceptriX - A tech startup focused on Full-Stack, Data Science, AI/ML, IoT solutions, Collaboration, Workshops.",
+    "Fascilitator": "Advance Resilience Kinetics- A student-led organization dedicated to fostering innovation and resilience through technology and community engagement consisting of 5 Successful Teams(ARROW, ARMOUR, SHIELD, SWORD, SPEAR) for 5 diffrent BPUT-Hackathon Projects.",
+    "Leader": "Team InspyrX - An Smart India Hackathon Team working on 'Gamified Learning Platform for School Students'.",
+    "Member": "Indian Society of Technical Education (ISTE) from 2024 - 2028."
+   }
 }
