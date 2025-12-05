@@ -4,11 +4,11 @@ import aboutData from "../data/about.json";
 import About from "../components/About";
 
 function AboutPage() {
-  const { about } = aboutData;
+  const { about, education } = aboutData;
 
   return (
     <div className="page">
-      <About about={about} />
+      <About about={about} education={education} />
     </div>
   );
 }

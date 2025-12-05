@@ -1,3 +1,30 @@
 {
-  "about": "\t I am a dedicated and passionate student with a strong interest in technology, engineering, and innovation. I am always eager to learn and apply new concepts to solve real-world challenges. With experience in leading projects and collaborating with diverse teams, I strive to contribute to the development of sustainable and impactful solutions. \n In addition to my academic pursuits, I am passionate about knowledge-sharing and connecting with like-minded individuals to exchange ideas and insights. I am constantly seeking opportunities to grow, both professionally and personally, and am excited about the potential of technology to shape the future.\nLet’s connect and explore how we can collaborate and drive positive change together. Let’s connect and explore how we can collaborate and drive positive change together."
+  "about": "\t I am a dedicated and passionate student with a strong interest in technology, engineering, and innovation. I am always eager to learn and apply new concepts to solve real-world challenges. With experience in leading projects and collaborating with diverse teams, I strive to contribute to the development of sustainable and impactful solutions. \n In addition to my academic pursuits, I am passionate about knowledge-sharing and connecting with like-minded individuals to exchange ideas and insights. I am constantly seeking opportunities to grow, both professionally and personally, and am excited about the potential of technology to shape the future.\nLet’s connect and explore how we can collaborate and drive positive change together. Let’s connect and explore how we can collaborate and drive positive change together.",
+  "education": [
+    {
+      "institution": "Biju Patnaik University of Technology, Rourkela, Odisha",
+      "degree": "Bachelor of Technology (B.Tech) in Electrical & Computer Engineering",
+      "year": "2023 - 2027"
+    },
+    {
+      "institution": "Jatiya Kabi Bira Kishore Das Government Higher Secondary School, Cuttack, Odisha",
+      "degree": "CHSE (Science Stream)- 11th & 12th Standard",
+      "year": "2021 - 2023"
+    },
+    {
+      "institution": "Saraswati Shishu Vidya Mandir, Sharada Nagar, Cuttack, Odisha",
+      "degree": "Secondary School Education (BSE Odisha Board)",
+      "year": "2016 - 2021"
+    },
+    {
+      "institution": "Harinathpur - Dasarathipatana Primary School, Dasarathipatana, Odisha",
+      "degree": "Primary School Education (Sarva Shiksha Abhiyan)",
+      "year": "2011 - 2016"
+    },
+    {
+      "institution": "St. Joseph's English Medium School, Mandapada, Odisha",
+      "degree": "Nursery & Pre-Primary School Education (ICSE Board)",
+      "year": "2009 - 2011"
+    }
+  ]
 }
