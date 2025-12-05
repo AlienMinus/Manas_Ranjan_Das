@@ -11,8 +11,8 @@
       { "name": "CSS3", "iconLib": "si", "icon": "SiCss3" },
       { "name": "SQL", "iconLib": "bs", "icon": "BsFiletypeSql"},
       { "name": "R", "iconLib": "si", "icon": "SiRstudioide"},
-      { "name": "PHP", "iconLib": "si", "icon": "SiPhp" }
-
+      { "name": "PHP", "iconLib": "si", "icon": "SiPhp" },
+      { "name": "Scratch", "iconLib": "si", "icon": "SiScratch" }
     ]
   },
   {
