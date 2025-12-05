@@ -40,7 +40,7 @@ function Home() {
       <About about={about.substring(0, 180) + "..."} />
       <div className="view-more">
         <Link to="/about" className="btn outline">
-          Read More
+          Know More...
         </Link>
       </div>
 
@@ -48,7 +48,7 @@ function Home() {
       <Skills skills={limitedSkillsData.slice(0, 4)} />
       <div className="view-more">
         <Link to="/skills" className="btn outline">
-          See All Skills
+          See More Skills...
         </Link>
       </div>
 
@@ -56,7 +56,7 @@ function Home() {
       <Projects projects={projectsData.slice(0, 2)} />
       <div className="view-more">
         <Link to="/projects" className="btn outline">
-          View All Projects
+          View All Projects...
         </Link>
       </div>
 
@@ -64,7 +64,7 @@ function Home() {
       <Experience experience={experienceData.slice(0, 2)} />
       <div className="view-more">
         <Link to="/experience" className="btn outline">
-          Full Experience
+          Explore Full Experience...
         </Link>
       </div>
 
@@ -73,7 +73,7 @@ function Home() {
         <h3>Let’s Work Together!</h3>
         <div className="view-more">
           <Link to="/contact" className="btn primary">
-            Contact Me
+            Contact Me!
           </Link>
         </div>
       </div>

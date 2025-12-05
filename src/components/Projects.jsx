@@ -1,10 +1,14 @@
 // src/components/Projects.jsx
 import React from "react";
 
-function Projects({ projects }) {
+function Projects({ projects = [] }) {
+  const projectCount = Array.isArray(projects) ? projects.length : 0;
+
   return (
     <section className="section" id="projects">
-      <h2 className="section__title">Projects</h2>
+      <h2 className="section__title">
+        Projects <span className="projects__count">({projectCount})</span>
+      </h2>
       <div className="projects__grid">
         {projects.map((project) => (
           <div className="card project-card" key={project.title}>

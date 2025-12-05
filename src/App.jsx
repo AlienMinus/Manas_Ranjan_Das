@@ -1,5 +1,5 @@
 // src/App.jsx
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
@@ -15,13 +15,29 @@ import ExperiencePage from "./pages/ExperiencePage";
 import ContactPage from "./pages/ContactPage";
 import AdminPage from "./pages/AdminPage";
 
-
-
-
 function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
+
+  const toggleMusic = () => {
+    setIsPlaying(!isPlaying);
+  };
+
   return (
     <div className="app">
       <Navbar />
+      <audio ref={audioRef} src="/MinusTheme.mp3" loop />
+      <button onClick={toggleMusic} className="music-toggle">
+        {isPlaying ? "▶" : "◉"}
+      </button>
 
       <main>
         <Routes>

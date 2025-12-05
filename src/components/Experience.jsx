@@ -11,15 +11,32 @@ import * as GiIcons from "react-icons/gi";
 function getIconComponent(exp) {
   if (!exp.icon) return null;
 
-  const lib = exp.iconLib === "ri" ? RiIcons : exp.iconLib === "gi" ? GiIcons : exp.iconLib === "tb" ? TbIcons : exp.iconLib ==="fa" ? FaIcons : exp.iconLib === "bs" ? BsIcons : exp.iconLib === "md" ? MdIcons : SiIcons;
-    const Icon = lib[exp.icon];
-    return Icon || null; // safe fallback
+  const lib =
+    exp.iconLib === "ri"
+      ? RiIcons
+      : exp.iconLib === "gi"
+      ? GiIcons
+      : exp.iconLib === "tb"
+      ? TbIcons
+      : exp.iconLib === "fa"
+      ? FaIcons
+      : exp.iconLib === "bs"
+      ? BsIcons
+      : exp.iconLib === "md"
+      ? MdIcons
+      : SiIcons;
+  const Icon = lib[exp.icon];
+  return Icon || null;
 }
 
-function Experience({ experience }) {
+function Experience({ experience = [] }) {
+  const count = Array.isArray(experience) ? experience.length : 0;
+
   return (
     <section className="section" id="experience">
-      <h2 className="section__title">Experience</h2>
+      <h2 className="section__title">
+        Experience <span className="experience__count">({count})</span>
+      </h2>
       <div className="experience__timeline">
         {experience.map((exp) => {
           const Icon = getIconComponent(exp);

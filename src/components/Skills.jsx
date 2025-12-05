@@ -17,13 +17,22 @@ function getIconComponent(skill) {
 }
 
 function Skills({ skills }) {
+  const shownCount = skills.reduce((acc, group) => {
+    const itemsLen = Array.isArray(group.items) ? group.items.length : 0;
+    return acc + Math.min(itemsLen);
+  }, 0);
+
   return (
     <section className="section" id="skills">
-      <h2 className="section__title">Skills</h2>
+      <h2 className="section__title">
+        Skills <span className="skills__count">({shownCount})</span>
+      </h2>
       <div className="skills__grid">
         {skills.map((group) => (
           <div className="card" key={group.category}>
-            <h3>{group.category}</h3>
+            <h3>
+              {group.category} <span className="skills__cat-count">({group.items.length})</span>
+            </h3>
             <ul className="skills__list">
               {group.items.map((skill) => {
                 const Icon = getIconComponent(skill);
