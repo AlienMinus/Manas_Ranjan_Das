@@ -232,5 +232,14 @@
     "demo": "https://minus-todolist.onrender.com/",
     "tags": ["Front-End", "TodoList App", "JavaScript", "Flask"],
     "image": "https://repository-images.githubusercontent.com/946324993/050ab140-18e1-4600-a808-f942f013c492"
+  },
+  {
+    "title": "Evox.bat & Vengix.exe",
+    "description": "2 small computer viruses: That runs infinite loops and creates multiple notepad windows to crash the system.",
+    "techStack": ["Batch Scripting", "C Programming"],
+    "github": "https://github.com/AlienMinus/Computer_Viruses",
+    "demo": "https://github.com/AlienMinus/Computer_Viruses/archive/refs/heads/main.zip",
+    "tags": ["Batch Scripting", "C Programming", "Viruses"],
+    "image" : "https://i.ytimg.com/vi/KtLoE8kaEGM/maxresdefault.jpg"
   }
 ]

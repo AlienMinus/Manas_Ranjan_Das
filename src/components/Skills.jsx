@@ -3,11 +3,15 @@ import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
 import * as BsIcons from "react-icons/bs";
 import * as MdIcons from "react-icons/md";
+import * as RiIcons from "react-icons/ri";
+import * as TbIcons from "react-icons/tb";
+import * as GiIcons from "react-icons/gi";
+
 
 function getIconComponent(skill) {
   if (!skill.icon) return null;
 
-  const lib = skill.iconLib === "fa" ? FaIcons : skill.iconLib === "bs" ? BsIcons : skill.iconLib === "md" ? MdIcons : SiIcons;
+  const lib = skill.iconLib === "ri" ? RiIcons : skill.iconLib === "gi" ? GiIcons : skill.iconLib === "tb" ? TbIcons : skill.iconLib ==="fa" ? FaIcons : skill.iconLib === "bs" ? BsIcons : skill.iconLib === "md" ? MdIcons : SiIcons;
   const Icon = lib[skill.icon];
   return Icon || null; // safe fallback
 }

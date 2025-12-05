@@ -5,6 +5,7 @@ function Contact({ contact }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    blog: "",
     message: "",
   });
   const [status, setStatus] = useState(null); // "success" | "error" | null
@@ -55,6 +56,7 @@ function Contact({ contact }) {
           Email: <a href={`mailto:${contact.email}`}>{contact.email}</a>
         </p>
         {contact.phone && <p>Phone: {contact.phone}</p>}
+        {contact.blog && <p><a href="https://spectacularminus.blogspot.com" target="_blank">Blog: {contact.blog}</a></p>}
       </div>
 
       <form className="contact__form" onSubmit={handleSubmit}>

@@ -7,24 +7,49 @@
       { "name": "C++", "iconLib": "si", "icon": "SiCplusplus" },
       { "name": "JavaScript", "iconLib": "si", "icon": "SiJavascript" },
       { "name": "React", "iconLib": "si", "icon": "SiReact" },
-      { "name": "Node.js", "iconLib": "si", "icon": "SiNodedotjs" }
+      { "name": "HTML5", "iconLib": "si", "icon": "SiHtml5" },
+      { "name": "CSS3", "iconLib": "si", "icon": "SiCss3" },
+      { "name": "SQL", "iconLib": "bs", "icon": "BsFiletypeSql"},
+      { "name": "R", "iconLib": "si", "icon": "SiRstudioide"},
+      { "name": "PHP", "iconLib": "si", "icon": "SiPhp" }
+
     ]
   },
   {
-    "category": "Electronics & IoT",
+    "category": "Electrical & Electronics",
     "items": [
       { "name": "Arduino", "iconLib": "si", "icon": "SiArduino" },
       { "name": "Embedded Systems", "iconLib": "fa", "icon": "FaMicrochip" },
-      { "name": "Power Electronics", "iconLib": "fa", "icon": "FaBolt" }
+      { "name": "Power Electronics", "iconLib": "fa", "icon": "FaBolt" },
+      { "name": "Raspberry Pi", "iconLib": "si", "icon": "SiRaspberrypi" },
+      { "name": "Network Analysis", "iconLib": "tb", "icon": "TbCircuitVoltmeter" },
+      { "name": "Network Synthesis", "iconLib": "gi", "icon": "GiCircuitry" },
+      { "name": "Internet of Things", "iconLib": "si", "icon": "SiArduino" },
+      { "name": "Analog & Digital Electronics", "iconLib": "gi", "icon": "GiCircuitry" },
+      { "name": "Robotics", "iconLib": "bs", "icon": "BsRobot" },
+      { "name": "Artificial Intelligence of Things", "iconLib": "gi", "icon": "GiArtificialIntelligence" },
+      { "name": "TinkerCad", "iconLib": "si", "icon": "SiTinkercad" }
+      
     ]
   },
   {
     "category": "Tools",
     "items": [
       { "name": "Git", "iconLib": "si", "icon": "SiGit" },
+      { "name": "GitHub", "iconLib": "si", "icon": "SiGithub" },
       { "name": "Docker", "iconLib": "si", "icon": "SiDocker" },
+      { "name": "Figma", "iconLib": "si", "icon": "SiFigma" },
+      { "name": "Flask", "iconLib": "si", "icon": "SiPython" },
+      { "name": "Django", "iconLib": "si", "icon": "SiPython" },
+      { "name": "Node.js", "iconLib": "si", "icon": "SiNodedotjs" },
       { "name": "MATLAB", "iconLib": "si", "icon": "SiLibreofficemath" },
-      { "name": "Figma", "iconLib": "si", "icon": "SiFigma" }
+      { "name": "MongoDB", "iconLib": "si", "icon": "SiMongodb" },
+      { "name": "Scikit-Learn", "iconLib": "si", "icon": "SiScikitlearn" },
+      { "name": "TensorFlow", "iconLib": "si", "icon": "SiTensorflow" },
+      { "name": "Bootstrap", "iconLib": "si", "icon": "SiReactbootstrap" },
+      { "name": "Advanced Excel", "iconLib": "ri", "icon": "RiFileExcel2Fill" },
+      { "name": "Amazon Web Services", "iconLib": "fa", "icon": "FaAws" }
+
     ]
   },
   {
@@ -32,7 +57,10 @@
     "items": [
       { "name": "Leadership", "iconLib": "md", "icon": "MdLeaderboard" },
       { "name": "Communication", "iconLib": "si", "icon": "SiGooglemessages" },
-      { "name": "Teamwork", "iconLib": "bs", "icon": "BsMicrosoftTeams" }
+      { "name": "Team Management", "iconLib": "bs", "icon": "BsMicrosoftTeams" },
+      { "name": "Research Skills", "iconLib": "gi", "icon": "GiArchiveResearch" },
+      { "name": "Multi Tasking", "iconLib": "ri", "icon": "RiCheckboxMultipleBlankFill" },
+      { "name": "Generative AI", "iconLib": "ri", "icon": "RiAiGenerate2" }
     ]
   }
 ]
