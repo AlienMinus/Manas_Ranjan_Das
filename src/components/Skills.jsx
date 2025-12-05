@@ -25,7 +25,7 @@ function Skills({ skills }) {
           <div className="card" key={group.category}>
             <h3>{group.category}</h3>
             <ul className="skills__list">
-              {group.items.slice(0, 3).map((skill) => {
+              {group.items.map((skill) => {
                 const Icon = getIconComponent(skill);
                 return (
                   <li className="skills__item" key={skill.name}>
