@@ -1,8 +1,19 @@
 [
   {
+    "role": "Project Intern",
+    "company": "Centre of Excellence (IoT), ABIT",
+    "duration": "2023 - Present",
+    "iconLib": "fa",
+    "icon": "FaLightbulb",
+    "details": [
+      "Working on sustainable IoT and intelligent automation.",
+      "Collaborating with multidisciplinary teams to build real-world prototypes."
+    ]
+  },
+  {
     "role": "Research Intern",
-    "company": "HBCSE, TIFR",
-    "duration": "2024 – Present",
+    "company": "Homi Bhabha Centre for Science Education (HBCSE), Tata Institute for Fundamental Research (TIFR)",
+    "duration": "June 2024 - June 2026",
     "iconLib": "fa",
     "icon": "FaFlask",
     "details": [
@@ -11,14 +22,86 @@
     ]
   },
   {
-    "role": "Research Strategist",
-    "company": "Centre for Applied Research, ABIT",
-    "duration": "2023 – Present",
+    "role": "AI Engineering Intern",
+    "company": "Odisha Computer Application Centre(OCAC), BBSR",
+    "duration": "May 2025 - July 2025",
+    "iconLib": "bs",
+    "icon": "BsRobot",
+    "details": [
+      "Developed YOLO DL based PCB Component Detector & OpenCV based Gesture Recognition, On-Screen Keyboard & Writing Pad.",
+      "Developed an ML based Retail-Sales-Forecast Model with Frontend Dashboard & More.",
+      "Developed Browser Extensions: Email-Spam, Emotion Detection."
+    ]
+  },
+  {
+    "role": "Software Development Intern",
+    "company": "Accenture, UK",
+    "duration": "December 2024",
+    "iconLib": "si",
+    "icon": "SiAccenture",
+    "details": [
+      "Conducted in-depth research into emerging technology trends, particularly in the field of DevOps.",
+      "Analysing and comparing Waterfall and Agile methodologies.",
+      "Designed a custom algorithm using pseudocode and effectively communicated its logic by creating a detailed flow diagram.",
+      "Debugged programs written in Python by fixing syntax and logic errors in the code & deep analysis of SDLC & STLC."
+    ]
+  },
+  {
+    "role": "Solution Architecture Intern",
+    "company": "Amazon Web Services (AWS)",
+    "duration": "December 2024",
+    "iconLib": "fa",
+    "icon": "FaAws",
+    "details": [
+      "Designed and simple and scalable hosting architecture based on Elastic Beanstalk for a client experiencing significant growth and slow response times & described my proposed architecture in plain language ensuring my client understood how it works and how costs will be calculated for it."
+    ]
+  },
+  {
+    "role": "Gen-AI Workshop Trainee",
+    "company": "NxtWave Webinar",
+    "duration": "21st December 2024",
+    "iconLib": "si",
+    "icon": "SiHyperskill",
+    "details": [
+      "Completed a comprehensive training program on Generative AI, covering key concepts, tools, and applications.",
+      "Gained hands-on experience with popular Generative AI models and frameworks."
+    ]
+  },
+  {
+    "role": "NIUS(Physics) 21st Batch Participant",
+    "company": "National Inititive on Undergraduate Science-HBCSE-TIFR",
+    "duration": "June 18, 2024 - June 29, 2024",
     "iconLib": "fa",
     "icon": "FaLightbulb",
     "details": [
-      "Working on sustainable IoT and intelligent automation.",
-      "Collaborating with multidisciplinary teams to build real-world prototypes."
+      "Exposure to advanced physics topics through lectures, workshops, and hands-on experiments.",
+      "Projects were allocated based on Performance.",
+      "In this 15 days Summer Enrichment Program I represented Odisha at National Level.",
+      "Gained insights into research methodologies and scientific inquiry."  
+    ]
+  },
+  {
+    "role": "Class Representative",
+    "company": "Dept. of ECE, ABIT (Batch 2023-27)",
+    "duration": "August 2024 - Present",
+    "iconLib": "fa",
+    "icon": "FaUserGraduate",
+    "details": [
+      "Developed Strong Leadership and Communication Skills by acting as a liaison between students and faculty.",
+      "Organized academic and extracurricular activities, fostering a collaborative learning environment.",
+      "Represented the class in departmental meetings, voicing student concerns and suggestions.",
+      "Coordinated with faculty to ensure smooth dissemination of information regarding curriculum and events."
+    ]
+  },
+  {
+    "role": "Content Creator Specialist",
+    "company": "Certified By Adobe (Dec 2024 - Feb 2025)",
+    "duration": "2017 - Present",
+    "iconLib": "ri",
+    "icon": "RiMovie2AiLine",
+    "details": [
+      "Creating engaging and informative content across various digital platforms to enhance brand visibility and audience engagement.",
+      "Utilizing skills in video editing, graphic design, and social media management to produce high-quality content that resonates with target audiences."
     ]
   }
 ]

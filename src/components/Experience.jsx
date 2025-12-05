@@ -1,12 +1,19 @@
 // src/components/Experience.jsx
 import React from "react";
-import * as FaIcons from "react-icons/fa";
 import * as SiIcons from "react-icons/si";
+import * as FaIcons from "react-icons/fa";
+import * as BsIcons from "react-icons/bs";
+import * as MdIcons from "react-icons/md";
+import * as RiIcons from "react-icons/ri";
+import * as TbIcons from "react-icons/tb";
+import * as GiIcons from "react-icons/gi";
 
 function getIconComponent(exp) {
   if (!exp.icon) return null;
-  const lib = exp.iconLib === "si" ? SiIcons : FaIcons;
-  return lib[exp.icon] || null; // safe fallback
+
+  const lib = exp.iconLib === "ri" ? RiIcons : exp.iconLib === "gi" ? GiIcons : exp.iconLib === "tb" ? TbIcons : exp.iconLib ==="fa" ? FaIcons : exp.iconLib === "bs" ? BsIcons : exp.iconLib === "md" ? MdIcons : SiIcons;
+    const Icon = lib[exp.icon];
+    return Icon || null; // safe fallback
 }
 
 function Experience({ experience }) {
