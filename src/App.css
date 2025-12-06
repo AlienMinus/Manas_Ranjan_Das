@@ -644,9 +644,9 @@ main{
   max-width: 90vw;
   height: 450px;
   max-height: 70vh;
-  background: rgba(10, 10, 20, 0.9);
+  background: rgba(10, 10, 20, 0);
   border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.321);
   box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
