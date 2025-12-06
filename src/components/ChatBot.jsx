@@ -51,13 +51,13 @@ const ChatBot = () => {
         className="chatbot-toggler"
         aria-label="Toggle chatbot"
       >
-        <span className="material-symbols-rounded">🤖</span>
+        <span className="material-symbols-rounded">Robot</span>
       </button>
 
       {isOpen && (
         <div className="chatbot">
           <div className="chatbot-header">
-            <h2>Minus Bot</h2>
+            <h2>🤖 Minus Bot</h2>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
