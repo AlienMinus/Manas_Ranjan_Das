@@ -14,6 +14,7 @@ import ProjectsPage from "./pages/ProjectsPage";
 import ExperiencePage from "./pages/ExperiencePage";
 import ContactPage from "./pages/ContactPage";
 import AdminPage from "./pages/AdminPage";
+import ChatBot from "./components/ChatBot";
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -52,6 +53,7 @@ function App() {
       </main>
 
       <Footer name="Manas Ranjan Das" />
+      <ChatBot />
     </div>
   );
 }
