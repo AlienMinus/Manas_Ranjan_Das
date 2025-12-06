@@ -57,7 +57,7 @@ const ChatBot = () => {
       {isOpen && (
         <div className="chatbot">
           <div className="chatbot-header">
-            <h2>🤖 Minus Bot</h2>
+            <h2>🤖 Minus.Bot - Search Assist</h2>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
