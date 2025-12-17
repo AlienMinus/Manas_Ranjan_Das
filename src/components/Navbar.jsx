@@ -11,7 +11,7 @@ function Navbar() {
     { label: "Projects", path: "/projects" },
     { label: "Experience", path: "/experience" },
     { label: "Contact", path: "/contact" },
-    {label: "Admin", path: "/admin" }
+    { label: "Admin", path: "/admin" },
   ];
 
   return (
@@ -19,10 +19,10 @@ function Navbar() {
       <div className="navbar__logo">
         {/* Click logo to go home */}
         <NavLink to="/">
-        <div className="navbar__logo img">  
-        <img src={Logo} alt="Logo" className="navbar__logo-img" />
-        Manas Ranjan Das
-      </div>
+          <div className="navbar__logo img">
+            <img src={Logo} alt="Logo" className="navbar__logo-img" />
+            Manas R. Das
+          </div>
         </NavLink>
       </div>
 

@@ -24,10 +24,10 @@ function Hero({ name, roles, tagline, location, socialLinks }) {
     <section className="hero" id="home">
       <div className="hero__content">
         <p className="hero__hello">Hi, I'm</p>
-        <div className="hero__left">
+        <div className="hero__image-container">
           <img src={profileImage} alt="Profile" className="hero__image" />
         </div>
-        <h1 className="hero__name">{name}</h1>
+        <h1 className="hero__name" data-text={name}>{name}</h1>
         <h2 className="hero__role fade-text">
           Electrical & Computer Engineer | {roles[index]}
         </h2>

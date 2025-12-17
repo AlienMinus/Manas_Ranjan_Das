@@ -90,6 +90,33 @@
 .hero__name {
   font-size: clamp(3rem, 6vw, 4rem);
   font-weight: 800;
+  position: relative;
+  animation: glitch 3s infinite;
+  text-shadow: 0 0 5px #9fd3ff, 0 0 10px #9fd3ff, 0 0 20px #77c4e4, 0 0 40px #77c4e4;
+}
+
+.hero__name::before,
+.hero__name::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  clip: rect(auto, auto, auto, auto);
+}
+
+.hero__name::before {
+  left: -2px;
+  text-shadow: 1px 0 #ff33cc;
+  animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+
+.hero__name::after {
+  left: 2px;
+  text-shadow: -1px 0 #33ffcc;
+  animation: glitch-anim-2 3.5s infinite linear alternate-reverse;
 }
 
 .hero__role {
@@ -126,14 +153,62 @@
 }
 
 /* Hero image */
-.hero__image {
+.hero__image-container {
+  position: relative;
   width: 300px;
   height: 300px;
+  margin: 0 auto 1.5rem;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 30px rgba(0, 162, 255, 0.25);
   transition: transform 0.3s;
+  position: relative;
+  z-index: 2;
+}
+
+.hero__image-container::before,
+.hero__image-container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.hero__image-container::before {
+  border: 2px solid #77c4e4;
+  animation: pulse 4s infinite;
+  box-shadow: 0 0 20px #77c4e4, inset 0 0 20px #77c4e4;
+}
+
+.hero__image-container::after {
+  border: 1px solid #9fd3ff;
+  animation: pulse 4s 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0;
+  }
 }
 
 .hero__image:hover {
@@ -757,5 +832,155 @@ main{
   .chatbot-toggler {
     bottom: 15px;
     left: 15px;
+  }
+}
+
+/* 404 Page */
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+  padding: 1rem;
+  min-height: 100vh; /* Ensure it takes full viewport height */
+}
+
+.cyberspace {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found-code {
+  font-family: 'Roboto Mono', monospace;
+  font-size: clamp(8rem, 25vw, 15rem);
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  animation: glitch 3s infinite;
+  text-shadow: 0 0 5px #9fd3ff, 0 0 10px #9fd3ff, 0 0 20px #77c4e4, 0 0 40px #77c4e4;
+}
+
+.not-found-code::before,
+.not-found-code::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  clip: rect(auto, auto, auto, auto);
+}
+
+.not-found-code::before {
+  left: -2px;
+  text-shadow: 1px 0 #ff33cc;
+  animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+
+.not-found-code::after {
+  left: 2px;
+  text-shadow: -1px 0 #33ffcc;
+  animation: glitch-anim-2 3.5s infinite linear alternate-reverse;
+}
+
+.not-found-message {
+  font-size: 1.75rem;
+  margin-top: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #f5f5f5;
+  animation: fadeIn 2s ease-in;
+}
+
+.not-found-suggestion {
+  max-width: 450px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  color: rgba(245, 245, 245, 0.8);
+  animation: fadeIn 2.5s ease-in;
+}
+
+.not-found-page .btn {
+  animation: fadeIn 3s ease-in;
+}
+
+
+@keyframes glitch {
+  0% { transform: skewX(0); }
+  5% { transform: skewX(0.5deg); }
+  10% { transform: skewX(-0.5deg); }
+  15% { transform: skewX(0.5deg); }
+  20% { transform: skewX(0); }
+  50% { transform: skewX(0); }
+  55% { transform: skewX(-0.2deg); }
+  60% { transform: skewX(0.2deg); }
+  65% { transform: skewX(0); }
+  100% { transform: skewX(0); }
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip: rect(42px, 9999px, 44px, 0); }
+  5% { clip: rect(12px, 9999px, 62px, 0); }
+  10% { clip: rect(40px, 9999px, 46px, 0); }
+  15% { clip: rect(82px, 9999px, 102px, 0); }
+  20% { clip: rect(25px, 9999px, 85px, 0); }
+  25% { clip: rect(60px, 9999px, 80px, 0); }
+  30% { clip: rect(10px, 9999px, 30px, 0); }
+  35% { clip: rect(75px, 9999px, 95px, 0); }
+  40% { clip: rect(20px, 9999px, 70px, 0); }
+  45% { clip: rect(90px, 9999px, 110px, 0); }
+  50% { clip: rect(35px, 9999px, 65px, 0); }
+  55% { clip: rect(100px, 9999px, 120px, 0); }
+  60% { clip: rect(15px, 9999px, 45px, 0); }
+  65% { clip: rect(80px, 9999px, 105px, 0); }
+  70% { clip: rect(5px, 9999px, 35px, 0); }
+  75% { clip: rect(110px, 9999px, 130px, 0); }
+  80% { clip: rect(50px, 9999px, 75px, 0); }
+  85% { clip: rect(55px, 9999px, 90px, 0); }
+  90% { clip: rect(5px, 9999px, 25px, 0); }
+  95% { clip: rect(85px, 9999px, 115px, 0); }
+  100% { clip: rect(42px, 9999px, 44px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(85px, 9999px, 110px, 0); }
+  5% { clip: rect(25px, 9999px, 75px, 0); }
+  10% { clip: rect(60px, 9999px, 90px, 0); }
+  15% { clip: rect(10px, 9999px, 40px, 0); }
+  20% { clip: rect(70px, 9999px, 95px, 0); }
+  25% { clip: rect(30px, 9999px, 55px, 0); }
+  30% { clip: rect(95px, 9999px, 120px, 0); }
+  35% { clip: rect(45px, 9999px, 70px, 0); }
+  40% { clip: rect(5px, 9999px, 30px, 0); }
+  45% { clip: rect(80px, 9999px, 100px, 0); }
+  50% { clip: rect(15px, 9999px, 50px, 0); }
+  55% { clip: rect(65px, 9999px, 85px, 0); }
+  60% { clip: rect(40px, 9999px, 60px, 0); }
+  65% { clip: rect(105px, 9999px, 130px, 0); }
+  70% { clip: rect(20px, 9999px, 45px, 0); }
+  75% { clip: rect(90px, 9999px, 115px, 0); }
+  80% { clip: rect(50px, 9999px, 80px, 0); }
+  85% { clip: rect(10px, 9999px, 35px, 0); }
+  90% { clip: rect(75px, 9999px, 95px, 0); }
+  95% { clip: rect(55px, 9999px, 85px, 0); }
+  100% { clip: rect(85px, 9999px, 110px, 0); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
