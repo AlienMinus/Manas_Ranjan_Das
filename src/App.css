@@ -465,6 +465,15 @@
   .hero__content {
     max-width: 100%;
   }
+
+  .hero__image-container {
+    width: 250px;
+    height: 250px;
+  }
+
+  .hero__name {
+    text-shadow: 0 0 3px #9fd3ff, 0 0 6px #9fd3ff, 0 0 12px #77c4e4, 0 0 24px #77c4e4;
+  }
 }
 
 /* Tablets & large phones */
@@ -499,6 +508,16 @@
   .contact__form {
     max-width: 100%;
   }
+
+  .hero__image-container {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero__image-container::before,
+  .hero__image-container::after {
+    animation-duration: 6s;
+  }
 }
 
 /* Small phones */
@@ -514,15 +533,39 @@
 
   .hero__name {
     font-size: 2.4rem;
+    text-shadow: 0 0 2px #9fd3ff, 0 0 4px #77c4e4;
+  }
+
+  .hero__name::before {
+    animation: glitch-anim-1 4s infinite linear alternate-reverse;
+  }
+
+  .hero__name::after {
+    animation: glitch-anim-2 5s infinite linear alternate-reverse;
   }
 
   .hero__role {
     font-size: 1rem;
   }
 
+  .hero__image-container {
+    width: 180px;
+    height: 180px;
+  }
+
+  .hero__image-container::before {
+    animation-duration: 7s;
+    border-width: 1px;
+  }
+  
+  .hero__image-container::after {
+    animation-duration: 7s;
+  }
+
   .hero__image {
     width: 180px;
     height: 180px;
+    box-shadow: 0 0 15px rgba(0, 162, 255, 0.2);
   }
 
   .btn {
