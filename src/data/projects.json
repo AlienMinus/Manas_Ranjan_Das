@@ -9,6 +9,15 @@
     "image": "https://repository-images.githubusercontent.com/1124799719/7e3b98f9-dd63-40e6-aa4b-9fa1d2a1cf4d"
   },
   {
+    "title": "Project Encome - \"ShineX\"",
+    "description": "MERN Stack E-Commerce Website for a Newly Launched Utilitity Brand.",
+    "techStack": ["Full-Stack", "MERN", "Vercel", "Render"],
+    "github": "https://github.com/AlienMinus/encome",
+    "demo": "https://shinex-shop.vercel.app/",
+    "tags": ["E-Commerce", "Shopping App", "MERN", "Vercel", "Render"],
+    "image": "https://repository-images.githubusercontent.com/1117016332/4c80ee11-243f-4d77-8bdf-c86d7e0612cf"
+  },
+  {
     "title": "Manas Ranjan Das - Portfolio",
     "description": "Personal Portfolio- All about Manas Ranjan Das(Me).",
     "techStack": ["MongoDB", "Express", "React", "Node.js"],
