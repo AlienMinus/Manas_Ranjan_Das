@@ -1,5 +1,50 @@
 [
   {
+    "title": "AI INTERVIEW ASSISTANT",
+    "description": "A Browser Extension that Simulate Virtual Interview",
+    "techStack": ["JavaScript", "Node.js", "YOLO-OpenCV", "OCR"],
+    "github": "https://github.com/AlienMinus/AI_INTERVIEW_ASSISTANT",
+    "demo": "https://www.sagar2027.com",
+    "tags": ["Browser Extension", "AI Interview"],
+    "image": "https://repository-images.githubusercontent.com/1182491309/5e32a460-6517-49fc-95df-d461fe275033"
+  },
+  {
+    "title": "Arcturus Connexa",
+    "description": "Professional Social Media App",
+    "techStack": ["MongoDB", "Express", "ReactJS", "Node.js"],
+    "github": "https://github.com/AlienMinus/ABIT-Conference_Paper",
+    "demo": "https://www.sagar2027.com",
+    "tags": ["JavaScript", "Vercel", "MERN Stack", "Like LinkedIn"],
+    "image": "https://repository-images.githubusercontent.com/1182491309/5e32a460-6517-49fc-95df-d461fe275033"
+  },
+  {
+    "title": "AERIS & ASTRA (For IoT Centre of Excellence, ABIT)",
+    "description": "Adaptive Engineering Robotic Intelligent System & Adaptive Sustainable Tech-Enabled Robotic Assistant.",
+    "techStack": ["ESP32", "ESPNOW", "I2C", "Arduino C++ Programming"],
+    "github": "https://github.com/AlienMinus/AERIS-SpiderBot",
+    "demo": "",
+    "tags": ["Communication Protocol", "IoT", "Mechatronics", "Embedded System"],
+    "image": "https://media.licdn.com/dms/image/v2/D4D22AQHsnczyXKCcog/feedshare-shrink_800/B4DZ9u0JskI0Ac-/0/1784270593116?e=1787788800&v=beta&t=_eTpUHzoxiiEdzquuQti855zOYfTgX0e2c5OtEpFGoo"
+  },
+  {
+    "title": "SAGAR2027 Conference Website",
+    "description": "The 1st International Conference on Soft Computing Application in Smart grid and Renewable Energy (SAGAR2027).",
+    "techStack": ["React", "JavaScript", "Hostinger", "JSON"],
+    "github": "https://github.com/AlienMinus/ABIT-Conference_Paper",
+    "demo": "https://www.sagar2027.com",
+    "tags": ["JavaScript", "Vercel", "React", "ChatBot"],
+    "image": "https://repository-images.githubusercontent.com/1163386078/26bdfed2-373d-4b61-92b4-9c02aeee3af5"
+  },
+  {
+    "title": "ResuManager",
+    "description": "ATS Friendly Resume Generator.",
+    "techStack": ["HTML", "Vanila CSS", "JavaScript", "Local Storage"],
+    "github": "https://github.com/AlienMinus/ATS-Friendly-Resume-Generator",
+    "demo": "https://resumanager.vercel.app/",
+    "tags": ["Plane HTML-CSS-JS", "ATS-Friendly Template"],
+    "image": "https://repository-images.githubusercontent.com/1175928995/a3da77e7-0484-4597-ab84-788bf2adcda3"
+  },
+  {
     "title": "C-- Scripture Language",
     "description": "Live Script Notebook for C Programming.",
     "techStack": ["Python", "C", "JavaScript", "React", "Flask"],

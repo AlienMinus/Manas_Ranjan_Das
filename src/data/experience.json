@@ -1,8 +1,20 @@
 [
   {
+  "role": "Cybersecurity Intern",
+  "company": "Central Tool Room & Training Centre, BBSR",
+  "duration": "May 2026 - June 2026",
+  "iconLib": "md",
+  "icon": "MdOutlineSecurity",
+  "details": [
+    "Gained hands-on experience in Cybersecurity, Ethical Hacking, Network Security & Risk Assessment.",
+    "Performed reconnaissance, vulnerability scanning and security analysis using Kali Linux and industry-standard cybersecurity tools.",
+    "Configured and simulated Cisco networks, Port Security, VPNs, Firewalls and IDS/IPS using Cisco Packet Tracer and virtual lab environments."
+  ]
+},
+  {
     "role": "Project Intern",
     "company": "Centre of Excellence (IoT), ABIT",
-    "duration": "2023 - Present",
+    "duration": "October 2025 - June 2026",
     "iconLib": "fa",
     "icon": "FaLightbulb",
     "details": [

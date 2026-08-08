@@ -2,17 +2,16 @@
   {
     "category": "Programming",
     "items": [
+      { "name": "ReactJS", "iconLib": "si", "icon": "SiReact" },
       { "name": "Python", "iconLib": "si", "icon": "SiPython" },
       { "name": "C", "iconLib": "si", "icon": "SiC" },
       { "name": "C++", "iconLib": "si", "icon": "SiCplusplus" },
       { "name": "JavaScript", "iconLib": "si", "icon": "SiJavascript" },
-      { "name": "React", "iconLib": "si", "icon": "SiReact" },
       { "name": "HTML5", "iconLib": "si", "icon": "SiHtml5" },
       { "name": "CSS3", "iconLib": "si", "icon": "SiCss3" },
       { "name": "SQL", "iconLib": "bs", "icon": "BsFiletypeSql"},
-      { "name": "R", "iconLib": "si", "icon": "SiRstudioide"},
-      { "name": "PHP", "iconLib": "si", "icon": "SiPhp" },
-      { "name": "Scratch", "iconLib": "si", "icon": "SiScratch" }
+      { "name": "Scratch", "iconLib": "si", "icon": "SiScratch" },
+      { "name": "JAVA", "iconLib": "fa", "icon": "FaJava" }
     ]
   },
   {
@@ -47,9 +46,7 @@
       { "name": "Scikit-Learn", "iconLib": "si", "icon": "SiScikitlearn" },
       { "name": "TensorFlow", "iconLib": "si", "icon": "SiTensorflow" },
       { "name": "Bootstrap", "iconLib": "si", "icon": "SiReactbootstrap" },
-      { "name": "Advanced Excel", "iconLib": "ri", "icon": "RiFileExcel2Fill" },
-      { "name": "Amazon Web Services", "iconLib": "fa", "icon": "FaAws" }
-
+      { "name": "Power BI", "iconLib": "ri", "icon": "RiFileExcel2Fill" }
     ]
   },
   {
@@ -60,7 +57,7 @@
       { "name": "Team Management", "iconLib": "bs", "icon": "BsMicrosoftTeams" },
       { "name": "Research Skills", "iconLib": "gi", "icon": "GiArchiveResearch" },
       { "name": "Multi Tasking", "iconLib": "ri", "icon": "RiCheckboxMultipleBlankFill" },
-      { "name": "Generative AI", "iconLib": "ri", "icon": "RiAiGenerate2" }
+      { "name": "Prompt Engineering", "iconLib": "ri", "icon": "RiAiGenerate2" }
     ]
   }
 ]
