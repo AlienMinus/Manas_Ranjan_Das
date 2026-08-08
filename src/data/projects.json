@@ -1,12 +1,30 @@
 [
   {
+    "title": "Hyperion IDE",
+    "description": "Multipurpose Intelligence for Research & Automation",
+    "techStack": ["MERN", "Render Microservices", "Cloudinary", "Python-NLP"],
+    "github": "https://github.com/AlienMinus/Minus_IDE",
+    "demo": "https://m-i-r-a.vercel.app",
+    "tags": ["CyberSecurity", "Agentic AI", "IDE", "DeepLearning NLP"],
+    "image": "https://repository-images.githubusercontent.com/1316102880/833330ee-15f4-46a3-b095-5a65158d433b"
+  },
+  {
+    "title": "M.I.R.A",
+    "description": "Multipurpose Intelligence for Research & Automation",
+    "techStack": ["MERN", "Render Microservices", "Cloudinary", "Python-NLP"],
+    "github": "https://github.com/AlienMinus/M.I.R.A.",
+    "demo": "https://m-i-r-a.vercel.app",
+    "tags": ["ChatBot", "Agentic AI", "LangChain", "DeepLearning NLP"],
+    "image": "https://repository-images.githubusercontent.com/1134037583/153413b6-88f6-4919-bdee-8eff63d828ba"
+  },
+  {
     "title": "AI INTERVIEW ASSISTANT",
     "description": "A Browser Extension that Simulate Virtual Interview",
     "techStack": ["JavaScript", "Node.js", "YOLO-OpenCV", "OCR"],
     "github": "https://github.com/AlienMinus/AI_INTERVIEW_ASSISTANT",
-    "demo": "https://www.sagar2027.com",
+    "demo": "",
     "tags": ["Browser Extension", "AI Interview"],
-    "image": "https://repository-images.githubusercontent.com/1182491309/5e32a460-6517-49fc-95df-d461fe275033"
+    "image": ""
   },
   {
     "title": "Arcturus Connexa",
