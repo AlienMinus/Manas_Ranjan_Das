@@ -9,6 +9,15 @@
     "image": "https://repository-images.githubusercontent.com/1316102880/833330ee-15f4-46a3-b095-5a65158d433b"
   },
   {
+    "title": "GeoLocation Tracker",
+    "description": "Track Users RealTime. Accuracy: 20KM Range",
+    "techStack": ["MERN", "Render Microservice", "Cloudinary", "GeoLocation API"],
+    "github": "https://github.com/AlienMinus/GeoLocation-Tracker",
+    "demo": "https://geo-location-tracker-eight.vercel.app/",
+    "tags": ["API", "JavaScript", "CyberSecurity", "Location"],
+    "image": ""
+  },
+  {
     "title": "M.I.R.A",
     "description": "Multipurpose Intelligence for Research & Automation",
     "techStack": ["MERN", "Render Microservices", "Cloudinary", "Python-NLP"],
