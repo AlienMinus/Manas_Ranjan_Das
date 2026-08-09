@@ -39,8 +39,8 @@
     "title": "Arcturus Connexa",
     "description": "Professional Social Media App",
     "techStack": ["MongoDB", "Express", "ReactJS", "Node.js"],
-    "github": "https://github.com/AlienMinus/ABIT-Conference_Paper",
-    "demo": "https://www.sagar2027.com",
+    "github": "https://github.com/AlienMinus/Arcturus-Connexa",
+    "demo": "https://arcturus-connexa.vercel.app/",
     "tags": ["JavaScript", "Vercel", "MERN Stack", "Like LinkedIn"],
     "image": "https://repository-images.githubusercontent.com/1182491309/5e32a460-6517-49fc-95df-d461fe275033"
   },
