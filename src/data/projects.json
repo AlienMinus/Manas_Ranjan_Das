@@ -1,10 +1,10 @@
 [
   {
     "title": "Hyperion IDE",
-    "description": "Multipurpose Intelligence for Research & Automation",
+    "description": "Integrated Development Environment for Code Security Analysis & Mode",
     "techStack": ["MERN", "Render Microservices", "Cloudinary", "Python-NLP"],
     "github": "https://github.com/AlienMinus/Minus_IDE",
-    "demo": "https://m-i-r-a.vercel.app",
+    "demo": "https://hyperion-ide.vercel.app/",
     "tags": ["CyberSecurity", "Agentic AI", "IDE", "DeepLearning NLP"],
     "image": "https://repository-images.githubusercontent.com/1316102880/833330ee-15f4-46a3-b095-5a65158d433b"
   },
