@@ -1,6 +1,6 @@
-// src/components/ChatBot.jsx
 import React, { useState, useEffect, useRef } from "react";
-import { search } from "../chatbot/rag";
+import { search, updateRagContext } from "../chatbot/rag";
+import { usePortfolio } from "../context/usePortfolio";
 import {
   FaRobot,
   FaPaperPlane,
@@ -32,12 +32,19 @@ const INITIAL_MESSAGES = [
 ];
 
 const ChatBot = () => {
+  const portfolio = usePortfolio();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
   const [input, setInput] = useState("");
   const [isThinking, setIsThinking] = useState(false);
   const [docPreviewOpen, setDocPreviewOpen] = useState(false);
   const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (portfolio) {
+      updateRagContext(portfolio);
+    }
+  }, [portfolio]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

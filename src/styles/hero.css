@@ -1,15 +1,11 @@
 /* ==========================================================================
-   Hero Section Styles - Neon Green Theme
+   Hero Section Styles - Neon Green Theme (Left Photo, Right Text on Desktop)
    ========================================================================== */
 
 .hero {
   padding: 3rem 1.5rem 4rem;
   max-width: var(--container-max);
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
   position: relative;
   overflow: visible;
   animation: heroEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1);
@@ -20,30 +16,92 @@
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero Ambient Background Lighting */
+/* Ambient Background Lighting */
 .hero::before {
   content: '';
   position: absolute;
   top: 20%;
-  left: 50%;
+  left: 30%;
   transform: translate(-50%, -50%);
-  width: 500px;
+  width: 550px;
   max-width: 90vw;
-  height: 350px;
+  height: 380px;
   background: radial-gradient(circle, rgba(0, 255, 102, 0.16) 0%, rgba(16, 185, 129, 0.08) 45%, transparent 70%);
-  filter: blur(50px);
+  filter: blur(55px);
   pointer-events: none;
   z-index: 0;
 }
 
-.hero__content {
-  position: relative;
-  z-index: 1;
-  max-width: 850px;
+/* Hero Grid */
+.hero__grid {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  gap: 2rem;
   width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.hero__media-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 750px;
+  width: 100%;
+}
+
+/* Large Screens Split (Photo Left, Text Right) */
+@media (min-width: 1024px) {
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    text-align: left;
+  }
+
+  .hero__media-col {
+    align-items: center;
+  }
+
+  .hero__text-col {
+    align-items: flex-start;
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .hero__role-wrapper {
+    justify-content: flex-start;
+  }
+
+  .hero__location {
+    justify-content: flex-start;
+  }
+
+  .hero__tagline {
+    text-align: left;
+  }
+
+  .hero__actions {
+    justify-content: flex-start;
+  }
+
+  .hero__socials {
+    margin-bottom: 0;
+  }
+
+  .hero__stats {
+    max-width: 100%;
+  }
 }
 
 /* Status Badge */
@@ -59,7 +117,7 @@
   font-size: 0.825rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
   animation: fadeInDown 0.6s ease-out;
 }
@@ -69,7 +127,7 @@
   position: relative;
   width: 170px;
   height: 170px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero__avatar-ring {
@@ -125,7 +183,7 @@
 /* Name */
 .hero__name {
   font-family: var(--font-heading);
-  font-size: clamp(2.3rem, 6vw, 4.2rem);
+  font-size: clamp(2.3rem, 5.5vw, 4rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -143,7 +201,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  font-size: clamp(0.95rem, 2.5vw, 1.35rem);
+  font-size: clamp(0.95rem, 2.5vw, 1.3rem);
   font-weight: 600;
   margin-bottom: 0.75rem;
   color: var(--text-primary);
@@ -211,7 +269,7 @@
   justify-content: center;
   gap: 0.75rem;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .social__icon {
@@ -291,7 +349,7 @@
   .hero__avatar-wrapper {
     width: 135px;
     height: 135px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .hero__stats {
@@ -315,7 +373,7 @@
   .hero__status-badge {
     font-size: 0.75rem;
     padding: 0.3rem 0.75rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .hero__greeting {

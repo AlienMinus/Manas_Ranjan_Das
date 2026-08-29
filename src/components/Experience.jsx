@@ -31,7 +31,7 @@ function getIconComponent(exp) {
   return Icon || null;
 }
 
-function Experience({ experience = [] }) {
+function Experience({ experience = [], showCount = true }) {
   const count = Array.isArray(experience) ? experience.length : 0;
 
   return (
@@ -39,7 +39,9 @@ function Experience({ experience = [] }) {
       <div className="section__header">
         <h2 className="section__title">
           <span>Work</span> <span className="gradient-text">Experience</span>
-          <span className="section__count">{count} Positions</span>
+          {showCount && (
+            <span className="section__count">{count} Positions</span>
+          )}
         </h2>
         <p className="section__subtitle">
           Professional roles, research internships, industry projects, and leadership appointments.

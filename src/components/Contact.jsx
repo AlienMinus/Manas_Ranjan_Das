@@ -1,6 +1,7 @@
 // src/components/Contact.jsx
 import React, { useState } from "react";
 import { FaEnvelope, FaPhoneAlt, FaBlog, FaMapMarkerAlt, FaPaperPlane, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
+import { sendContactMessage } from "../services/api";
 
 function Contact({ contact = {} }) {
   const [formData, setFormData] = useState({
@@ -22,18 +23,10 @@ function Contact({ contact = {} }) {
     setStatus(null);
 
     try {
-      const res = await fetch("https://manas-ranjan-das.onrender.com/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const data = await sendContactMessage(formData);
 
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || "Failed to send message");
+      if (!data || !data.success) {
+        throw new Error(data?.error || "Failed to send message");
       }
 
       setStatus("success");

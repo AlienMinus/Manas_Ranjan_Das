@@ -1,11 +1,13 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Portfolio Express & MongoDB Backend Server",
+  "main": "server.js",
   "scripts": {
-    "dev": "vite",
-    "server": "node server.js"
+    "dev": "node server.js",
+    "start": "node server.js",
+    "server": "node server.js",
+    "seed": "node scripts/seed.js"
   },
   "keywords": [],
   "author": "",

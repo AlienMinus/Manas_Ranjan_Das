@@ -3,11 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaArrowRight, FaPaperPlane, FaUserAstronaut } from "react-icons/fa";
 
-// Data
-import heroData from "../data/hero.json";
-import aboutData from "../data/about.json";
-import projectsData from "../data/projects.json";
-import experienceData from "../data/experience.json";
+// Context & API
+import { usePortfolio } from "../context/usePortfolio";
 
 // Components
 import Hero from "../components/Hero";
@@ -16,12 +13,14 @@ import Projects from "../components/Projects";
 import Experience from "../components/Experience";
 
 function Home() {
-  const { name, roles, location, heroTagline, socialLinks } = heroData;
-  const { about } = aboutData;
+  const { hero, about, projects, experience } = usePortfolio();
+
+  const { name, roles, location, heroTagline, socialLinks } = hero || {};
+  const aboutText = (about?.about || "").trim();
 
   return (
     <div className="page">
-      {/* Hero Section */}
+      {/* Hero Section (Left-aligned photo, right-aligned text on large screens) */}
       <Hero
         name={name}
         roles={roles}
@@ -46,10 +45,10 @@ function Home() {
 
           <div className="about-bio-card">
             <p className="about-bio-text">
-              {about.trim().substring(0, 420)}...
+              {aboutText.substring(0, 420)}...
             </p>
 
-            {/* Quick credentials badges to balance vertical height */}
+            {/* Quick credentials badges */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "0.6rem", margin: "1.25rem 0" }}>
               <div className="badge badge--emerald" style={{ padding: "0.4rem 0.6rem", justifyContent: "center" }}>
                 🎓 B.Tech ECE
@@ -74,14 +73,18 @@ function Home() {
           </div>
         </div>
 
-        {/* Right Column: Embedded Full-Page Resume */}
+        {/* Right Column: Embedded Full-Page Miniature Resume */}
         <div className="home-split-col home-split-col--resume">
           <ResumeEmbed compact={true} showHeader={true} showHighlights={false} />
         </div>
       </div>
 
-      {/* Projects Preview */}
-      <Projects projects={projectsData.slice(0, 4)} />
+      {/* 3 Featured Projects */}
+      <Projects
+        projects={(projects || []).slice(0, 3)}
+        showCount={false}
+        showFilters={false}
+      />
       <div className="view-more">
         <Link to="/projects" className="btn outline">
           <span>View All 25+ Projects</span>
@@ -89,11 +92,14 @@ function Home() {
         </Link>
       </div>
 
-      {/* Experience Preview */}
-      <Experience experience={experienceData.slice(0, 3)} />
+      {/* Latest Experience Only */}
+      <Experience
+        experience={(experience || []).slice(0, 1)}
+        showCount={false}
+      />
       <div className="view-more">
         <Link to="/experience" className="btn outline">
-          <span>View Full Career Timeline</span>
+          <span>View Full Career Timeline (5+ Internships)</span>
           <FaArrowRight size={12} />
         </Link>
       </div>

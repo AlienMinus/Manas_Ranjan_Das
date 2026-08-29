@@ -1,7 +1,8 @@
 // src/components/ResumeEmbed.jsx
 import React from "react";
 import { FaFileDownload, FaExternalLinkAlt, FaFilePdf, FaGraduationCap, FaFlask, FaLaptopCode, FaAward } from "react-icons/fa";
-import resumePdf from "../data/resume.pdf";
+
+const resumePdf = "/resume.pdf";
 
 function ResumeEmbed({ compact = false, showHeader = true, showHighlights = true }) {
   return (

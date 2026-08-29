@@ -1,12 +1,14 @@
 // src/pages/SkillsPage.jsx
 import React from "react";
-import skillsData from "../data/skills.json";
+import { usePortfolio } from "../context/usePortfolio";
 import Skills from "../components/Skills";
 
 function SkillsPage() {
+  const { skills } = usePortfolio();
+
   return (
     <div className="page">
-      <Skills skills={skillsData} />
+      <Skills skills={skills || []} />
     </div>
   );
 }

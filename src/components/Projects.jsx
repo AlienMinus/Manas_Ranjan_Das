@@ -10,11 +10,11 @@ const FILTER_CATEGORIES = [
   { id: "tools", label: "Tools & Utilities" },
 ];
 
-function Projects({ projects = [] }) {
+function Projects({ projects = [], showCount = true, showFilters = true }) {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredProjects = useMemo(() => {
-    if (activeFilter === "all") return projects;
+    if (activeFilter === "all" || !showFilters) return projects;
 
     return projects.filter((project) => {
       const tags = (project.tags || []).map((t) => t.toLowerCase());
@@ -70,14 +70,16 @@ function Projects({ projects = [] }) {
       }
       return true;
     });
-  }, [projects, activeFilter]);
+  }, [projects, activeFilter, showFilters]);
 
   return (
     <section className="section" id="projects" aria-label="Projects">
       <div className="section__header">
         <h2 className="section__title">
           <span>Featured</span> <span className="gradient-text">Projects</span>
-          <span className="section__count">{projects.length} Total</span>
+          {showCount && (
+            <span className="section__count">{projects.length} Total</span>
+          )}
         </h2>
         <p className="section__subtitle">
           A showcase of real-world intelligent systems, full-stack applications, AI models, and IoT architectures.
@@ -85,7 +87,7 @@ function Projects({ projects = [] }) {
       </div>
 
       {/* Category Filter Pills */}
-      {projects.length > 4 && (
+      {showFilters && projects.length > 4 && (
         <div className="projects__filters" role="tablist" aria-label="Project category filter">
           {FILTER_CATEGORIES.map((cat) => (
             <button
@@ -127,7 +129,7 @@ function Projects({ projects = [] }) {
                     alignItems: "center",
                     justifyContent: "center",
                     height: "100%",
-                    color: "var(--accent-cyan)",
+                    color: "var(--accent-neon)",
                     opacity: 0.5,
                   }}
                 >

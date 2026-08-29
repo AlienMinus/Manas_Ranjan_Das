@@ -1,12 +1,14 @@
 // src/pages/ContactPage.jsx
 import React from "react";
-import contactData from "../data/contact.json";
+import { usePortfolio } from "../context/usePortfolio";
 import Contact from "../components/Contact";
 
 function ContactPage() {
+  const { contact } = usePortfolio();
+
   return (
     <div className="page">
-      <Contact contact={contactData} />
+      <Contact contact={contact || {}} />
     </div>
   );
 }

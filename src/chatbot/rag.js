@@ -1,11 +1,47 @@
 // src/chatbot/rag.js
-import about from "../data/about.json";
-import experience from "../data/experience.json";
-import projects from "../data/projects.json";
-import skills from "../data/skills.json";
-import hero from "../data/hero.json";
-import contact from "../data/contact.json";
-import resumePdf from "../data/resume.pdf";
+const resumePdf = "/resume.pdf";
+
+// In-memory runtime cache populated dynamically from MongoDB API
+let cachedPortfolioData = {
+  hero: {
+    name: "Manas Ranjan Das",
+    roles: ["Full-Stack Developer", "Researcher", "AI Engineer", "IoT Enthusiast"],
+    location: "Cuttack, India",
+    heroTagline: "I build intelligent systems that connect hardware, software, and people.",
+    socialLinks: [],
+  },
+  about: {
+    about: "I am a dedicated student and researcher with a strong interest in technology, AI/ML, and embedded IoT systems.",
+    education: [
+      {
+        institution: "Biju Patnaik University of Technology (BPUT)",
+        degree: "B.Tech in Electrical & Computer Engineering",
+        year: "2023 - 2027",
+      },
+    ],
+  },
+  skills: [],
+  projects: [],
+  experience: [],
+  contact: {
+    email: "dasmanasranjan2005@gmail.com",
+    phone: "+91-8249709981",
+    blog: "https://spectacularminus.blogspot.com",
+  },
+};
+
+export function updateRagContext(liveData) {
+  if (liveData) {
+    cachedPortfolioData = {
+      hero: liveData.hero || cachedPortfolioData.hero,
+      about: liveData.about || cachedPortfolioData.about,
+      skills: liveData.skills || cachedPortfolioData.skills,
+      projects: liveData.projects || cachedPortfolioData.projects,
+      experience: liveData.experience || cachedPortfolioData.experience,
+      contact: liveData.contact || cachedPortfolioData.contact,
+    };
+  }
+}
 
 // ---------- Helpers ----------
 
@@ -103,22 +139,23 @@ function answerResume() {
         "B.Tech in Electrical & Computer Engineering (BPUT, 2023 - 2027)",
         "GATE EE 2026 - AIR 4324 among 60,000+ national candidates",
         "2+ Research Papers (TIFR-HBCSE & IoT National Conclave)",
-        "5+ Engineering Internships (Accenture UK, AWS, CTTC, OCAC, ABIT IoT CoE)"
+        "5+ Engineering Internships (Accenture UK, AWS, CTTC, OCAC, ABIT IoT CoE)",
       ],
     },
   };
 }
 
 function answerAbout() {
+  const { hero, about } = cachedPortfolioData;
   const lines = [];
 
-  if (hero.name || hero.roles || hero.heroTagline) {
+  if (hero?.name || hero?.roles || hero?.heroTagline) {
     lines.push(
-      `I’m ${hero.name}, ${hero.roles.join(", ")} based in ${hero.location}.`
+      `I’m ${hero.name}, ${(hero.roles || []).join(", ")} based in ${hero.location || "India"}.`
     );
   }
 
-  if (about.about) {
+  if (about?.about) {
     lines.push("");
     lines.push(about.about.trim());
   }
@@ -130,6 +167,7 @@ function answerAbout() {
 }
 
 function answerSkills() {
+  const { skills } = cachedPortfolioData;
   return {
     type: "skills",
     text: "Here are my core technical skills and tools categorized:",
@@ -138,16 +176,17 @@ function answerSkills() {
 }
 
 function answerProjects(query) {
+  const { projects } = cachedPortfolioData;
   const tokens = tokenize(query);
 
   const isGeneric = tokens.every((t) =>
     ["project", "projects", "work", "portfolio", "show", "me", "what"].includes(t)
   );
 
-  let candidateProjects = projects;
+  let candidateProjects = projects || [];
 
-  if (!isGeneric) {
-    candidateProjects = projects.filter((proj) => {
+  if (!isGeneric && candidateProjects.length > 0) {
+    candidateProjects = candidateProjects.filter((proj) => {
       const blob = [
         proj.title,
         proj.description,
@@ -161,7 +200,7 @@ function answerProjects(query) {
   }
 
   if (candidateProjects.length === 0) {
-    candidateProjects = projects.slice(0, 6);
+    candidateProjects = (projects || []).slice(0, 6);
   }
 
   const top = candidateProjects.slice(0, 6);
@@ -174,16 +213,18 @@ function answerProjects(query) {
 }
 
 function answerExperience() {
+  const { experience } = cachedPortfolioData;
   return {
     type: "experience",
     text: "Here is my career experience, research internships, and appointments:",
-    items: experience.slice(0, 6),
+    items: (experience || []).slice(0, 6),
   };
 }
 
 function answerEducation() {
+  const { about } = cachedPortfolioData;
   const lines = ["Academic Background & Education:", ""];
-  if (Array.isArray(about.education)) {
+  if (Array.isArray(about?.education)) {
     about.education.forEach((edu, idx) => {
       lines.push(`${idx + 1}. ${edu.degree}`);
       lines.push(`   ${edu.institution} (${edu.year})`);
@@ -197,55 +238,39 @@ function answerEducation() {
 }
 
 function answerContact() {
+  const { hero, contact } = cachedPortfolioData;
   return {
     type: "contact",
     text: "Here is how you can connect with Manas:",
     contact: contact,
-    socials: hero.socialLinks,
+    socials: hero?.socialLinks || [],
   };
 }
 
 function answerLocation() {
+  const { hero } = cachedPortfolioData;
   return {
     type: "text",
-    text: `📍 Manas is based in ${hero.location || "Cuttack, Odisha, India"}. Open to global remote and relocation opportunities!`,
+    text: `📍 Manas is based in ${hero?.location || "Cuttack, Odisha, India"}. Open to global remote and relocation opportunities!`,
   };
 }
 
-// ---------- Generic fallback semantic search ----------
+// ---------- Fallback semantic search ----------
 
-function buildSearchIndex() {
+function genericSearch(query) {
+  const { about, skills, projects, experience } = cachedPortfolioData;
+  const qTokens = tokenize(query);
+  if (qTokens.length === 0) {
+    return {
+      type: "text",
+      text: "Please type a question about Manas's projects, skills, experience, or resume.",
+    };
+  }
+
   const docs = [];
 
-  if (about.about) {
+  if (about?.about) {
     docs.push({ label: "About", text: about.about });
-  }
-
-  if (Array.isArray(about.education)) {
-    about.education.forEach((edu) => {
-      docs.push({
-        label: "Education",
-        text: `${edu.degree} at ${edu.institution} (${edu.year})`,
-      });
-    });
-  }
-
-  if (about.achievements) {
-    Object.entries(about.achievements).forEach(([title, desc]) => {
-      docs.push({
-        label: `Achievement: ${title}`,
-        text: `${title} — ${desc}`,
-      });
-    });
-  }
-
-  if (about.posts) {
-    Object.entries(about.posts).forEach(([role, desc]) => {
-      docs.push({
-        label: `Role: ${role}`,
-        text: `${role} — ${desc}`,
-      });
-    });
   }
 
   if (Array.isArray(skills)) {
@@ -276,30 +301,16 @@ function buildSearchIndex() {
     });
   }
 
-  return docs.map((d) => ({
-    ...d,
-    textLower: lc(d.text),
-  }));
-}
-
-const SEARCH_INDEX = buildSearchIndex();
-
-function genericSearch(query, topK = 4) {
-  const qTokens = tokenize(query);
-  if (qTokens.length === 0) {
-    return {
-      type: "text",
-      text: "Please type a question about Manas's projects, skills, experience, or resume.",
-    };
-  }
-
-  const scored = SEARCH_INDEX.map((doc) => {
-    let score = 0;
-    qTokens.forEach((t) => {
-      if (doc.textLower.includes(t)) score += 1;
-    });
-    return { doc, score };
-  }).filter((item) => item.score > 0);
+  const scored = docs
+    .map((doc) => {
+      let score = 0;
+      const textLower = lc(doc.text);
+      qTokens.forEach((t) => {
+        if (textLower.includes(t)) score += 1;
+      });
+      return { doc, score };
+    })
+    .filter((item) => item.score > 0);
 
   if (scored.length === 0) {
     return {
@@ -309,8 +320,8 @@ function genericSearch(query, topK = 4) {
   }
 
   scored.sort((a, b) => b.score - a.score || a.doc.text.length - b.doc.text.length);
+  const top = scored.slice(0, 4).map((s) => s.doc);
 
-  const top = scored.slice(0, topK).map((s) => s.doc);
   const lines = ["Here is what I found:", ""];
   top.forEach((d, idx) => {
     lines.push(`${idx + 1}. [${d.label}]\n${d.text}`);

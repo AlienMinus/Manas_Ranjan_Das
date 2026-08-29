@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import TerminalIntro from "./components/TerminalIntro";
+import { PortfolioProvider } from "./context/PortfolioContext";
 
 // Pages
 import Home from "./pages/Home";
@@ -38,57 +39,59 @@ function App() {
   };
 
   return (
-    <div className="app">
-      {/* Intro Terminal Animation on Load */}
-      {showTerminalIntro && (
-        <TerminalIntro onComplete={() => setShowTerminalIntro(false)} />
-      )}
-
-      <Navbar onReplayIntro={() => setShowTerminalIntro(true)} />
-      <audio ref={audioRef} src="/MinusTheme.mp3" loop />
-
-      {/* Visualizer Music Player Toggle */}
-      <button
-        type="button"
-        onClick={toggleMusic}
-        className={`music-toggle ${isPlaying ? "music-toggle--playing" : ""}`}
-        aria-label={isPlaying ? "Pause theme audio" : "Play theme audio"}
-        title={isPlaying ? "Pause Theme Audio" : "Play Theme Audio"}
-      >
-        {isPlaying ? (
-          <>
-            <div className="sound-wave">
-              <span className="sound-bar"></span>
-              <span className="sound-bar"></span>
-              <span className="sound-bar"></span>
-              <span className="sound-bar"></span>
-            </div>
-            <span>Theme ON</span>
-          </>
-        ) : (
-          <>
-            <span>🎵</span>
-            <span>Theme Audio</span>
-          </>
+    <PortfolioProvider>
+      <div className="app">
+        {/* Intro Terminal Animation on Load */}
+        {showTerminalIntro && (
+          <TerminalIntro onComplete={() => setShowTerminalIntro(false)} />
         )}
-      </button>
 
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/skills" element={<SkillsPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/experience" element={<ExperiencePage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </main>
+        <Navbar onReplayIntro={() => setShowTerminalIntro(true)} />
+        <audio ref={audioRef} src="/MinusTheme.mp3" loop />
 
-      <Footer name="Manas Ranjan Das" onReplayIntro={() => setShowTerminalIntro(true)} />
-      <ChatBot />
-    </div>
+        {/* Visualizer Music Player Toggle */}
+        <button
+          type="button"
+          onClick={toggleMusic}
+          className={`music-toggle ${isPlaying ? "music-toggle--playing" : ""}`}
+          aria-label={isPlaying ? "Pause theme audio" : "Play theme audio"}
+          title={isPlaying ? "Pause Theme Audio" : "Play Theme Audio"}
+        >
+          {isPlaying ? (
+            <>
+              <div className="sound-wave">
+                <span className="sound-bar"></span>
+                <span className="sound-bar"></span>
+                <span className="sound-bar"></span>
+                <span className="sound-bar"></span>
+              </div>
+              <span>Theme ON</span>
+            </>
+          ) : (
+            <>
+              <span>🎵</span>
+              <span>Theme Audio</span>
+            </>
+          )}
+        </button>
+
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/skills" element={<SkillsPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/experience" element={<ExperiencePage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+
+        <Footer name="Manas Ranjan Das" onReplayIntro={() => setShowTerminalIntro(true)} />
+        <ChatBot />
+      </div>
+    </PortfolioProvider>
   );
 }
 
