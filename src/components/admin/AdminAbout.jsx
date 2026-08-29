@@ -100,7 +100,7 @@ function AdminAbout({ about, password, onSaveSuccess, onSaveError }) {
           </div>
 
           {form.education.map((edu, idx) => (
-            <div key={idx} className="admin-form-row" style={{ alignItems: "center", marginBottom: "0.5rem" }}>
+            <div key={idx} className="admin-edu-row">
               <input
                 type="text"
                 className="admin-input"
@@ -130,7 +130,7 @@ function AdminAbout({ about, password, onSaveSuccess, onSaveError }) {
                 onClick={() => handleDeleteEduRow(idx)}
                 title="Delete Row"
               >
-                <FaTrash size={12} />
+                <FaTrash size={13} />
               </button>
             </div>
           ))}

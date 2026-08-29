@@ -90,7 +90,9 @@ function Hero({
         {/* Right Column on Large Screens: Text & Actions */}
         <div className="hero__text-col">
           <p className="hero__greeting">Hello World, I'm</p>
-          <h1 className="hero__name">{displayName}</h1>
+          <h1 className="hero__name glitch" data-text={displayName}>
+            {displayName}
+          </h1>
 
           {/* Dynamic Rotating Roles */}
           <div className="hero__role-wrapper">

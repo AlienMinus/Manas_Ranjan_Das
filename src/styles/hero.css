@@ -180,18 +180,149 @@
   font-family: var(--font-mono);
 }
 
-/* Name */
+/* Name with Cyberpunk Matrix Glitch Effect */
 .hero__name {
+  position: relative;
   font-family: var(--font-heading);
-  font-size: clamp(2.3rem, 5.5vw, 4rem);
+  font-size: clamp(2.3rem, 5.5vw, 4.2rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
   margin-bottom: 0.85rem;
-  background: linear-gradient(135deg, #ffffff 30%, #86efac 100%);
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 40%, #86efac 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  display: inline-block;
+}
+
+.hero__name.glitch {
+  position: relative;
+}
+
+.hero__name.glitch::before,
+.hero__name.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  pointer-events: none;
+}
+
+/* White / Neon Green Glitch Layer 1 */
+.hero__name.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--accent-neon), 0 0 12px rgba(0, 255, 102, 0.85);
+  animation: heroGlitchTop 4s infinite linear alternate-reverse;
+}
+
+/* White / Neon Green Glitch Layer 2 */
+.hero__name.glitch::after {
+  left: -2px;
+  text-shadow: 2px 0 #ffffff, 0 0 10px rgba(0, 255, 102, 0.75);
+  animation: heroGlitchBottom 3.5s infinite linear alternate-reverse;
+}
+
+@keyframes heroGlitchTop {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: skew(0.3deg);
+  }
+  5% {
+    clip-path: inset(92% 0 1% 0);
+    transform: skew(0.8deg);
+  }
+  10% {
+    clip-path: inset(10% 0 75% 0);
+    transform: skew(0deg);
+  }
+  15% {
+    clip-path: inset(85% 0 5% 0);
+    transform: skew(-0.5deg);
+  }
+  20% {
+    clip-path: inset(0 0 0 0);
+    transform: skew(0deg);
+  }
+  65% {
+    clip-path: inset(0 0 0 0);
+    transform: skew(0deg);
+  }
+  68% {
+    clip-path: inset(50% 0 30% 0);
+    transform: skew(0.6deg);
+  }
+  72% {
+    clip-path: inset(15% 0 65% 0);
+    transform: skew(-0.4deg);
+  }
+  76% {
+    clip-path: inset(80% 0 5% 0);
+    transform: skew(0deg);
+  }
+  80% {
+    clip-path: inset(0 0 0 0);
+    transform: skew(0deg);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: skew(0deg);
+  }
+}
+
+@keyframes heroGlitchBottom {
+  0% {
+    clip-path: inset(25% 0 58% 0);
+    transform: skew(-0.4deg);
+  }
+  6% {
+    clip-path: inset(70% 0 15% 0);
+    transform: skew(0.5deg);
+  }
+  12% {
+    clip-path: inset(5% 0 80% 0);
+    transform: skew(0deg);
+  }
+  18% {
+    clip-path: inset(0 0 0 0);
+    transform: skew(0deg);
+  }
+  62% {
+    clip-path: inset(0 0 0 0);
+    transform: skew(0deg);
+  }
+  66% {
+    clip-path: inset(60% 0 20% 0);
+    transform: skew(0.8deg);
+  }
+  70% {
+    clip-path: inset(20% 0 60% 0);
+    transform: skew(-0.6deg);
+  }
+  75% {
+    clip-path: inset(0 0 0 0);
+    transform: skew(0deg);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: skew(0deg);
+  }
+}
+
+/* High frequency micro-glitch on hover */
+.hero__name.glitch:hover::before {
+  animation: heroGlitchTop 0.8s infinite linear alternate-reverse;
+}
+
+.hero__name.glitch:hover::after {
+  animation: heroGlitchBottom 0.6s infinite linear alternate-reverse;
 }
 
 /* Rotating Role */

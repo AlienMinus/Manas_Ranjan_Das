@@ -130,10 +130,11 @@ function AdminProjects({ projects = [], password, onSaveSuccess, onSaveError }) 
                 <td style={{ fontWeight: 600, color: "#ffffff", maxWidth: "220px" }}>{proj.title}</td>
                 <td style={{ maxWidth: "240px" }}>{(proj.techStack || []).join(", ")}</td>
                 <td>{(proj.tags || []).join(", ")}</td>
-                <td>
+                <td style={{ whiteSpace: "nowrap" }}>
                   {proj.featured ? (
-                    <span className="badge badge--emerald" style={{ fontSize: "0.7rem", padding: "0.2rem 0.5rem" }}>
-                      ⭐ Featured
+                    <span className="badge badge--emerald">
+                      <span>⭐</span>
+                      <span>Featured</span>
                     </span>
                   ) : (
                     <span style={{ color: "var(--text-muted)", fontSize: "0.8rem" }}>Standard</span>
