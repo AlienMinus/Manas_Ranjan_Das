@@ -2,6 +2,8 @@
    App.css - Central CSS Orchestrator for Modular Stylesheets
    ========================================================================== */
 
+@import "./styles/terminalIntro.css";
+@import "./styles/resumeEmbed.css";
 @import "./styles/navbar.css";
 @import "./styles/hero.css";
 @import "./styles/about.css";

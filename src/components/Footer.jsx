@@ -1,8 +1,8 @@
 // src/components/Footer.jsx
 import React from "react";
-import { FaArrowUp } from "react-icons/fa";
+import { FaArrowUp, FaTerminal } from "react-icons/fa";
 
-function Footer({ name = "Manas Ranjan Das" }) {
+function Footer({ name = "Manas Ranjan Das", onReplayIntro }) {
   const year = new Date().getFullYear();
 
   const scrollToTop = () => {
@@ -20,11 +20,23 @@ function Footer({ name = "Manas Ranjan Das" }) {
             © {year} <strong>{name}</strong>. All rights reserved.
           </p>
           <p className="footer__attribution">
-            Designed & Engineered with React 19, Vite & Modular CSS
+            Engineered with React 19, Vite & Neon Cyberpunk Modular CSS
           </p>
         </div>
 
         <div className="footer__right">
+          {onReplayIntro && (
+            <button
+              type="button"
+              className="footer__back-to-top"
+              onClick={onReplayIntro}
+              title="Replay Terminal Boot Intro"
+            >
+              <FaTerminal size={11} style={{ color: "var(--accent-neon)" }} />
+              <span>Replay Terminal</span>
+            </button>
+          )}
+
           <button
             type="button"
             className="footer__back-to-top"

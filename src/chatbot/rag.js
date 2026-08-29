@@ -5,6 +5,7 @@ import projects from "../data/projects.json";
 import skills from "../data/skills.json";
 import hero from "../data/hero.json";
 import contact from "../data/contact.json";
+import resumePdf from "../data/resume.pdf";
 
 // ---------- Helpers ----------
 
@@ -23,76 +24,97 @@ function detectIntent(query) {
 
   if (!q.trim()) return "empty";
 
-  if (/(hi|hii|hello|hey|namaste|yo)\b/.test(q)) return "greeting";
+  if (/(resume|cv|biodata|document|pdf|curriculum vitae)/.test(q))
+    return "resume";
+
+  if (/(hi|hii|hello|hey|namaste|yo|greetings)\b/.test(q)) return "greeting";
   if (/thank(s| you)?/.test(q)) return "thanks";
 
-  // 👍 Acknowledge / okay type
+  // Acknowledge
   if (/\b(ok|okay|okey|fine|cool|great|sounds good|alright|all right)\b/.test(q))
     return "ack";
 
-  // 🙅‍♂️ No / nothing / stop type
+  // Negative
   if (/\b(no|nope|nah|nothing|not now|leave it|ignore)\b/.test(q))
     return "negative";
 
-  if (/(skill|tech stack|technologies|tools|frameworks|languages)/.test(q))
+  if (/(skill|tech stack|technologies|tools|frameworks|languages|what do you know)/.test(q))
     return "skills";
 
-  if (/(project|portfolio|github|work you have done|show your work)/.test(q))
+  if (/(project|portfolio|github|work you have done|show your work|apps)/.test(q))
     return "projects";
 
-  if (/(experience|intern(ship)?|work history|jobs|roles)/.test(q))
+  if (/(experience|intern(ship)?|work history|jobs|roles|company)/.test(q))
     return "experience";
 
-  if (/(education|study|college|school|degree|b\.?tech)/.test(q))
+  if (/(education|study|college|school|degree|b\.?tech|academic)/.test(q))
     return "education";
 
-  if (/(about you|who are you|introduce yourself|summary|profile)/.test(q))
+  if (/(about you|who are you|introduce yourself|summary|profile|bio)/.test(q))
     return "about";
 
-  if (/(contact|email|phone|reach|connect|linkedin|github)/.test(q))
+  if (/(contact|email|phone|reach|connect|linkedin|github|hire)/.test(q))
     return "contact";
 
-  if (/(location|where.*from|based in|live)/.test(q)) return "location";
+  if (/(location|where.*from|based in|live|city|country)/.test(q))
+    return "location";
 
   return "search"; // generic semantic search
 }
 
-// ---------- Section-specific answers ----------
+// ---------- Section-specific answers with Structured Payloads ----------
 
 function answerGreeting() {
-  return [
-    "Hey there! 👋 I’m Minus Bot.",
-    "You can ask me about Manas’s skills, projects, experience, education, or how to contact him.",
-  ];
+  return {
+    type: "text",
+    text: "Hey there! 👋 I’m Minus Assistant, powered by AI.\nAsk me about Manas's projects, skills, research, experience, or resume!",
+  };
 }
 
 function answerThanks() {
-  return ["You’re welcome! 😊 Anything else you’d like to know?"];
+  return {
+    type: "text",
+    text: "You’re welcome! 😊 Let me know if you’d like to see any projects, skills, or download the resume.",
+  };
 }
 
 function answerAck() {
-  return [
-    "Got it! ✅",
-    "If you want, you can ask about my skills, projects, experience, or how to contact me.",
-  ];
+  return {
+    type: "text",
+    text: "Understood! ✅ Feel free to ask for projects, skills, experience, or contact channels.",
+  };
 }
 
 function answerNegative() {
-  return [
-    "No problem. 😊",
-    "If you don’t need anything else right now, you can close the chat. I’m here whenever you want to know more about my work.",
-  ];
+  return {
+    type: "text",
+    text: "No problem at all. 😊 Feel free to explore the portfolio or ask questions anytime you're ready.",
+  };
 }
 
+function answerResume() {
+  return {
+    type: "resume",
+    text: "Here is Manas Ranjan Das's verified resume and academic credentials:",
+    doc: {
+      title: "Manas_Ranjan_Das_Resume.pdf",
+      url: resumePdf,
+      highlights: [
+        "B.Tech in Electrical & Computer Engineering (BPUT, 2023 - 2027)",
+        "GATE EE 2026 - AIR 4324 among 60,000+ national candidates",
+        "2+ Research Papers (TIFR-HBCSE & IoT National Conclave)",
+        "5+ Engineering Internships (Accenture UK, AWS, CTTC, OCAC, ABIT IoT CoE)"
+      ],
+    },
+  };
+}
 
 function answerAbout() {
   const lines = [];
 
   if (hero.name || hero.roles || hero.heroTagline) {
     lines.push(
-      `I’m ${hero.name}, ${hero.roles.join(
-        ", "
-      )} based in ${hero.location}.`.trim()
+      `I’m ${hero.name}, ${hero.roles.join(", ")} based in ${hero.location}.`
     );
   }
 
@@ -101,45 +123,25 @@ function answerAbout() {
     lines.push(about.about.trim());
   }
 
-  if (about.posts) {
-    lines.push("");
-    lines.push("Some of my positions and roles:");
-    Object.entries(about.posts).forEach(([title, desc]) => {
-      lines.push(`• ${title}: ${desc}`);
-    });
-  }
-
-  if (about.achievements) {
-    lines.push("");
-    lines.push("Highlighted achievements:");
-    Object.entries(about.achievements)
-      .slice(0, 4)
-      .forEach(([title, desc]) => {
-        lines.push(`• ${title}: ${desc}`);
-      });
-  }
-
-  return lines;
+  return {
+    type: "text",
+    text: lines.join("\n"),
+  };
 }
 
 function answerSkills() {
-  const lines = ["Here are my core skills, grouped by category:", ""];
-
-  skills.forEach((categoryBlock) => {
-    const names = (categoryBlock.items || []).map((i) => i.name).join(", ");
-    if (!names) return;
-    lines.push(`• ${categoryBlock.category}: ${names}`);
-  });
-
-  return lines;
+  return {
+    type: "skills",
+    text: "Here are my core technical skills and tools categorized:",
+    items: skills,
+  };
 }
 
 function answerProjects(query) {
   const tokens = tokenize(query);
 
-  // If they just said "projects" etc., show a curated set
   const isGeneric = tokens.every((t) =>
-    ["project", "projects", "work", "portfolio"].includes(t)
+    ["project", "projects", "work", "portfolio", "show", "me", "what"].includes(t)
   );
 
   let candidateProjects = projects;
@@ -159,256 +161,166 @@ function answerProjects(query) {
   }
 
   if (candidateProjects.length === 0) {
-    candidateProjects = projects.slice(0, 5); // fallback
+    candidateProjects = projects.slice(0, 6);
   }
 
   const top = candidateProjects.slice(0, 6);
 
-  const lines = ["Here are some of my projects:", ""];
-  top.forEach((p, idx) => {
-    lines.push(
-      `${idx + 1}. ${p.title} — ${p.description}${
-        p.techStack && p.techStack.length
-          ? ` (Tech: ${p.techStack.join(", ")})`
-          : ""
-      }`
-    );
-    if (p.demo) {
-      lines.push(`   Demo: ${p.demo}`);
-    }
-    if (p.github) {
-      lines.push(`   GitHub: ${p.github}`);
-    }
-    lines.push(""); // spacing
-  });
-
-  return lines;
+  return {
+    type: "projects",
+    text: `Here are ${top.length} highlighted projects:`,
+    items: top,
+  };
 }
 
 function answerExperience() {
-  if (!Array.isArray(experience) || experience.length === 0) {
-    return ["I don’t have experience data loaded yet."];
-  }
-
-  const lines = ["Here is a summary of my experience:", ""];
-
-  experience.forEach((exp) => {
-    lines.push(
-      `• ${exp.role} at ${exp.company} (${exp.duration})`
-    );
-    (exp.details || []).forEach((d) => {
-      lines.push(`   - ${d}`);
-    });
-    lines.push("");
-  });
-
-  return lines;
+  return {
+    type: "experience",
+    text: "Here is my career experience, research internships, and appointments:",
+    items: experience.slice(0, 6),
+  };
 }
 
 function answerEducation() {
-  const lines = ["My education journey:", ""];
-  (about.education || []).forEach((edu) => {
-    lines.push(
-      `• ${edu.degree} — ${edu.institution} (${edu.year})`
-    );
-  });
-  return lines;
+  const lines = ["Academic Background & Education:", ""];
+  if (Array.isArray(about.education)) {
+    about.education.forEach((edu, idx) => {
+      lines.push(`${idx + 1}. ${edu.degree}`);
+      lines.push(`   ${edu.institution} (${edu.year})`);
+      lines.push("");
+    });
+  }
+  return {
+    type: "text",
+    text: lines.join("\n"),
+  };
 }
 
 function answerContact() {
-  const lines = ["Here’s how you can contact me:", ""];
-
-  if (contact.email) lines.push(`• Email: ${contact.email}`);
-  if (contact.phone) lines.push(`• Phone: ${contact.phone}`);
-  if (contact.blog) lines.push(`• Blog: ${contact.blog}`);
-
-  const gh = (hero.socialLinks || []).find(
-    (s) => lc(s.platform) === "github"
-  );
-  const li = (hero.socialLinks || []).find(
-    (s) => lc(s.platform) === "linkedin"
-  );
-
-  if (gh) lines.push(`• GitHub: ${gh.url}`);
-  if (li) lines.push(`• LinkedIn: ${li.url}`);
-
-  if (contact.message) {
-    lines.push("");
-    lines.push(contact.message);
-  }
-
-  return lines;
+  return {
+    type: "contact",
+    text: "Here is how you can connect with Manas:",
+    contact: contact,
+    socials: hero.socialLinks,
+  };
 }
 
 function answerLocation() {
-  if (hero.location) {
-    return [`I’m currently based in ${hero.location}.`];
+  return {
+    type: "text",
+    text: `📍 Manas is based in ${hero.location || "Cuttack, Odisha, India"}. Open to global remote and relocation opportunities!`,
+  };
+}
+
+// ---------- Generic fallback semantic search ----------
+
+function buildSearchIndex() {
+  const docs = [];
+
+  if (about.about) {
+    docs.push({ label: "About", text: about.about });
   }
-  return ["My location information is not available right now."];
-}
 
-// ---------- Generic semantic search across all data ----------
-
-// Build document store from all sections
-const allDocs = [];
-
-// About main text
-if (about.about) {
-  allDocs.push({
-    label: "About",
-    text: about.about,
-  });
-}
-
-// Education
-(about.education || []).forEach((edu) => {
-  allDocs.push({
-    label: "Education",
-    text: `${edu.degree} at ${edu.institution} (${edu.year})`,
-  });
-});
-
-// Personal details
-if (about.personal_details) {
-  Object.entries(about.personal_details).forEach(([k, v]) => {
-    allDocs.push({
-      label: "Personal Detail",
-      text: `${k}: ${v}`,
+  if (Array.isArray(about.education)) {
+    about.education.forEach((edu) => {
+      docs.push({
+        label: "Education",
+        text: `${edu.degree} at ${edu.institution} (${edu.year})`,
+      });
     });
-  });
-}
+  }
 
-// Achievements
-if (about.achievements) {
-  Object.entries(about.achievements).forEach(([k, v]) => {
-    allDocs.push({
-      label: "Achievement",
-      text: `${k}: ${v}`,
+  if (about.achievements) {
+    Object.entries(about.achievements).forEach(([title, desc]) => {
+      docs.push({
+        label: `Achievement: ${title}`,
+        text: `${title} — ${desc}`,
+      });
     });
-  });
-}
+  }
 
-// Posts / roles
-if (about.posts) {
-  Object.entries(about.posts).forEach(([k, v]) => {
-    allDocs.push({
-      label: "Role / Post",
-      text: `${k}: ${v}`,
+  if (about.posts) {
+    Object.entries(about.posts).forEach(([role, desc]) => {
+      docs.push({
+        label: `Role: ${role}`,
+        text: `${role} — ${desc}`,
+      });
     });
-  });
-}
+  }
 
-// Experience
-(experience || []).forEach((exp) => {
-  allDocs.push({
-    label: "Experience",
-    text: `${exp.role} at ${exp.company} (${exp.duration}) — ${(exp.details || []).join(
-      " "
-    )}`,
-  });
-});
+  if (Array.isArray(skills)) {
+    skills.forEach((cat) => {
+      const names = (cat.items || []).map((i) => i.name).join(", ");
+      docs.push({
+        label: `Skills: ${cat.category}`,
+        text: `${cat.category}: ${names}`,
+      });
+    });
+  }
 
-// Projects
-(projects || []).forEach((p) => {
-  allDocs.push({
-    label: "Project",
-    text: `${p.title}: ${p.description} (Tech: ${(p.techStack || []).join(
-      ", "
-    )}; Tags: ${(p.tags || []).join(", ")})`,
-  });
-});
+  if (Array.isArray(projects)) {
+    projects.forEach((p) => {
+      docs.push({
+        label: `Project: ${p.title}`,
+        text: `${p.title}: ${p.description}. Tech: ${(p.techStack || []).join(", ")}. Tags: ${(p.tags || []).join(", ")}`,
+      });
+    });
+  }
 
-// Skills
-(skills || []).forEach((cat) => {
-  const names = (cat.items || []).map((i) => i.name).join(", ");
-  if (!names) return;
-  allDocs.push({
-    label: `Skills - ${cat.category}`,
-    text: names,
-  });
-});
+  if (Array.isArray(experience)) {
+    experience.forEach((e) => {
+      docs.push({
+        label: `Experience: ${e.role} @ ${e.company}`,
+        text: `${e.role} at ${e.company} (${e.duration}). Details: ${(e.details || []).join(" ")}`,
+      });
+    });
+  }
 
-// Hero + contact
-if (hero.heroTagline) {
-  allDocs.push({
-    label: "Hero Tagline",
-    text: hero.heroTagline,
-  });
-}
-if (hero.name) {
-  allDocs.push({
-    label: "Name",
-    text: hero.name,
-  });
-}
-if (contact.email) {
-  allDocs.push({
-    label: "Contact",
-    text: `Email: ${contact.email}`,
-  });
-}
-if (contact.phone) {
-  allDocs.push({
-    label: "Contact",
-    text: `Phone: ${contact.phone}`,
-  });
-}
-if (contact.blog) {
-  allDocs.push({
-    label: "Contact",
-    text: `Blog: ${contact.blog}`,
-  });
-}
-
-// Index with lowercase
-const indexedDocs = allDocs
-  .filter((d) => d && d.text)
-  .map((d) => ({
+  return docs.map((d) => ({
     ...d,
-    text: safeString(d.text).trim(),
-    textLower: safeString(d.text).toLowerCase(),
+    textLower: lc(d.text),
   }));
+}
 
-function genericSearch(query, topK = 5) {
+const SEARCH_INDEX = buildSearchIndex();
+
+function genericSearch(query, topK = 4) {
   const qTokens = tokenize(query);
   if (qTokens.length === 0) {
-    return ["Please type something to search."];
+    return {
+      type: "text",
+      text: "Please type a question about Manas's projects, skills, experience, or resume.",
+    };
   }
 
-  const scored = indexedDocs
-    .map((doc) => {
-      let score = 0;
-      qTokens.forEach((t) => {
-        if (doc.textLower.includes(t)) score += 1;
-      });
-      return { doc, score };
-    })
-    .filter((item) => item.score > 0);
+  const scored = SEARCH_INDEX.map((doc) => {
+    let score = 0;
+    qTokens.forEach((t) => {
+      if (doc.textLower.includes(t)) score += 1;
+    });
+    return { doc, score };
+  }).filter((item) => item.score > 0);
 
   if (scored.length === 0) {
-    return [
-      "I’m not sure about that yet 🤔",
-      "Try asking things like:",
-      "• What are your skills?",
-      "• Tell me about your projects.",
-      "• What experience do you have?",
-      "• How can I contact you?",
-    ];
+    return {
+      type: "text",
+      text: "I’m not sure about that specific query 🤔\nTry asking:\n• Show me your projects\n• What are your technical skills?\n• Can I see your resume?\n• How can I contact you?",
+    };
   }
 
-  scored.sort(
-    (a, b) => b.score - a.score || a.doc.text.length - b.doc.text.length
-  );
+  scored.sort((a, b) => b.score - a.score || a.doc.text.length - b.doc.text.length);
 
   const top = scored.slice(0, topK).map((s) => s.doc);
-
-  const lines = ["Here’s what I found:", ""];
+  const lines = ["Here is what I found:", ""];
   top.forEach((d, idx) => {
-    lines.push(`${idx + 1}. (${d.label}) ${d.text}`);
+    lines.push(`${idx + 1}. [${d.label}]\n${d.text}`);
     lines.push("");
   });
 
-  return lines;
+  return {
+    type: "text",
+    text: lines.join("\n"),
+  };
 }
 
 // ---------- Public API ----------
@@ -418,9 +330,10 @@ export const search = (query) => {
 
   switch (intent) {
     case "empty":
-      return [
-        "Ask me anything about Manas’s skills, projects, experience, education, or contact details.",
-      ];
+      return {
+        type: "text",
+        text: "Ask me anything about Manas’s skills, projects, experience, education, or resume!",
+      };
     case "greeting":
       return answerGreeting();
     case "thanks":
@@ -429,6 +342,8 @@ export const search = (query) => {
       return answerAck();
     case "negative":
       return answerNegative();
+    case "resume":
+      return answerResume();
     case "about":
       return answerAbout();
     case "skills":

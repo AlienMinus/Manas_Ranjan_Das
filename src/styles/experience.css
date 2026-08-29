@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Experience Section Styles
+   Experience Section Styles - Neon Green Theme
    ========================================================================== */
 
 .experience__timeline {
@@ -20,8 +20,9 @@
   bottom: 10px;
   left: 7px;
   width: 2px;
-  background: linear-gradient(180deg, var(--accent-cyan) 0%, var(--accent-indigo) 70%, transparent 100%);
-  opacity: 0.5;
+  background: linear-gradient(180deg, var(--accent-neon) 0%, var(--accent-emerald) 70%, transparent 100%);
+  opacity: 0.6;
+  box-shadow: 0 0 8px var(--accent-neon);
 }
 
 /* Timeline Item / Card */
@@ -33,6 +34,12 @@
   padding: 1.75rem;
   position: relative;
   transition: all var(--transition-normal);
+  animation: expCardEnter 0.5s ease-out both;
+}
+
+@keyframes expCardEnter {
+  0% { opacity: 0; transform: translateX(-15px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 
 /* Node Dot on Timeline */
@@ -45,8 +52,8 @@
   height: 16px;
   border-radius: 50%;
   background: var(--bg-primary);
-  border: 3px solid var(--accent-cyan);
-  box-shadow: 0 0 12px var(--accent-cyan);
+  border: 3px solid var(--accent-neon);
+  box-shadow: 0 0 14px var(--accent-neon);
   z-index: 2;
   transition: transform var(--transition-fast);
 }
@@ -54,13 +61,13 @@
 .experience-card:hover::before {
   transform: scale(1.3);
   border-color: #ffffff;
-  box-shadow: 0 0 20px var(--accent-cyan);
+  box-shadow: 0 0 22px var(--accent-neon);
 }
 
 .experience-card:hover {
   border-color: var(--glass-border-hover);
   transform: translateX(4px);
-  box-shadow: var(--shadow-lg), 0 0 25px rgba(56, 189, 248, 0.08);
+  box-shadow: var(--shadow-lg), 0 0 25px rgba(0, 255, 102, 0.12);
 }
 
 .experience-card__header {
@@ -74,12 +81,12 @@
   width: 46px;
   height: 46px;
   border-radius: var(--radius-md);
-  background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(0, 255, 102, 0.1);
+  border: 1px solid rgba(0, 255, 102, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-cyan);
+  color: var(--accent-neon);
   font-size: 1.4rem;
   flex-shrink: 0;
 }
@@ -99,7 +106,7 @@
 .experience-card__company {
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--accent-cyan);
+  color: var(--accent-neon);
   margin-top: 0.2rem;
 }
 
@@ -109,12 +116,12 @@
   gap: 0.35rem;
   font-size: 0.75rem;
   font-family: var(--font-mono);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-muted);
   margin-top: 0.35rem;
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 255, 102, 0.06);
   border: 1px solid var(--glass-border);
 }
 
@@ -141,25 +148,40 @@
   position: absolute;
   left: 0;
   top: -1px;
-  color: var(--accent-cyan);
+  color: var(--accent-neon);
   font-size: 1.1rem;
   font-weight: 700;
 }
 
+/* Small Screen Devices Responsiveness */
 @media (max-width: 640px) {
   .experience__timeline {
-    padding-left: 1.5rem;
-    gap: 1.5rem;
+    padding-left: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .experience__timeline::before {
+    left: 4px;
   }
 
   .experience-card::before {
-    left: calc(-1.5rem - 1px);
-    width: 14px;
-    height: 14px;
+    left: calc(-1.25rem - 2px);
+    width: 12px;
+    height: 12px;
+    top: 20px;
   }
 
   .experience-card {
-    padding: 1.25rem;
+    padding: 1.15rem;
+  }
+
+  .experience-card__icon-box {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+
+  .experience-card__role {
+    font-size: 1.05rem;
   }
 }
-

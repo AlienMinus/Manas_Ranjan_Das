@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import TerminalIntro from "./components/TerminalIntro";
 
 // Pages
 import Home from "./pages/Home";
@@ -18,6 +19,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ChatBot from "./components/ChatBot";
 
 function App() {
+  const [showTerminalIntro, setShowTerminalIntro] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
@@ -37,9 +39,14 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar />
+      {/* Intro Terminal Animation on Load */}
+      {showTerminalIntro && (
+        <TerminalIntro onComplete={() => setShowTerminalIntro(false)} />
+      )}
+
+      <Navbar onReplayIntro={() => setShowTerminalIntro(true)} />
       <audio ref={audioRef} src="/MinusTheme.mp3" loop />
-      
+
       {/* Visualizer Music Player Toggle */}
       <button
         type="button"
@@ -79,7 +86,7 @@ function App() {
         </Routes>
       </main>
 
-      <Footer name="Manas Ranjan Das" />
+      <Footer name="Manas Ranjan Das" onReplayIntro={() => setShowTerminalIntro(true)} />
       <ChatBot />
     </div>
   );

@@ -1,0 +1,224 @@
+/* ==========================================================================
+   Resume Embed Section Styles & Home Split Row (About Left, Resume Right)
+   ========================================================================== */
+
+/* Home Split Row (About Left & Resume Right on Large Screens) */
+.home-split-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: stretch;
+  width: 100%;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .home-split-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.25rem;
+  }
+}
+
+.home-split-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.home-split-col--about {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-split-col--about .about-bio-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  margin: 0;
+  min-height: 480px;
+}
+
+.home-split-col--resume {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Resume Embed Section */
+.resume-embed-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Resume Main Container */
+.resume-container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  position: relative;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 480px;
+}
+
+.resume-container:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 255, 102, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Top Toolbar */
+.resume-toolbar {
+  padding: 0.85rem 1.25rem;
+  background: rgba(10, 24, 15, 0.95);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  z-index: 2;
+}
+
+.resume-toolbar__info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.resume-toolbar__title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.resume-toolbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Full Page Miniature Resume Document Viewer */
+.resume-viewer-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px; /* Proportionally fits standard full page 1 without being cut in half */
+  background: #ffffff;
+  overflow: hidden;
+  flex: 1;
+}
+
+.resume-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+}
+
+/* Highlights Grid */
+.resume-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.resume-highlight-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: all var(--transition-normal);
+}
+
+.resume-highlight-card:hover {
+  border-color: var(--accent-neon);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 255, 102, 0.15);
+}
+
+.resume-highlight-icon {
+  font-size: 1.3rem;
+  color: var(--accent-neon);
+}
+
+.resume-highlight-title {
+  font-family: var(--font-heading);
+  font-size: 0.975rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.resume-highlight-desc {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Responsive Styles for Small Screen Devices */
+@media (max-width: 768px) {
+  .home-split-row {
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .home-split-col--about .about-bio-card {
+    padding: 1.5rem;
+    min-height: auto;
+  }
+
+  .resume-container {
+    min-height: auto;
+  }
+
+  .resume-toolbar {
+    padding: 0.8rem 1rem;
+  }
+
+  .resume-viewer-wrapper {
+    height: 420px;
+  }
+
+  .resume-toolbar__actions {
+    width: 100%;
+  }
+
+  .resume-toolbar__actions .btn {
+    flex: 1;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .resume-viewer-wrapper {
+    height: 360px;
+  }
+
+  .resume-toolbar__title {
+    font-size: 0.85rem;
+  }
+
+  .resume-highlights {
+    grid-template-columns: 1fr;
+  }
+}
