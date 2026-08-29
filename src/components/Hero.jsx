@@ -8,27 +8,44 @@ import { FaMapMarkerAlt, FaFileDownload, FaPaperPlane, FaCompass } from "react-i
 
 const resumePdf = "/resume.pdf";
 
+const DEFAULT_HERO_ROLES = ["Full-Stack Developer", "Researcher", "AI Engineer", "IoT Enthusiast"];
+const DEFAULT_HERO_SOCIALS = [
+  { platform: "GitHub", url: "https://github.com/AlienMinus", iconLib: "fa", icon: "FaGithub" },
+  { platform: "LinkedIn", url: "https://www.linkedin.com/in/manas-r-das/", iconLib: "fa", icon: "FaLinkedin" },
+  { platform: "Instagram", url: "https://www.instagram.com/the_minus_infinity/", iconLib: "fa", icon: "FaInstagram" },
+];
+
 function getIconComponent(item) {
   const library = item.iconLib === "si" ? SiIcons : FaIcons;
   return library[item.icon] || null;
 }
 
-function Hero({ name, roles = [], tagline, location, socialLinks = [] }) {
+function Hero({
+  name = "Manas Ranjan Das",
+  roles = DEFAULT_HERO_ROLES,
+  tagline = "I build intelligent systems that connect hardware, software, and people.",
+  location = "Cuttack, India",
+  socialLinks = DEFAULT_HERO_SOCIALS,
+}) {
+  const effectiveRoles = roles && roles.length > 0 ? roles : DEFAULT_HERO_ROLES;
+  const effectiveSocials = socialLinks && socialLinks.length > 0 ? socialLinks : DEFAULT_HERO_SOCIALS;
+  const displayName = name || "Manas Ranjan Das";
+
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
   useEffect(() => {
-    if (!roles.length) return;
+    if (!effectiveRoles.length) return;
     const interval = setInterval(() => {
       setFade(false);
       setTimeout(() => {
-        setIndex((prev) => (prev + 1) % roles.length);
+        setIndex((prev) => (prev + 1) % effectiveRoles.length);
         setFade(true);
       }, 150);
     }, 2800);
 
     return () => clearInterval(interval);
-  }, [roles.length]);
+  }, [effectiveRoles]);
 
   return (
     <section className="hero" id="home" aria-label="Hero Section">
@@ -45,13 +62,13 @@ function Hero({ name, roles = [], tagline, location, socialLinks = [] }) {
           <div className="hero__avatar-wrapper">
             <div className="hero__avatar-ring"></div>
             <div className="hero__avatar-container">
-              <img src={profileImage} alt={name} className="hero__avatar" />
+              <img src={profileImage} alt={displayName} className="hero__avatar" />
             </div>
           </div>
 
           {/* Social Link Icons */}
           <div className="hero__socials">
-            {socialLinks.map((item) => {
+            {effectiveSocials.map((item) => {
               const Icon = getIconComponent(item);
               return (
                 <a
@@ -73,14 +90,14 @@ function Hero({ name, roles = [], tagline, location, socialLinks = [] }) {
         {/* Right Column on Large Screens: Text & Actions */}
         <div className="hero__text-col">
           <p className="hero__greeting">Hello World, I'm</p>
-          <h1 className="hero__name">{name}</h1>
+          <h1 className="hero__name">{displayName}</h1>
 
           {/* Dynamic Rotating Roles */}
           <div className="hero__role-wrapper">
             <span>Electrical & Computer Engineer</span>
             <span style={{ color: "var(--text-muted)", margin: "0 0.25rem" }}>|</span>
             <span className={`hero__role-tag ${fade ? "fade-role" : ""}`}>
-              {roles[index] || "Full-Stack Developer"}
+              {effectiveRoles[index] || "Full-Stack Developer"}
             </span>
           </div>
 
@@ -93,7 +110,7 @@ function Hero({ name, roles = [], tagline, location, socialLinks = [] }) {
           )}
 
           {/* Tagline */}
-          <p className="hero__tagline">{tagline}</p>
+          <p className="hero__tagline">{tagline || "I build intelligent systems that connect hardware, software, and people."}</p>
 
           {/* Actions (Resume, Contact, Projects) */}
           <div className="hero__actions">

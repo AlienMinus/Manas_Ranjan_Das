@@ -3,9 +3,17 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const path = require("path");
+const fs = require("fs");
 
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config({ path: path.join(__dirname, ".env") });
+// Load .env from server directory or root directory
+const serverEnv = path.join(__dirname, ".env");
+const rootEnv = path.join(__dirname, "../.env");
+if (fs.existsSync(serverEnv)) {
+  require("dotenv").config({ path: serverEnv });
+} else if (fs.existsSync(rootEnv)) {
+  require("dotenv").config({ path: rootEnv });
+} else {
+  require("dotenv").config();
 }
 
 // Models
@@ -37,11 +45,11 @@ app.use(
       "http://127.0.0.1:5173",
     ],
     allowedHeaders: ["Content-Type", "x-admin-password"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   })
 );
 
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 
 // ====== MongoDB Connection ======
 const MONGODB_URI =
@@ -49,23 +57,84 @@ const MONGODB_URI =
 
 mongoose
   .connect(MONGODB_URI)
-  .then(() => console.log("✅ Connected to MongoDB Database"))
+  .then(() => console.log("✅ Connected to MongoDB Database successfully"))
   .catch((err) =>
-    console.error("❌ MongoDB connection error (Verify MONGODB_URI):", err.message)
+    console.error("❌ MongoDB connection error (Check MONGODB_URI):", err.message)
   );
+
+// Helper middleware for Admin Auth
+function requireAdmin(req, res, next) {
+  const password = req.headers["x-admin-password"];
+  if (!password || password !== ADMIN_PASSWORD) {
+    return res.status(401).json({ success: false, error: "Unauthorized: Invalid Admin Password" });
+  }
+  next();
+}
+
+// ==========================================================================
+// 🏥 HEALTH & SYSTEM DIAGNOSTIC ROUTES
+// ==========================================================================
+
+const getHealthStatus = async (req, res) => {
+  const stateMap = {
+    0: "disconnected",
+    1: "connected",
+    2: "connecting",
+    3: "disconnecting",
+  };
+
+  const state = mongoose.connection.readyState;
+  const isConnected = state === 1;
+
+  let counts = {};
+  if (isConnected) {
+    try {
+      const [heroCount, aboutCount, skillCount, projectCount, expCount, contactCount, messageCount] =
+        await Promise.all([
+          Hero.countDocuments(),
+          About.countDocuments(),
+          Skill.countDocuments(),
+          Project.countDocuments(),
+          Experience.countDocuments(),
+          ContactInfo.countDocuments(),
+          Message.countDocuments(),
+        ]);
+      counts = {
+        hero: heroCount,
+        about: aboutCount,
+        skills: skillCount,
+        projects: projectCount,
+        experience: expCount,
+        contact: contactCount,
+        messages: messageCount,
+      };
+    } catch {
+      // ignore
+    }
+  }
+
+  res.json({
+    status: isConnected ? "OK" : "DEGRADED",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || "development",
+    mongo: {
+      state,
+      status: stateMap[state] || "unknown",
+      connected: isConnected,
+      host: mongoose.connection.host || "unknown",
+      name: mongoose.connection.name || "portfolio",
+    },
+    collections: counts,
+  });
+};
+
+app.get("/health", getHealthStatus);
+app.get("/api/health", getHealthStatus);
 
 // ==========================================================================
 // 📌 PUBLIC PORTFOLIO DATA ROUTES
 // ==========================================================================
-
-// Health Check
-app.get("/health", (req, res) =>
-  res.json({
-    status: "OK",
-    mongo: mongoose.connection.readyState,
-    environment: process.env.NODE_ENV || "development",
-  })
-);
 
 // 📦 Aggregated All Portfolio Data
 app.get("/api/portfolio-data", async (req, res) => {
@@ -203,17 +272,175 @@ app.post("/api/contact", async (req, res) => {
 });
 
 // ==========================================================================
-// 🔐 ADMIN & DATABASE MANAGEMENT ROUTES
+// 🔐 ADMIN CRUD ROUTES (PROTECTED)
 // ==========================================================================
 
-// 🔐 Admin: Get all messages
-app.get("/api/admin/messages", async (req, res) => {
-  const password = req.headers["x-admin-password"];
-
-  if (!password || password !== ADMIN_PASSWORD) {
-    return res.status(401).json({ success: false, error: "Unauthorized" });
+// --- Hero CRUD ---
+app.put("/api/admin/hero", requireAdmin, async (req, res) => {
+  try {
+    const { name, roles, location, heroTagline, socialLinks } = req.body;
+    let hero = await Hero.findOne();
+    if (hero) {
+      hero.name = name;
+      hero.roles = roles;
+      hero.location = location;
+      hero.heroTagline = heroTagline;
+      hero.socialLinks = socialLinks;
+      await hero.save();
+    } else {
+      hero = await Hero.create({ name, roles, location, heroTagline, socialLinks });
+    }
+    res.json({ success: true, hero });
+  } catch (err) {
+    console.error("Error updating hero:", err);
+    res.status(500).json({ success: false, error: err.message });
   }
+});
 
+// --- About CRUD ---
+app.put("/api/admin/about", requireAdmin, async (req, res) => {
+  try {
+    const { about, education, personal_details, achievements, posts } = req.body;
+    let doc = await About.findOne();
+    if (doc) {
+      doc.about = about;
+      doc.education = education;
+      doc.personal_details = personal_details;
+      doc.achievements = achievements;
+      doc.posts = posts;
+      await doc.save();
+    } else {
+      doc = await About.create({ about, education, personal_details, achievements, posts });
+    }
+    res.json({ success: true, about: doc });
+  } catch (err) {
+    console.error("Error updating about:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// --- Skills CRUD ---
+app.post("/api/admin/skills", requireAdmin, async (req, res) => {
+  try {
+    const { category, items } = req.body;
+    const skill = await Skill.create({ category, items: items || [] });
+    res.json({ success: true, skill });
+  } catch (err) {
+    console.error("Error creating skill:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.put("/api/admin/skills/:id", requireAdmin, async (req, res) => {
+  try {
+    const { category, items } = req.body;
+    const skill = await Skill.findByIdAndUpdate(
+      req.params.id,
+      { category, items },
+      { new: true }
+    );
+    res.json({ success: true, skill });
+  } catch (err) {
+    console.error("Error updating skill:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.delete("/api/admin/skills/:id", requireAdmin, async (req, res) => {
+  try {
+    await Skill.findByIdAndDelete(req.params.id);
+    res.json({ success: true, message: "Skill category deleted" });
+  } catch (err) {
+    console.error("Error deleting skill:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// --- Projects CRUD ---
+app.post("/api/admin/projects", requireAdmin, async (req, res) => {
+  try {
+    const project = await Project.create(req.body);
+    res.json({ success: true, project });
+  } catch (err) {
+    console.error("Error creating project:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.put("/api/admin/projects/:id", requireAdmin, async (req, res) => {
+  try {
+    const project = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json({ success: true, project });
+  } catch (err) {
+    console.error("Error updating project:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.delete("/api/admin/projects/:id", requireAdmin, async (req, res) => {
+  try {
+    await Project.findByIdAndDelete(req.params.id);
+    res.json({ success: true, message: "Project deleted" });
+  } catch (err) {
+    console.error("Error deleting project:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// --- Experience CRUD ---
+app.post("/api/admin/experience", requireAdmin, async (req, res) => {
+  try {
+    const experience = await Experience.create(req.body);
+    res.json({ success: true, experience });
+  } catch (err) {
+    console.error("Error creating experience:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.put("/api/admin/experience/:id", requireAdmin, async (req, res) => {
+  try {
+    const experience = await Experience.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json({ success: true, experience });
+  } catch (err) {
+    console.error("Error updating experience:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.delete("/api/admin/experience/:id", requireAdmin, async (req, res) => {
+  try {
+    await Experience.findByIdAndDelete(req.params.id);
+    res.json({ success: true, message: "Experience deleted" });
+  } catch (err) {
+    console.error("Error deleting experience:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// --- Contact Info CRUD ---
+app.put("/api/admin/contact-info", requireAdmin, async (req, res) => {
+  try {
+    const { email, phone, blog, message } = req.body;
+    let doc = await ContactInfo.findOne();
+    if (doc) {
+      doc.email = email;
+      doc.phone = phone;
+      doc.blog = blog;
+      doc.message = message;
+      await doc.save();
+    } else {
+      doc = await ContactInfo.create({ email, phone, blog, message });
+    }
+    res.json({ success: true, contact: doc });
+  } catch (err) {
+    console.error("Error updating contact info:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// --- Messages Inbox ---
+app.get("/api/admin/messages", requireAdmin, async (req, res) => {
   try {
     const messages = await Message.find().sort({ createdAt: -1 });
     res.json({ success: true, messages });
@@ -223,14 +450,7 @@ app.get("/api/admin/messages", async (req, res) => {
   }
 });
 
-// 🗑️ Admin: Delete message
-app.delete("/api/admin/messages/:id", async (req, res) => {
-  const password = req.headers["x-admin-password"];
-
-  if (!password || password !== ADMIN_PASSWORD) {
-    return res.status(401).json({ success: false, error: "Unauthorized" });
-  }
-
+app.delete("/api/admin/messages/:id", requireAdmin, async (req, res) => {
   try {
     const deleted = await Message.findByIdAndDelete(req.params.id);
     res.json({ success: true, deleted: !!deleted });
@@ -240,29 +460,11 @@ app.delete("/api/admin/messages/:id", async (req, res) => {
   }
 });
 
-// ⚡ Admin: Reseed Database
-app.post("/api/seed", async (req, res) => {
-  const password = req.headers["x-admin-password"];
-
-  if (!password || password !== ADMIN_PASSWORD) {
-    return res.status(401).json({ success: false, error: "Unauthorized" });
-  }
-
-  try {
-    const seedDatabase = require("./scripts/seed");
-    await seedDatabase();
-    res.json({ success: true, message: "Database reseeded successfully" });
-  } catch (err) {
-    console.error("Error reseeding database:", err);
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
-
-// Base Route
+// --- Base Route ---
 app.get("/", (req, res) =>
-  res.send("Portfolio REST API (Express + MongoDB) is running 🚀")
+  res.send("Portfolio REST API (Express + MongoDB) with Full Admin CRUD is running 🚀")
 );
 
 app.listen(PORT, () =>
-  console.log(`📡 Portfolio API Server running on port ${PORT} (Mode: MongoDB)`)
+  console.log(`📡 Portfolio API Server running on port ${PORT} (Mode: MongoDB with CRUD)`)
 );

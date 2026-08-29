@@ -2,9 +2,18 @@
 import React from "react";
 import { usePortfolio } from "../context/usePortfolio";
 import About from "../components/About";
+import { LoadingSpinner, DatabaseErrorState } from "../components/LoadingSpinner";
 
 function AboutPage() {
-  const { about } = usePortfolio();
+  const { about, loading, error, refreshData } = usePortfolio();
+
+  if (loading && !about) {
+    return <LoadingSpinner text="FETCHING ABOUT & EDUCATION RECORDS..." />;
+  }
+
+  if (error && !about) {
+    return <DatabaseErrorState onRetry={refreshData} error={error} />;
+  }
 
   const aboutText = about?.about || "";
   const education = about?.education || [];

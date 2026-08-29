@@ -11,9 +11,18 @@ import Hero from "../components/Hero";
 import ResumeEmbed from "../components/ResumeEmbed";
 import Projects from "../components/Projects";
 import Experience from "../components/Experience";
+import { LoadingSpinner, DatabaseErrorState } from "../components/LoadingSpinner";
 
 function Home() {
-  const { hero, about, projects, experience } = usePortfolio();
+  const { hero, about, projects, experience, loading, error, refreshData } = usePortfolio();
+
+  if (loading && !hero) {
+    return <LoadingSpinner text="CONNECTING TO MONGODB & LOADING PORTFOLIO..." />;
+  }
+
+  if (error && !hero) {
+    return <DatabaseErrorState onRetry={refreshData} error={error} />;
+  }
 
   const { name, roles, location, heroTagline, socialLinks } = hero || {};
   const aboutText = (about?.about || "").trim();
@@ -45,7 +54,7 @@ function Home() {
 
           <div className="about-bio-card">
             <p className="about-bio-text">
-              {aboutText.substring(0, 420)}...
+              {aboutText ? `${aboutText.substring(0, 420)}...` : "Loading biography..."}
             </p>
 
             {/* Quick credentials badges */}
@@ -87,7 +96,7 @@ function Home() {
       />
       <div className="view-more">
         <Link to="/projects" className="btn outline">
-          <span>View All 25+ Projects</span>
+          <span>View All {projects?.length || ""} Projects</span>
           <FaArrowRight size={12} />
         </Link>
       </div>
@@ -99,7 +108,7 @@ function Home() {
       />
       <div className="view-more">
         <Link to="/experience" className="btn outline">
-          <span>View Full Career Timeline (5+ Internships)</span>
+          <span>View Full Career Timeline ({experience?.length || ""} Positions)</span>
           <FaArrowRight size={12} />
         </Link>
       </div>
