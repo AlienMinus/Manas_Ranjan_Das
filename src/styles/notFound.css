@@ -1,0 +1,59 @@
+/* ==========================================================================
+   404 Not Found Page Styles
+   ========================================================================== */
+
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: calc(100vh - 180px);
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+.not-found-page::before {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(56, 189, 248, 0.1) 40%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.not-found-code {
+  font-family: var(--font-mono);
+  font-size: clamp(6rem, 18vw, 12rem);
+  font-weight: 800;
+  line-height: 1;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
+  position: relative;
+}
+
+.not-found-message {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.not-found-suggestion {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 480px;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-wrap: pretty;
+}
+

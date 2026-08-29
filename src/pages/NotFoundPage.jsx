@@ -1,21 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+// src/pages/NotFoundPage.jsx
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const NotFoundPage = () => {
   return (
-    <main className="app">
-      <div className="not-found-page">
-        <div className="cyberspace">
-          <div className="not-found-code" data-text="404">404</div>
-        </div>
-        <p className="not-found-message">Page Not Found</p>
-        <p className="not-found-suggestion">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-        <Link to="/" className="btn outline">Go to Homepage</Link>
-      </div>
-    </main>
+    <div className="not-found-page" role="main">
+      <div className="not-found-code">404</div>
+      <h1 className="not-found-message">Dimension Not Found</h1>
+      <p className="not-found-suggestion">
+        The coordinates you entered do not match any known route in this portfolio universe. Let's get you back on track.
+      </p>
+      <Link to="/" className="btn primary">
+        <FaHome />
+        <span>Return to Homepage</span>
+      </Link>
+    </div>
   );
 };
 
 export default NotFoundPage;
-
-

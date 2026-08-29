@@ -23,9 +23,11 @@ function App() {
 
   useEffect(() => {
     if (isPlaying) {
-      audioRef.current.play();
+      audioRef.current?.play().catch(() => {
+        setIsPlaying(false);
+      });
     } else {
-      audioRef.current.pause();
+      audioRef.current?.pause();
     }
   }, [isPlaying]);
 
@@ -37,8 +39,31 @@ function App() {
     <div className="app">
       <Navbar />
       <audio ref={audioRef} src="/MinusTheme.mp3" loop />
-      <button onClick={toggleMusic} className="music-toggle">
-        {isPlaying ? "▶" : "◉"}
+      
+      {/* Visualizer Music Player Toggle */}
+      <button
+        type="button"
+        onClick={toggleMusic}
+        className={`music-toggle ${isPlaying ? "music-toggle--playing" : ""}`}
+        aria-label={isPlaying ? "Pause theme audio" : "Play theme audio"}
+        title={isPlaying ? "Pause Theme Audio" : "Play Theme Audio"}
+      >
+        {isPlaying ? (
+          <>
+            <div className="sound-wave">
+              <span className="sound-bar"></span>
+              <span className="sound-bar"></span>
+              <span className="sound-bar"></span>
+              <span className="sound-bar"></span>
+            </div>
+            <span>Theme ON</span>
+          </>
+        ) : (
+          <>
+            <span>🎵</span>
+            <span>Theme Audio</span>
+          </>
+        )}
       </button>
 
       <main>

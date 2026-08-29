@@ -1,84 +1,124 @@
+// src/components/About.jsx
 import React from "react";
-import profileImage from "../assets/profile_pic.png";
+import { FaGraduationCap, FaUserCheck, FaTrophy, FaBriefcase, FaBuilding } from "react-icons/fa";
 
+function About({
+  about,
+  education = [],
+  personal_details = {},
+  achievements = {},
+  posts = {},
+}) {
+  const hasEducation = education && education.length > 0;
+  const hasDetails = personal_details && Object.keys(personal_details).length > 0;
+  const hasAchievements = achievements && Object.keys(achievements).length > 0;
+  const hasPosts = posts && Object.keys(posts).length > 0;
 
-function About({ about, education = [], personal_details = {}, achievements = {}, posts = {} }) {
   return (
-    <section className="section" id="about">
-      <h2 className="section__title">About Me</h2>
-      <p className="section__text">{about}</p>
+    <section className="section" id="about" aria-label="About Me">
+      <div className="section__header">
+        <h2 className="section__title">
+          <span>About</span> <span className="gradient-text">Me</span>
+        </h2>
+        <p className="section__subtitle">
+          Passionate Engineer, Researcher & Builder dedicated to sustainable technologies.
+        </p>
+      </div>
 
-      {/* Education Table */}
-      {education && education.length > 0 && (
-        <div style={{ marginTop: "1.5rem" }} className="card">
-          <h3 style={{ marginBottom: "0.6rem" }}>Education</h3>
-          <div className="admin-table-wrapper">
-            <table className="admin-table education-table" aria-label="Education">
-              <thead>
-                <tr>
-                  <th>Institution</th>
-                  <th>Degree</th>
-                  <th>Year</th>
-                </tr>
-              </thead>
-              <tbody>
-                {education.map((edu, idx) => (
-                  <tr key={edu.institution + idx}>
-                    <td>{edu.institution}</td>
-                    <td>{edu.degree}</td>
-                    <td>{edu.year}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      <div className="about-section">
+        {/* Bio Card */}
+        {about && (
+          <div className="about-bio-card">
+            <p className="about-bio-text">{about.trim()}</p>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Personal Details */}
-      {personal_details && Object.keys(personal_details).length > 0 && (
-        <div style={{ marginTop: "1.5rem" }} className="card">
-          <h3 style={{ marginBottom: "0.6rem" }}>Personal Details</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "0.8rem" }}>
-            {Object.entries(personal_details).map(([key, value]) => (
-              <div key={key}>
-                <strong style={{ color: "#9fd3ff" }}>{key.replace(/-/g, " ").replace(/_/g, " ")}:</strong>
-                <p style={{ margin: "0.3rem 0 0", opacity: 0.9 }}>{value}</p>
-              </div>
-            ))}
+        {/* Education Subsection */}
+        {hasEducation && (
+          <div>
+            <h3 className="about-subsection-title">
+              <FaGraduationCap />
+              <span>Education</span>
+            </h3>
+            <div className="education-grid">
+              {education.map((edu, idx) => (
+                <div className="education-card" key={edu.institution + idx}>
+                  <div className="education-card__header">
+                    <h4 className="education-card__degree">{edu.degree}</h4>
+                    <span className="education-card__year">{edu.year}</span>
+                  </div>
+                  <p className="education-card__institution">
+                    <FaBuilding size={12} style={{ flexShrink: 0 }} />
+                    <span>{edu.institution}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Achievements */}
-      {achievements && Object.keys(achievements).length > 0 && (
-        <div style={{ marginTop: "1.5rem" }} className="card">
-          <h3 style={{ marginBottom: "0.6rem" }}>Achievements</h3>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {Object.entries(achievements).map(([key, value]) => (
-              <li key={key} style={{ marginBottom: "0.8rem", paddingLeft: "1.5rem", position: "relative" }}>
-                <span style={{ position: "absolute", left: 0, color: "#9fd3ff" }}>•</span>
-                <strong style={{ color: "#9fd3ff" }}>{key}:</strong> {value}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+        {/* Personal Details Subsection */}
+        {hasDetails && (
+          <div>
+            <h3 className="about-subsection-title">
+              <FaUserCheck />
+              <span>Personal Details</span>
+            </h3>
+            <div className="details-grid">
+              {Object.entries(personal_details).map(([key, value]) => (
+                <div className="detail-item" key={key}>
+                  <div className="detail-label">
+                    {key.replace(/-/g, " ").replace(/_/g, " ")}
+                  </div>
+                  <div className="detail-value">{value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
-      {/* Posts & Positions */}
-      {posts && Object.keys(posts).length > 0 && (
-        <div style={{ marginTop: "1.5rem" }} className="card">
-          <h3 style={{ marginBottom: "0.6rem" }}>Posts & Positions</h3>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {Object.entries(posts).map(([key, value]) => (
-              <li key={key} style={{ marginBottom: "0.8rem", paddingLeft: "1.5rem", position: "relative" }}>
-                <span style={{ position: "absolute", left: 0, color: "#9fd3ff" }}>•</span>
-                <strong style={{ color: "#9fd3ff" }}>{key}:</strong> {value}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+        {/* Achievements Subsection */}
+        {hasAchievements && (
+          <div>
+            <h3 className="about-subsection-title">
+              <FaTrophy style={{ color: "#f59e0b" }} />
+              <span>Key Achievements & Milestones</span>
+            </h3>
+            <div className="achievements-grid">
+              {Object.entries(achievements).map(([title, desc]) => (
+                <div className="achievement-card" key={title}>
+                  <div className="achievement-icon">★</div>
+                  <div>
+                    <h4 className="achievement-title">{title}</h4>
+                    <p className="achievement-desc">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Posts & Positions Subsection */}
+        {hasPosts && (
+          <div>
+            <h3 className="about-subsection-title">
+              <FaBriefcase style={{ color: "#818cf8" }} />
+              <span>Leadership & Positions Held</span>
+            </h3>
+            <div className="posts-grid">
+              {Object.entries(posts).map(([role, desc]) => (
+                <div className="post-card" key={role}>
+                  <div className="post-icon">◈</div>
+                  <div>
+                    <h4 className="post-title">{role}</h4>
+                    <p className="post-desc">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

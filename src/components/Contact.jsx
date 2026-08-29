@@ -1,11 +1,11 @@
 // src/components/Contact.jsx
 import React, { useState } from "react";
+import { FaEnvelope, FaPhoneAlt, FaBlog, FaMapMarkerAlt, FaPaperPlane, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 
-function Contact({ contact }) {
+function Contact({ contact = {} }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    blog: "",
     message: "",
   });
   const [status, setStatus] = useState(null); // "success" | "error" | null
@@ -47,58 +47,166 @@ function Contact({ contact }) {
   };
 
   return (
-    <section className="section" id="contact">
-      <h2 className="section__title">Contact</h2>
-      <p className="section__text">{contact.message}</p>
-
-      <div className="contact__info">
-        <p>
-          Email: <a href={`mailto:${contact.email}`}>{contact.email}</a>
+    <section className="section" id="contact" aria-label="Contact Me">
+      <div className="section__header">
+        <h2 className="section__title">
+          <span>Get in</span> <span className="gradient-text">Touch</span>
+        </h2>
+        <p className="section__subtitle">
+          {contact.message || "Have a project in mind, research collaboration, or question? Feel free to reach out!"}
         </p>
-        {contact.phone && <p>Phone: {contact.phone}</p>}
-        {contact.blog && <p><a href="https://spectacularminus.blogspot.com" target="_blank">Blog: {contact.blog}</a></p>}
       </div>
 
-      <form className="contact__form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Your Name"
-          name="name"
-          required
-          value={formData.name}
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          placeholder="Your Email"
-          name="email"
-          required
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <textarea
-          rows="4"
-          placeholder="Your Message"
-          name="message"
-          required
-          value={formData.message}
-          onChange={handleChange}
-        />
-        <button type="submit" className="btn primary" disabled={loading}>
-          {loading ? "Sending..." : "Send Message"}
-        </button>
-      </form>
+      <div className="contact__container">
+        {/* Left Column: Contact Channels */}
+        <div className="contact__info-col">
+          <div className="contact__info-header">
+            <h3>Let's build something extraordinary.</h3>
+            <p>
+              I am open to full-time opportunities, freelance engineering, research collaborations, and open-source projects.
+            </p>
+          </div>
 
-      {status === "success" && (
-        <p style={{ marginTop: "0.7rem", color: "#7fdc9e" }}>
-          ✅ Message sent successfully!
-        </p>
-      )}
-      {status === "error" && (
-        <p style={{ marginTop: "0.7rem", color: "#ff6b6b" }}>
-          ❌ Something went wrong. Please try again.
-        </p>
-      )}
+          <div className="contact__cards-list">
+            {contact.email && (
+              <a
+                href={`mailto:${contact.email}`}
+                className="contact-channel-card"
+                title="Send an email"
+              >
+                <div className="contact-channel-icon">
+                  <FaEnvelope />
+                </div>
+                <div>
+                  <div className="contact-channel-label">Email Address</div>
+                  <div className="contact-channel-value">{contact.email}</div>
+                </div>
+              </a>
+            )}
+
+            {contact.phone && (
+              <a
+                href={`tel:${contact.phone}`}
+                className="contact-channel-card"
+                title="Call phone number"
+              >
+                <div className="contact-channel-icon">
+                  <FaPhoneAlt />
+                </div>
+                <div>
+                  <div className="contact-channel-label">Phone / WhatsApp</div>
+                  <div className="contact-channel-value">{contact.phone}</div>
+                </div>
+              </a>
+            )}
+
+            {contact.blog && (
+              <a
+                href="https://spectacularminus.blogspot.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-channel-card"
+                title="Visit Blog"
+              >
+                <div className="contact-channel-icon">
+                  <FaBlog />
+                </div>
+                <div>
+                  <div className="contact-channel-label">Technical Blog</div>
+                  <div className="contact-channel-value">Spectacular Minus</div>
+                </div>
+              </a>
+            )}
+
+            <div className="contact-channel-card">
+              <div className="contact-channel-icon">
+                <FaMapMarkerAlt />
+              </div>
+              <div>
+                <div className="contact-channel-label">Location</div>
+                <div className="contact-channel-value">Cuttack, Odisha, India</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: Contact Form */}
+        <div className="contact__form-col">
+          <form className="contact__form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="contact-name" className="form-label">
+                Your Full Name
+              </label>
+              <input
+                id="contact-name"
+                type="text"
+                className="form-input"
+                placeholder="e.g. John Doe"
+                name="name"
+                required
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="contact-email" className="form-label">
+                Your Email Address
+              </label>
+              <input
+                id="contact-email"
+                type="email"
+                className="form-input"
+                placeholder="e.g. john@example.com"
+                name="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="contact-message" className="form-label">
+                Your Message
+              </label>
+              <textarea
+                id="contact-message"
+                className="form-textarea"
+                rows="4"
+                placeholder="Tell me about your project, idea, or inquiry..."
+                name="message"
+                required
+                value={formData.message}
+                onChange={handleChange}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="btn primary"
+              disabled={loading}
+              style={{ width: "100%" }}
+            >
+              <FaPaperPlane size={14} />
+              <span>{loading ? "Transmitting Message..." : "Send Message"}</span>
+            </button>
+
+            {status === "success" && (
+              <div className="form-alert form-alert--success">
+                <FaCheckCircle />
+                <span>Message sent successfully! I will reply as soon as possible.</span>
+              </div>
+            )}
+
+            {status === "error" && (
+              <div className="form-alert form-alert--error">
+                <FaExclamationCircle />
+                <span>Unable to send message right now. Please email directly!</span>
+              </div>
+            )}
+          </form>
+        </div>
+      </div>
     </section>
   );
 }

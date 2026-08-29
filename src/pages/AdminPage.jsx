@@ -1,6 +1,6 @@
 // src/pages/AdminPage.jsx
 import React, { useState, useEffect } from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaSyncAlt, FaSignOutAlt, FaLock, FaUserShield } from "react-icons/fa";
 
 function AdminPage() {
   const [password, setPassword] = useState("");
@@ -80,12 +80,11 @@ function AdminPage() {
     fetchMessages(true);
   };
 
-  // 🗑️ Delete single message (by Mongo _id)
   const handleDelete = async (id) => {
     if (!authed) return;
 
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this message?"
+      "Are you sure you want to permanently delete this message?"
     );
     if (!confirmDelete) return;
 
@@ -114,84 +113,82 @@ function AdminPage() {
     }
   };
 
-  // 🔁 Auto-refresh every 2 seconds after login
+  // Auto-refresh every 5 seconds after login
   useEffect(() => {
     if (!authed) return;
     const id = setInterval(() => {
       fetchMessages(false);
-    }, 2000);
+    }, 5000);
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authed, password]);
 
   return (
-    <section className="section">
-      <h2 className="section__title">Admin Panel</h2>
+    <section className="section" aria-label="Admin Portal">
+      <div className="section__header">
+        <h2 className="section__title">
+          <span>Admin</span> <span className="gradient-text">Portal</span>
+        </h2>
+        <p className="section__subtitle">
+          Manage and review incoming messages from prospective clients and collaborators.
+        </p>
+      </div>
 
-      {!authed && (
-        <form
-          className="admin-login"
-          onSubmit={handleLogin}
-          style={{
-            maxWidth: "320px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "0.6rem",
-          }}
-        >
+      {!authed ? (
+        <form className="admin-login" onSubmit={handleLogin}>
+          <div style={{ textAlign: "center", color: "var(--accent-cyan)", fontSize: "2rem" }}>
+            <FaLock />
+          </div>
+          <h3 className="admin-login__title">Administrator Authentication</h3>
           <input
             type="password"
-            placeholder="Admin Password"
+            placeholder="Enter Admin Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            aria-label="Admin Password"
           />
           <button type="submit" className="btn primary" disabled={loading}>
-            {loading ? "Verifying..." : "Login"}
+            <FaUserShield />
+            <span>{loading ? "Authenticating..." : "Access Dashboard"}</span>
           </button>
           {status === "error" && (
-            <p style={{ color: "#ff6b6b", fontSize: "0.9rem" }}>
-              ❌ Invalid password or server error.
+            <p className="admin-error">
+              Invalid credentials or authentication server unreachable.
             </p>
           )}
         </form>
-      )}
-
-      {authed && (
+      ) : (
         <>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "1rem",
-              gap: "1rem",
-              flexWrap: "wrap",
-            }}
-          >
-            <div>
-              <p style={{ opacity: 0.8, fontSize: "0.9rem" }}>
-                Logged in as <strong>admin</strong>. Total messages:{" "}
-                <strong>{messages.length}</strong>
-              </p>
-              <p style={{ opacity: 0.6, fontSize: "0.8rem" }}>
-                🟢 Auto-refresh every 2s
-                {lastUpdated && ` • Last updated at ${lastUpdated}`}
-              </p>
+          <div className="admin-dashboard-bar">
+            <div className="admin-dashboard-stats">
+              <div>
+                <span style={{ fontSize: "0.95rem", fontWeight: "600" }}>
+                  Logged in as <strong>Admin</strong>
+                </span>
+                <span className="badge badge--emerald" style={{ marginLeft: "0.5rem" }}>
+                  Active Session
+                </span>
+              </div>
+              <div style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>
+                Total Messages: <strong style={{ color: "var(--text-primary)" }}>{messages.length}</strong>
+                {lastUpdated && ` • Updated at ${lastUpdated}`}
+              </div>
             </div>
 
-            <div style={{ display: "flex", gap: "0.5rem" }}>
+            <div className="admin-dashboard-actions">
               <button
-                className="btn outline"
                 type="button"
+                className="btn outline sm"
                 onClick={handleRefresh}
                 disabled={loading}
               >
-                {loading ? "Refreshing..." : "Refresh"}
+                <FaSyncAlt className={loading ? "spin" : ""} size={12} />
+                <span>{loading ? "Syncing..." : "Refresh"}</span>
               </button>
               <button
-                className="btn outline"
                 type="button"
+                className="btn outline sm"
                 onClick={() => {
                   setAuthed(false);
                   setMessages([]);
@@ -200,40 +197,50 @@ function AdminPage() {
                   setStatus(null);
                 }}
               >
-                Logout
+                <FaSignOutAlt size={12} />
+                <span>Logout</span>
               </button>
             </div>
           </div>
 
           {messages.length === 0 ? (
-            <p style={{ opacity: 0.8 }}>No messages yet.</p>
+            <div className="card" style={{ textAlign: "center", padding: "3rem" }}>
+              <p style={{ color: "var(--text-secondary)" }}>No messages received yet.</p>
+            </div>
           ) : (
             <div className="admin-table-wrapper">
-              <table className="admin-table">
+              <table className="admin-table" aria-label="Messages List">
                 <thead>
                   <tr>
-                    <th>Created At</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Message</th>
+                    <th>Timestamp</th>
+                    <th>Sender Name</th>
+                    <th>Email Address</th>
+                    <th>Message Details</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {messages.map((m) => (
                     <tr key={m._id}>
-                      <td>{formatDate(m.createdAt)}</td>
-                      <td>{m.name}</td>
-                      <td>{m.email}</td>
-                      <td>{m.message}</td>
+                      <td style={{ whiteSpace: "nowrap", fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--text-muted)" }}>
+                        {formatDate(m.createdAt)}
+                      </td>
+                      <td style={{ fontWeight: "600" }}>{m.name}</td>
+                      <td>
+                        <a href={`mailto:${m.email}`} style={{ color: "var(--accent-cyan)" }}>
+                          {m.email}
+                        </a>
+                      </td>
+                      <td style={{ lineHeight: "1.5" }}>{m.message}</td>
                       <td>
                         <button
                           type="button"
                           className="icon-btn icon-btn--danger"
                           onClick={() => handleDelete(m._id)}
-                          title="Delete message"
+                          title="Delete message permanently"
+                          aria-label="Delete message"
                         >
-                          <FaTrash size={14} />
+                          <FaTrash size={13} />
                         </button>
                       </td>
                     </tr>

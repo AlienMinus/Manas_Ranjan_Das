@@ -7,6 +7,7 @@ import * as MdIcons from "react-icons/md";
 import * as RiIcons from "react-icons/ri";
 import * as TbIcons from "react-icons/tb";
 import * as GiIcons from "react-icons/gi";
+import { FaBriefcase, FaCalendarAlt } from "react-icons/fa";
 
 function getIconComponent(exp) {
   if (!exp.icon) return null;
@@ -25,6 +26,7 @@ function getIconComponent(exp) {
       : exp.iconLib === "md"
       ? MdIcons
       : SiIcons;
+
   const Icon = lib[exp.icon];
   return Icon || null;
 }
@@ -33,31 +35,51 @@ function Experience({ experience = [] }) {
   const count = Array.isArray(experience) ? experience.length : 0;
 
   return (
-    <section className="section" id="experience">
-      <h2 className="section__title">
-        Experience <span className="experience__count">({count})</span>
-      </h2>
+    <section className="section" id="experience" aria-label="Experience">
+      <div className="section__header">
+        <h2 className="section__title">
+          <span>Work</span> <span className="gradient-text">Experience</span>
+          <span className="section__count">{count} Positions</span>
+        </h2>
+        <p className="section__subtitle">
+          Professional roles, research internships, industry projects, and leadership appointments.
+        </p>
+      </div>
+
       <div className="experience__timeline">
-        {experience.map((exp) => {
+        {experience.map((exp, idx) => {
           const Icon = getIconComponent(exp);
 
           return (
-            <div className="card experience-card" key={exp.role + exp.company}>
+            <article
+              className="experience-card"
+              key={exp.role + exp.company + idx}
+            >
               <div className="experience-card__header">
-                {Icon && <Icon className="experience-card__icon" />}
-                <div>
-                  <h3>{exp.role}</h3>
+                <div className="experience-card__icon-box">
+                  {Icon ? <Icon /> : <FaBriefcase />}
+                </div>
+
+                <div className="experience-card__header-info">
+                  <h3 className="experience-card__role">{exp.role}</h3>
                   <p className="experience-card__company">{exp.company}</p>
-                  <p className="experience-card__duration">{exp.duration}</p>
+                  <div className="experience-card__duration">
+                    <FaCalendarAlt size={11} />
+                    <span>{exp.duration}</span>
+                  </div>
                 </div>
               </div>
 
-              <ul className="experience-card__list">
-                {exp.details.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
+              {exp.details && exp.details.length > 0 && (
+                <ul className="experience-card__list">
+                  {exp.details.map((item, index) => (
+                    <li className="experience-card__list-item" key={index}>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
           );
         })}
       </div>

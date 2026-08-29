@@ -1,4 +1,7 @@
+// src/pages/Home.jsx
 import React from "react";
+import { Link } from "react-router-dom";
+import { FaArrowRight, FaPaperPlane } from "react-icons/fa";
 
 // Data
 import heroData from "../data/hero.json";
@@ -6,7 +9,6 @@ import aboutData from "../data/about.json";
 import skillsData from "../data/skills.json";
 import projectsData from "../data/projects.json";
 import experienceData from "../data/experience.json";
-import contactData from "../data/contact.json";
 
 // Components
 import Hero from "../components/Hero";
@@ -14,20 +16,19 @@ import About from "../components/About";
 import Skills from "../components/Skills";
 import Projects from "../components/Projects";
 import Experience from "../components/Experience";
-import Contact from "../components/Contact";
-
-import { Link } from "react-router-dom";
 
 function Home() {
   const { name, roles, location, heroTagline, socialLinks } = heroData;
   const { about } = aboutData;
+
   const limitedSkillsData = skillsData.map((group) => ({
     ...group,
-    items: group.items.slice(0, 3),
+    items: group.items.slice(0, 4),
   }));
+
   return (
     <div className="page">
-      {/* Full Hero */}
+      {/* Hero Section */}
       <Hero
         name={name}
         roles={roles}
@@ -37,10 +38,11 @@ function Home() {
       />
 
       {/* About Preview */}
-      <About about={about.substring(0, 180) + "..."} />
+      <About about={about.substring(0, 320) + "..."} />
       <div className="view-more">
         <Link to="/about" className="btn outline">
-          Know More...
+          <span>Read Full Biography & Background</span>
+          <FaArrowRight size={12} />
         </Link>
       </div>
 
@@ -48,34 +50,39 @@ function Home() {
       <Skills skills={limitedSkillsData.slice(0, 4)} />
       <div className="view-more">
         <Link to="/skills" className="btn outline">
-          See More Skills...
+          <span>Explore Complete Skill Matrix</span>
+          <FaArrowRight size={12} />
         </Link>
       </div>
 
       {/* Projects Preview */}
-      <Projects projects={projectsData.slice(0, 2)} />
+      <Projects projects={projectsData.slice(0, 4)} />
       <div className="view-more">
         <Link to="/projects" className="btn outline">
-          View All Projects...
+          <span>View All 25+ Projects</span>
+          <FaArrowRight size={12} />
         </Link>
       </div>
 
       {/* Experience Preview */}
-      <Experience experience={experienceData.slice(0, 2)} />
+      <Experience experience={experienceData.slice(0, 3)} />
       <div className="view-more">
         <Link to="/experience" className="btn outline">
-          Explore Full Experience...
+          <span>View Full Career Timeline</span>
+          <FaArrowRight size={12} />
         </Link>
       </div>
 
-      {/* Contact CTA */}
+      {/* Home Contact Banner */}
       <div className="home-contact">
-        <h3>Let’s Work Together!</h3>
-        <div className="view-more">
-          <Link to="/contact" className="btn primary">
-            Contact Me!
-          </Link>
-        </div>
+        <h3>Let's Create Something Impactful</h3>
+        <p>
+          Available for innovative engineering roles, AI research, and high-impact technology projects.
+        </p>
+        <Link to="/contact" className="btn primary">
+          <FaPaperPlane size={14} />
+          <span>Get in Touch Today</span>
+        </Link>
       </div>
     </div>
   );

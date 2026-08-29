@@ -135,7 +135,6 @@ function answerSkills() {
 }
 
 function answerProjects(query) {
-  const q = lc(query);
   const tokens = tokenize(query);
 
   // If they just said "projects" etc., show a curated set
