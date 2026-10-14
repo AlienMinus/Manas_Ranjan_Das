@@ -38,15 +38,19 @@ const FRONTEND_ORIGIN =
 // ====== MIDDLEWARE ======
 app.use(
   cors({
-    origin: [
-      FRONTEND_ORIGIN,
-      "http://localhost:5173",
-      "http://localhost:3000",
-      "http://127.0.0.1:5173",
-      "*"
-    ],
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (
+        origin === FRONTEND_ORIGIN ||
+        /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+      ) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
     allowedHeaders: ["Content-Type", "x-admin-password"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: true,
   })
 );
 
