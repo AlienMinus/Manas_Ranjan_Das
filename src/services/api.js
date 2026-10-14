@@ -3,7 +3,7 @@
 const API_BASE_URL =
   import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
-const FETCH_TIMEOUT_MS = 6000;
+const FETCH_TIMEOUT_MS = 15000;
 
 // Helper to fetch with timeout
 async function fetchWithTimeout(url, options = {}) {
@@ -19,6 +19,9 @@ async function fetchWithTimeout(url, options = {}) {
     return response;
   } catch (err) {
     clearTimeout(timeoutId);
+    if (err.name === "AbortError") {
+      throw new Error(`Request timed out after ${FETCH_TIMEOUT_MS / 1000}s while contacting server`);
+    }
     throw err;
   }
 }

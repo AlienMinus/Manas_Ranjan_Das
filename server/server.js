@@ -1,4 +1,13 @@
 // server/server.js
+// Ensure IPv4 is prioritized for MongoDB Atlas SRV/shard DNS resolution on Windows
+const dns = require("node:dns");
+try {
+  dns.setDefaultResultOrder("ipv4first");
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+} catch {
+  // Ignore if custom DNS cannot be configured
+}
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -31,41 +40,39 @@ const PORT = process.env.PORT || 5000;
 // SECURITY
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Minus$ecureAdmin1THz";
 
-// FRONTEND ORIGIN FOR CORS
-const FRONTEND_ORIGIN =
-  process.env.FRONTEND_ORIGIN || "https://manas-ranjan-das.vercel.app";
-
 // ====== MIDDLEWARE ======
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      if (
-        origin === FRONTEND_ORIGIN ||
-        /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
-      ) {
-        return callback(null, true);
-      }
-      return callback(null, true);
-    },
-    allowedHeaders: ["Content-Type", "x-admin-password"],
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    origin: true, // Dynamically allow requesting origin (localhost:5173, localhost:5177, Vercel, etc.)
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "x-admin-password", "Authorization"],
   })
 );
 
 app.use(express.json({ limit: "10mb" }));
 
 // ====== MongoDB Connection ======
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/portfolio_v1";
+const rawUri = process.env.MONGODB_URI || "mongodb://localhost:27017/portfolio_v1";
+const MONGODB_URI = rawUri.trim().replace(/^["']|["']$/g, "");
 
-mongoose
-  .connect(MONGODB_URI)
-  .then(() => console.log("✅ Connected to MongoDB Database successfully"))
-  .catch((err) =>
-    console.error("❌ MongoDB connection error (Check MONGODB_URI):", err.message)
-  );
+const connectDB = async (retryCount = 0) => {
+  try {
+    await mongoose.connect(MONGODB_URI, {
+      serverSelectionTimeoutMS: 10000,
+      family: 4, // Force IPv4 to prevent Windows IPv6 DNS resolution issues with Atlas
+    });
+    console.log("✅ Connected to MongoDB Database successfully");
+  } catch (err) {
+    console.error("❌ MongoDB connection error (Check MONGODB_URI):", err.message);
+    if (retryCount < 5) {
+      console.log(`⏳ Retrying MongoDB connection in 3 seconds... (Attempt ${retryCount + 1}/5)`);
+      setTimeout(() => connectDB(retryCount + 1), 3000);
+    }
+  }
+};
+
+connectDB();
 
 // Helper middleware for Admin Auth
 function requireAdmin(req, res, next) {
@@ -143,6 +150,13 @@ app.get("/api/health", getHealthStatus);
 
 // 📦 Aggregated All Portfolio Data
 app.get("/api/portfolio-data", async (req, res) => {
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(503).json({
+      success: false,
+      error: "MongoDB database is still connecting or temporarily unreachable. Please retry shortly.",
+    });
+  }
+
   try {
     const [hero, about, skills, projects, experience, contact] =
       await Promise.all([
@@ -470,6 +484,16 @@ app.get("/", (req, res) =>
   res.send("Portfolio REST API (Express + MongoDB) with Full Admin CRUD is running 🚀")
 );
 
-app.listen(PORT, () =>
+const server = app.listen(PORT, () =>
   console.log(`📡 Portfolio API Server running on port ${PORT} (Mode: MongoDB with CRUD)`)
 );
+
+server.on("error", (err) => {
+  if (err.code === "EADDRINUSE") {
+    console.error(
+      `❌ Port ${PORT} is already in use by another process. Please stop the existing process holding port ${PORT}.`
+    );
+  } else {
+    console.error("❌ Server error:", err);
+  }
+});
