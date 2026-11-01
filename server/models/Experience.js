@@ -7,11 +7,12 @@ const experienceSchema = new mongoose.Schema(
     company: { type: String, required: true, trim: true },
     duration: { type: String, required: true, trim: true },
     details: [{ type: String, trim: true }],
+    image: { type: String, default: "", trim: true },
     icon: { type: String, default: "FaBriefcase" },
     iconLib: { type: String, default: "fa" },
     order: { type: Number, default: 0 },
   },
-  { timestamps: true }
+  { timestamps: true, strict: false }
 );
 
 module.exports = mongoose.model("Experience", experienceSchema);

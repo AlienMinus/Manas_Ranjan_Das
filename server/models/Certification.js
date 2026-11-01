@@ -5,17 +5,19 @@ const certificationSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, trim: true },
     issuer: { type: String, required: true, trim: true },
+    specialization: { type: String, default: "", trim: true },
     issueDate: { type: String, trim: true },
     expiryDate: { type: String, trim: true },
     credentialId: { type: String, trim: true },
     credentialUrl: { type: String, trim: true },
     image: { type: String, trim: true },
+    images: [{ type: String, trim: true }],
     skills: [{ type: String, trim: true }],
     description: { type: String, trim: true },
     featured: { type: Boolean, default: false },
     order: { type: Number, default: 0 },
   },
-  { timestamps: true }
+  { timestamps: true, strict: false }
 );
 
 module.exports = mongoose.model("Certification", certificationSchema);

@@ -6,6 +6,7 @@ import { createProjectApi, updateProjectApi, deleteProjectApi } from "../../serv
 function AdminProjects({ projects = [], password, onSaveSuccess, onSaveError }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+  const [isFeatured, setIsFeatured] = useState(false);
   const [searchFilter, setSearchFilter] = useState("");
   const [saving, setSaving] = useState(false);
 
@@ -21,11 +22,13 @@ function AdminProjects({ projects = [], password, onSaveSuccess, onSaveError }) 
 
   const handleOpenAdd = () => {
     setEditingItem(null);
+    setIsFeatured(false);
     setModalOpen(true);
   };
 
   const handleOpenEdit = (project) => {
     setEditingItem(project);
+    setIsFeatured(Boolean(project.featured));
     setModalOpen(true);
   };
 
@@ -48,14 +51,14 @@ function AdminProjects({ projects = [], password, onSaveSuccess, onSaveError }) 
     setSaving(true);
     const form = e.target;
     const projectData = {
-      title: form.title.value,
-      description: form.description.value,
+      title: form.title.value.trim(),
+      description: form.description.value.trim(),
       techStack: form.techStack.value.split(",").map((s) => s.trim()).filter(Boolean),
       tags: form.tags.value.split(",").map((s) => s.trim()).filter(Boolean),
-      image: form.image.value,
-      github: form.github.value,
-      demo: form.demo.value,
-      featured: form.featured.checked,
+      image: form.image.value.trim(),
+      github: form.github.value.trim(),
+      demo: form.demo.value.trim(),
+      featured: isFeatured,
     };
 
     try {
@@ -185,7 +188,7 @@ function AdminProjects({ projects = [], password, onSaveSuccess, onSaveError }) 
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="admin-form">
+            <form onSubmit={handleSubmit} className="admin-form" key={editingItem?._id || "new"}>
               <div className="admin-form-group">
                 <label className="admin-label">Project Title</label>
                 <input
@@ -269,9 +272,10 @@ function AdminProjects({ projects = [], password, onSaveSuccess, onSaveError }) 
                   type="checkbox"
                   name="featured"
                   id="featured-proj-input"
-                  defaultChecked={editingItem?.featured || false}
+                  checked={isFeatured}
+                  onChange={(e) => setIsFeatured(e.target.checked)}
                 />
-                <label htmlFor="featured-proj-input" className="admin-label">
+                <label htmlFor="featured-proj-input" className="admin-label" style={{ cursor: "pointer" }}>
                   Display as Featured Project on Home Page
                 </label>
               </div>

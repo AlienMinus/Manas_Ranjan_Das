@@ -4,6 +4,7 @@ import { FaGithub, FaExternalLinkAlt, FaCode } from "react-icons/fa";
 
 const FILTER_CATEGORIES = [
   { id: "all", label: "All Projects" },
+  { id: "featured", label: "⭐ Featured" },
   { id: "ai", label: "AI & Machine Learning" },
   { id: "fullstack", label: "Full-Stack & Web" },
   { id: "iot", label: "IoT & Hardware" },
@@ -17,6 +18,10 @@ function Projects({ projects = [], showCount = true, showFilters = true }) {
     if (activeFilter === "all" || !showFilters) return projects;
 
     return projects.filter((project) => {
+      if (activeFilter === "featured") {
+        return Boolean(project.featured);
+      }
+
       const tags = (project.tags || []).map((t) => t.toLowerCase());
       const tech = (project.techStack || []).map((t) => t.toLowerCase());
       const title = (project.title || "").toLowerCase();
@@ -112,6 +117,11 @@ function Projects({ projects = [], showCount = true, showFilters = true }) {
           <article className="project-card" key={project.title}>
             {/* Project Media */}
             <div className="project-card__media">
+              {project.featured && (
+                <span className="project-card__featured-tag">
+                  ⭐ Featured
+                </span>
+              )}
               {project.image ? (
                 <img
                   src={project.image}

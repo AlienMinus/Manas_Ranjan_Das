@@ -125,6 +125,124 @@
   border: 1px solid var(--glass-border);
 }
 
+/* Experience Card Image / Workplace Photo */
+.experience-card__media-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 230px;
+  min-height: 160px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin: 1rem 0 1.25rem;
+  background: radial-gradient(circle at center, #07190d 0%, #020a05 100%);
+  border: 1px solid rgba(0, 255, 102, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.experience-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experience-card:hover .experience-card__img {
+  transform: scale(1.03);
+}
+
+.experience-card__media-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 44, 20, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.experience-card__media-box:hover .experience-card__media-overlay {
+  opacity: 1;
+}
+
+/* Experience Lightbox Modal */
+.experience-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(14px);
+  z-index: 100005;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.experience-lightbox__content {
+  position: relative;
+  max-width: 850px;
+  width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  background: #020f08;
+  border: 1px solid var(--accent-neon);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(0, 255, 102, 0.3);
+}
+
+.experience-lightbox__img {
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  background: #000000;
+}
+
+.experience-lightbox__bar {
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 255, 102, 0.05);
+  border-top: 1px solid var(--glass-border);
+}
+
+.experience-lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.experience-lightbox__close:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+  transform: rotate(90deg);
+}
+
 .experience-card__list {
   list-style: none;
   padding: 0;

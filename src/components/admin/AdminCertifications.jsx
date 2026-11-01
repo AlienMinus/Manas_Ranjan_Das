@@ -10,6 +10,7 @@ import {
   FaSearch,
   FaExternalLinkAlt,
   FaImage,
+  FaUpload,
 } from "react-icons/fa";
 import {
   createCertificationApi,
@@ -20,20 +21,59 @@ import {
 function AdminCertifications({ certifications = [], password, onSaveSuccess, onSaveError }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+  const [isFeatured, setIsFeatured] = useState(false);
   const [saving, setSaving] = useState(false);
   const [searchFilter, setSearchFilter] = useState("");
-  const [previewImage, setPreviewImage] = useState("");
+  const [imagesList, setImagesList] = useState([""]);
 
   const handleOpenAdd = () => {
     setEditingItem(null);
-    setPreviewImage("");
+    setIsFeatured(false);
+    setImagesList([""]);
     setModalOpen(true);
   };
 
   const handleOpenEdit = (cert) => {
     setEditingItem(cert);
-    setPreviewImage(cert.image || "");
+    setIsFeatured(Boolean(cert.featured));
+    const imgs = Array.isArray(cert.images) && cert.images.length > 0
+      ? cert.images
+      : (cert.image ? [cert.image] : [""]);
+    setImagesList(imgs);
     setModalOpen(true);
+  };
+
+  const handleAddImageField = () => {
+    setImagesList((prev) => [...prev, ""]);
+  };
+
+  const handleRemoveImageField = (idx) => {
+    setImagesList((prev) => {
+      const updated = prev.filter((_, i) => i !== idx);
+      return updated.length > 0 ? updated : [""];
+    });
+  };
+
+  const handleImageChange = (idx, value) => {
+    setImagesList((prev) => {
+      const updated = [...prev];
+      updated[idx] = value;
+      return updated;
+    });
+  };
+
+  const handleFileUploadForIndex = (idx, e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      alert("File size exceeds 5MB limit. Please choose a smaller photo.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      handleImageChange(idx, reader.result);
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleDelete = async (id) => {
@@ -55,20 +95,25 @@ function AdminCertifications({ certifications = [], password, onSaveSuccess, onS
     setSaving(true);
     const form = e.target;
 
+    const cleanImages = imagesList.map((s) => s.trim()).filter(Boolean);
+    const primaryImage = cleanImages[0] || "";
+
     const certData = {
       title: form.title.value.trim(),
       issuer: form.issuer.value.trim(),
+      specialization: form.specialization.value.trim(),
       issueDate: form.issueDate.value.trim(),
       expiryDate: form.expiryDate.value.trim(),
       credentialId: form.credentialId.value.trim(),
       credentialUrl: form.credentialUrl.value.trim(),
-      image: form.image.value.trim(),
+      image: primaryImage,
+      images: cleanImages,
       skills: form.skills.value
         .split(",")
         .map((s) => s.trim())
         .filter(Boolean),
       description: form.description.value.trim(),
-      featured: form.featured.checked,
+      featured: isFeatured,
     };
 
     try {
@@ -188,6 +233,23 @@ function AdminCertifications({ certifications = [], password, onSaveSuccess, onS
                 </td>
                 <td style={{ fontWeight: 600, color: "#ffffff", maxWidth: "240px" }}>
                   {cert.title}
+                  {cert.specialization && (
+                    <div style={{ marginTop: "0.25rem" }}>
+                      <span
+                        style={{
+                          fontSize: "0.7rem",
+                          padding: "0.15rem 0.45rem",
+                          borderRadius: "4px",
+                          background: "rgba(0, 255, 102, 0.08)",
+                          color: "#86efac",
+                          border: "1px solid rgba(0, 255, 102, 0.2)",
+                          display: "inline-block",
+                        }}
+                      >
+                        🎯 {cert.specialization}
+                      </span>
+                    </div>
+                  )}
                   {cert.credentialUrl && (
                     <a
                       href={cert.credentialUrl}
@@ -270,7 +332,7 @@ function AdminCertifications({ certifications = [], password, onSaveSuccess, onS
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="admin-form">
+            <form key={editingItem?._id || "new"} onSubmit={handleSubmit} className="admin-form">
               <div className="admin-form-row">
                 <div className="admin-form-group">
                   <label className="admin-label">Certification Title *</label>
@@ -295,6 +357,21 @@ function AdminCertifications({ certifications = [], password, onSaveSuccess, onS
                     required
                   />
                 </div>
+              </div>
+
+              {/* Specialization / Group Track */}
+              <div className="admin-form-group">
+                <label className="admin-label">Specialization / Track Group (Optional)</label>
+                <input
+                  type="text"
+                  name="specialization"
+                  className="admin-input"
+                  defaultValue={editingItem?.specialization || ""}
+                  placeholder="e.g. Intelligent Data Center Engineering (Certificates with the same name form a carousel)"
+                />
+                <small style={{ color: "var(--text-muted)", fontSize: "0.75rem", marginTop: "0.25rem", display: "block" }}>
+                  Certificates sharing the same Specialization name will automatically be grouped into an interactive Carousel card on the Certifications page.
+                </small>
               </div>
 
               <div className="admin-form-row">
@@ -345,41 +422,116 @@ function AdminCertifications({ certifications = [], password, onSaveSuccess, onS
                 </div>
               </div>
 
-              {/* Certificate Image / Photo URL with Preview */}
+              {/* Certificate Images Section with Plus Icon for multiple images / specialization */}
               <div className="admin-form-group">
-                <label className="admin-label" style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
-                  <FaImage />
-                  <span>Certificate Photo / Badge URL</span>
-                </label>
-                <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
-                  <input
-                    type="url"
-                    name="image"
-                    className="admin-input"
-                    value={previewImage}
-                    onChange={(e) => setPreviewImage(e.target.value)}
-                    placeholder="https://images.unsplash.com/... or direct image URL"
-                    style={{ flex: 1 }}
-                  />
-                  {previewImage && (
-                    <img
-                      src={previewImage}
-                      alt="Preview"
-                      onError={(e) => {
-                        e.target.style.display = "none";
-                      }}
-                      style={{
-                        width: "48px",
-                        height: "36px",
-                        objectFit: "cover",
-                        borderRadius: "4px",
-                        border: "1px solid var(--accent-neon)",
-                      }}
-                    />
-                  )}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+                  <label className="admin-label" style={{ display: "flex", alignItems: "center", gap: "0.4rem", margin: 0 }}>
+                    <FaImage />
+                    <span>Certificate Photo / Badge URL{imagesList.length > 1 ? `s (${imagesList.length})` : ""}</span>
+                  </label>
+                  <button
+                    type="button"
+                    className="btn outline sm"
+                    onClick={handleAddImageField}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.35rem",
+                      padding: "0.25rem 0.65rem",
+                      fontSize: "0.75rem",
+                      color: "var(--accent-neon)",
+                      borderColor: "rgba(0, 255, 102, 0.4)",
+                    }}
+                    title="Add another certificate image (e.g. for specialization course certificates)"
+                  >
+                    <FaPlus size={10} />
+                    <span>Add Photo</span>
+                  </button>
                 </div>
-                <small style={{ color: "var(--text-muted)", fontSize: "0.75rem", marginTop: "0.25rem", display: "block" }}>
-                  Paste a direct link to the certificate image, badge, or accreditation photo.
+
+                {imagesList.map((imgUrl, idx) => (
+                  <div key={idx} style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginBottom: "0.6rem" }}>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", color: "var(--accent-neon)", minWidth: "22px" }}>
+                      #{idx + 1}
+                    </span>
+                    <input
+                      type="text"
+                      className="admin-input"
+                      value={imgUrl}
+                      onChange={(e) => handleImageChange(idx, e.target.value)}
+                      placeholder={`Certificate photo URL #${idx + 1} (or upload file)`}
+                      style={{ flex: 1 }}
+                    />
+                    {imgUrl && (
+                      <img
+                        src={imgUrl}
+                        alt={`Preview ${idx + 1}`}
+                        onError={(e) => {
+                          e.target.style.display = "none";
+                        }}
+                        style={{
+                          width: "48px",
+                          height: "36px",
+                          objectFit: "cover",
+                          borderRadius: "4px",
+                          border: "1px solid var(--accent-neon)",
+                          flexShrink: 0,
+                        }}
+                      />
+                    )}
+                    <label
+                      className="admin-icon-btn"
+                      style={{ cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
+                      title={`Upload photo #${idx + 1} from device`}
+                    >
+                      <FaUpload size={11} />
+                      <input
+                        type="file"
+                        accept="image/*"
+                        style={{ display: "none" }}
+                        onChange={(e) => handleFileUploadForIndex(idx, e)}
+                      />
+                    </label>
+                    {imagesList.length > 1 && (
+                      <button
+                        type="button"
+                        className="admin-icon-btn admin-icon-btn--delete"
+                        onClick={() => handleRemoveImageField(idx)}
+                        title="Remove this certificate photo"
+                      >
+                        <FaTrash size={11} />
+                      </button>
+                    )}
+                  </div>
+                ))}
+
+                <button
+                  type="button"
+                  className="btn outline sm"
+                  onClick={handleAddImageField}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.5rem",
+                    width: "100%",
+                    padding: "0.5rem",
+                    fontSize: "0.8rem",
+                    color: "var(--accent-neon)",
+                    border: "1px dashed rgba(0, 255, 102, 0.4)",
+                    borderRadius: "var(--radius-sm)",
+                    background: "rgba(0, 255, 102, 0.03)",
+                    marginTop: "0.4rem",
+                    cursor: "pointer",
+                  }}
+                  title="Add another certificate photo"
+                >
+                  <FaPlus size={12} />
+                  <span>Add Another Certificate Photo (Specialization)</span>
+                </button>
+
+                <small style={{ color: "var(--text-muted)", fontSize: "0.75rem", marginTop: "0.4rem", display: "block" }}>
+                  💡 Use the <strong>+ Add Photo</strong> button to include multiple certificates under this specialization. They will automatically be displayed in an interactive, scroll-free Carousel on the Certifications page.
                 </small>
               </div>
 
@@ -411,7 +563,8 @@ function AdminCertifications({ certifications = [], password, onSaveSuccess, onS
                   id="featured-cert"
                   name="featured"
                   className="admin-checkbox"
-                  defaultChecked={editingItem?.featured || false}
+                  checked={isFeatured}
+                  onChange={(e) => setIsFeatured(e.target.checked)}
                 />
                 <label htmlFor="featured-cert" className="admin-checkbox-label">
                   Highlight as Featured Certification ⭐

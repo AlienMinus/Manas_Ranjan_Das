@@ -16,6 +16,13 @@ import { LoadingSpinner, DatabaseErrorState } from "../components/LoadingSpinner
 function Home() {
   const { hero, about, projects, experience, loading, error, refreshData } = usePortfolio();
 
+  // Filter projects marked as featured for the Home page showcase
+  const featuredProjects = React.useMemo(() => {
+    if (!projects || projects.length === 0) return [];
+    const featured = projects.filter((p) => Boolean(p.featured));
+    return featured.length > 0 ? featured : projects.slice(0, 3);
+  }, [projects]);
+
   if (loading && !hero) {
     return <LoadingSpinner text="CONNECTING TO MONGODB & LOADING PORTFOLIO..." />;
   }
@@ -91,9 +98,9 @@ function Home() {
         </div>
       </div>
 
-      {/* 3 Featured Projects */}
+      {/* Featured Projects Showcase */}
       <Projects
-        projects={(projects || []).slice(0, 3)}
+        projects={featuredProjects}
         showCount={false}
         showFilters={false}
       />

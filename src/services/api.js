@@ -30,7 +30,16 @@ async function fetchWithTimeout(url, options = {}) {
 export async function getPortfolioData() {
   const res = await fetchWithTimeout(`${API_BASE_URL}/portfolio-data`);
   if (!res.ok) {
-    throw new Error(`Failed to load portfolio data (HTTP ${res.status})`);
+    let errMsg = `Failed to load portfolio data (HTTP ${res.status})`;
+    try {
+      const errJson = await res.json();
+      if (errJson?.error) {
+        errMsg = errJson.error;
+      }
+    } catch {
+      // ignore JSON parse failures on non-JSON response
+    }
+    throw new Error(errMsg);
   }
   const json = await res.json();
   if (!json.success || !json.data) {

@@ -1,11 +1,10 @@
 // server/server.js
-// Ensure IPv4 is prioritized for MongoDB Atlas SRV/shard DNS resolution on Windows
+// Ensure IPv4 is prioritized for DNS resolution on Windows without overriding system DNS
 const dns = require("node:dns");
 try {
   dns.setDefaultResultOrder("ipv4first");
-  dns.setServers(["8.8.8.8", "1.1.1.1"]);
 } catch {
-  // Ignore if custom DNS cannot be configured
+  // Ignore if custom DNS order is unsupported
 }
 
 const express = require("express");
@@ -41,7 +40,30 @@ const PORT = process.env.PORT || 5000;
 // SECURITY
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Minus$ecureAdmin1THz";
 
-// ====== MIDDLEWARE ======
+// ====== MIDDLEWARE & ROBUST CORS ======
+// Explicit CORS headers for all incoming requests (including errors, 503s, and preflights)
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  } else {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+  }
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, x-admin-password, Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    return res.status(204).end();
+  }
+  next();
+});
+
 app.use(
   cors({
     origin: true, // Dynamically allow requesting origin (localhost:5173, localhost:5177, Vercel, etc.)
@@ -66,10 +88,9 @@ const connectDB = async (retryCount = 0) => {
     console.log("✅ Connected to MongoDB Database successfully");
   } catch (err) {
     console.error("❌ MongoDB connection error (Check MONGODB_URI):", err.message);
-    if (retryCount < 5) {
-      console.log(`⏳ Retrying MongoDB connection in 3 seconds... (Attempt ${retryCount + 1}/5)`);
-      setTimeout(() => connectDB(retryCount + 1), 3000);
-    }
+    const delay = Math.min(3000 * Math.pow(1.3, retryCount), 30000);
+    console.log(`⏳ Retrying MongoDB connection in ${Math.round(delay / 1000)}s... (Attempt ${retryCount + 1})`);
+    setTimeout(() => connectDB(retryCount + 1), delay);
   }
 };
 
@@ -414,7 +435,11 @@ app.post("/api/admin/projects", requireAdmin, async (req, res) => {
 
 app.put("/api/admin/projects/:id", requireAdmin, async (req, res) => {
   try {
-    const project = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const project = await Project.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true, strict: false }
+    );
     res.json({ success: true, project });
   } catch (err) {
     console.error("Error updating project:", err);
@@ -445,7 +470,11 @@ app.post("/api/admin/experience", requireAdmin, async (req, res) => {
 
 app.put("/api/admin/experience/:id", requireAdmin, async (req, res) => {
   try {
-    const experience = await Experience.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const experience = await Experience.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true, strict: false }
+    );
     res.json({ success: true, experience });
   } catch (err) {
     console.error("Error updating experience:", err);
@@ -476,7 +505,11 @@ app.post("/api/admin/certifications", requireAdmin, async (req, res) => {
 
 app.put("/api/admin/certifications/:id", requireAdmin, async (req, res) => {
   try {
-    const certification = await Certification.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const certification = await Certification.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true, strict: false }
+    );
     res.json({ success: true, certification });
   } catch (err) {
     console.error("Error updating certification:", err);
