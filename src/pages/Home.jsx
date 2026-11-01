@@ -52,39 +52,39 @@ function Home() {
       <div className="home-split-row">
         {/* Left Column: About Me */}
         <div className="home-split-col home-split-col--about">
-          <div className="section__header" style={{ textAlign: "left", marginBottom: "1.25rem" }}>
-            <h2 className="section__title" style={{ justifyContent: "flex-start" }}>
-              <FaUserAstronaut style={{ color: "var(--accent-neon)", fontSize: "1.5rem" }} />
+          <div className="section__header home-about__header">
+            <h2 className="section__title home-about__title">
+              <FaUserAstronaut className="home-about__title-icon" />
               <span>About</span> <span className="gradient-text">Me</span>
             </h2>
-            <p className="section__subtitle" style={{ margin: 0, textAlign: "left" }}>
+            <p className="section__subtitle home-about__subtitle">
               Passionate Engineer & Researcher dedicated to building intelligent systems.
             </p>
           </div>
 
           <div className="about-bio-card">
             <p className="about-bio-text">
-              {aboutText ? `${aboutText.substring(0, 420)}...` : "Loading biography..."}
+              {aboutText || "Loading biography..."}
             </p>
 
             {/* Quick credentials badges */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "0.6rem", margin: "1.25rem 0" }}>
-              <div className="badge badge--emerald" style={{ padding: "0.4rem 0.6rem", justifyContent: "center" }}>
+            <div className="home-about__badges">
+              <div className="badge badge--emerald home-about__badge">
                 🎓 B.Tech ECE
               </div>
-              <div className="badge" style={{ padding: "0.4rem 0.6rem", justifyContent: "center" }}>
+              <div className="badge home-about__badge">
                 ⚡ GATE AIR 4324
               </div>
-              <div className="badge" style={{ padding: "0.4rem 0.6rem", justifyContent: "center" }}>
+              <div className="badge home-about__badge">
                 🔬 TIFR Researcher
               </div>
-              <div className="badge badge--emerald" style={{ padding: "0.4rem 0.6rem", justifyContent: "center" }}>
+              <div className="badge badge--emerald home-about__badge">
                 🤖 AI & IoT Engineer
               </div>
             </div>
 
-            <div style={{ marginTop: "auto" }}>
-              <Link to="/about" className="btn outline sm" style={{ width: "100%" }}>
+            <div className="home-about__action">
+              <Link to="/about" className="btn outline sm home-about__btn">
                 <span>Read Full Biography & Education</span>
                 <FaArrowRight size={11} />
               </Link>

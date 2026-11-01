@@ -16,6 +16,7 @@
   .home-split-row {
     grid-template-columns: 1fr 1fr;
     gap: 2.25rem;
+    align-items: stretch;
   }
 }
 
@@ -28,22 +29,78 @@
 .home-split-col--about {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .home-split-col--about .about-bio-card {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 2rem;
   margin: 0;
-  min-height: 480px;
+  height: 100%;
+}
+
+/* Home Split Col - About Column Elements */
+.home-about__header {
+  text-align: left;
+  margin-bottom: 1.25rem;
+}
+
+.home-about__title {
+  justify-content: flex-start;
+}
+
+.home-about__title-icon {
+  color: var(--accent-neon);
+  font-size: 1.5rem;
+}
+
+.home-about__subtitle {
+  margin: 0;
+  text-align: left;
+}
+
+.home-about__badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.6rem;
+  margin: 1.25rem 0 0.5rem 0;
+}
+
+.home-about__badge {
+  padding: 0.4rem 0.6rem;
+  justify-content: center;
+}
+
+.home-about__action {
+  margin-top: 1rem;
+}
+
+.home-about__btn {
+  width: 100%;
 }
 
 .home-split-col--resume {
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: flex-start;
+}
+
+/* Compact Header Modifiers for Home Split View */
+.resume-header--compact {
+  text-align: left;
+  margin-bottom: 1.25rem;
+}
+
+.resume-title--compact {
+  justify-content: flex-start;
+}
+
+.resume-subtitle--compact {
+  margin: 0;
+  text-align: left;
 }
 
 /* Resume Embed Section */
@@ -52,6 +109,7 @@
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
+  height: 100%;
 }
 
 /* Resume Main Container */
@@ -67,7 +125,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 480px;
+  min-height: 640px;
 }
 
 .resume-container:hover {
@@ -106,6 +164,15 @@
   gap: 0.4rem;
 }
 
+.resume-toolbar__icon {
+  color: var(--accent-neon);
+}
+
+.resume-toolbar__badge {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.45rem;
+}
+
 .resume-toolbar__actions {
   display: flex;
   align-items: center;
@@ -113,11 +180,17 @@
   flex-wrap: wrap;
 }
 
+.resume-toolbar__btn {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.7rem;
+}
+
 /* Full Page Miniature Resume Document Viewer */
 .resume-viewer-wrapper {
   position: relative;
   width: 100%;
-  height: 500px; /* Proportionally fits standard full page 1 without being cut in half */
+  height: 640px;
+  min-height: 600px;
   background: #ffffff;
   overflow: hidden;
   flex: 1;
@@ -195,7 +268,7 @@
   }
 
   .resume-viewer-wrapper {
-    height: 420px;
+    height: 480px;
   }
 
   .resume-toolbar__actions {

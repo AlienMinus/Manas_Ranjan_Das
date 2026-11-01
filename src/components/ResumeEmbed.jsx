@@ -8,11 +8,11 @@ function ResumeEmbed({ compact = false, showHeader = true, showHighlights = true
   return (
     <div className="resume-embed-section" aria-label="Embedded Resume Document">
       {showHeader && (
-        <div className="section__header" style={compact ? { textAlign: "left", marginBottom: "1.25rem" } : {}}>
-          <h2 className="section__title" style={compact ? { justifyContent: "flex-start" } : {}}>
+        <div className={`section__header ${compact ? "resume-header--compact" : ""}`}>
+          <h2 className={`section__title ${compact ? "resume-title--compact" : ""}`}>
             <span>Official</span> <span className="gradient-text">Resume</span>
           </h2>
-          <p className="section__subtitle" style={compact ? { margin: 0, textAlign: "left" } : {}}>
+          <p className={`section__subtitle ${compact ? "resume-subtitle--compact" : ""}`}>
             ATS-friendly verified curriculum vitae & credentials.
           </p>
         </div>
@@ -24,10 +24,10 @@ function ResumeEmbed({ compact = false, showHeader = true, showHighlights = true
         <div className="resume-toolbar">
           <div className="resume-toolbar__info">
             <span className="resume-toolbar__title">
-              <FaFilePdf style={{ color: "var(--accent-neon)" }} />
+              <FaFilePdf className="resume-toolbar__icon" />
               <span>Manas_Resume.pdf</span>
             </span>
-            <span className="badge badge--emerald" style={{ fontSize: "0.65rem", padding: "0.15rem 0.45rem" }}>
+            <span className="badge badge--emerald resume-toolbar__badge">
               ATS-Verified
             </span>
           </div>
@@ -37,9 +37,8 @@ function ResumeEmbed({ compact = false, showHeader = true, showHighlights = true
               href={resumePdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn outline sm"
+              className="btn outline sm resume-toolbar__btn"
               title="Open resume in full window"
-              style={{ fontSize: "0.75rem", padding: "0.35rem 0.7rem" }}
             >
               <FaExternalLinkAlt size={11} />
               <span>Open</span>
@@ -48,9 +47,8 @@ function ResumeEmbed({ compact = false, showHeader = true, showHighlights = true
             <a
               href={resumePdf}
               download="Manas_Ranjan_Das_Resume.pdf"
-              className="btn primary sm"
+              className="btn primary sm resume-toolbar__btn"
               title="Download PDF copy"
-              style={{ fontSize: "0.75rem", padding: "0.35rem 0.7rem" }}
             >
               <FaFileDownload size={11} />
               <span>PDF</span>
