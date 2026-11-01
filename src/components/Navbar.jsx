@@ -1,10 +1,26 @@
 // src/components/Navbar.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
+import { FaPalette, FaCheck } from "react-icons/fa";
+import { usePortfolio } from "../context/usePortfolio";
 import Logo from "../assets/profile_pic.png";
 
+const THEME_OPTIONS = [
+  { id: "cyberpunk", label: "Cyberpunk", color: "#00ff66", desc: "Matrix Green" },
+  { id: "glassmorphism", label: "Glassmorphism", color: "#38bdf8", desc: "Frosted Glass" },
+  { id: "skeuomorphism", label: "Skeuomorphism", color: "#f59e0b", desc: "3D Tactile Depth" },
+  { id: "corporate", label: "Corporate", color: "#3b82f6", desc: "Blue + White" },
+  { id: "retro-bw", label: "Retro (B & W)", color: "#ffffff", desc: "Film Noir Print" },
+  { id: "pixelatte", label: "Pixelatte", color: "#facc15", desc: "8-Bit Video Games" },
+  { id: "luxury-gold", label: "Luxury Gold", color: "#d4af37", desc: "Obsidian & Gold" },
+  { id: "synthwave", label: "Synthwave", color: "#ff2a85", desc: "80s Dusk Sunset" },
+];
+
 function Navbar() {
+  const { theme, setTheme } = usePortfolio();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
+  const themeDropdownRef = useRef(null);
 
   const links = [
     { label: "Home", path: "/" },
@@ -17,12 +33,28 @@ function Navbar() {
     { label: "Admin", path: "/admin" },
   ];
 
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (themeDropdownRef.current && !themeDropdownRef.current.contains(e.target)) {
+        setIsThemeOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleSelectTheme = (themeId) => {
+    setTheme(themeId, true);
+    setIsThemeOpen(false);
   };
 
   return (
@@ -53,6 +85,46 @@ function Navbar() {
             </li>
           ))}
         </ul>
+
+        {/* Theme Quick Switcher Pill */}
+        <div className="navbar__theme-wrapper" ref={themeDropdownRef}>
+          <button
+            type="button"
+            className="navbar__theme-btn"
+            onClick={() => setIsThemeOpen((prev) => !prev)}
+            aria-label="Change portfolio theme"
+            title={`Active Theme: ${theme.toUpperCase()}`}
+          >
+            <FaPalette size={13} />
+            <span className="navbar__theme-btn-label">Theme</span>
+          </button>
+
+          {isThemeOpen && (
+            <div className="navbar__theme-dropdown" role="menu">
+              <div className="navbar__theme-dropdown-header">
+                <span>Select Aesthetic Theme</span>
+              </div>
+              {THEME_OPTIONS.map((opt) => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  className={`navbar__theme-option ${theme === opt.id ? "navbar__theme-option--active" : ""}`}
+                  onClick={() => handleSelectTheme(opt.id)}
+                >
+                  <span
+                    className="navbar__theme-dot"
+                    style={{ background: opt.color, boxShadow: `0 0 8px ${opt.color}` }}
+                  />
+                  <div className="navbar__theme-info">
+                    <span className="navbar__theme-name">{opt.label}</span>
+                    <span className="navbar__theme-desc">{opt.desc}</span>
+                  </div>
+                  {theme === opt.id && <FaCheck size={10} className="navbar__theme-check" />}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Mobile Hamburger Toggle Button */}
         <button
@@ -88,6 +160,30 @@ function Navbar() {
               <span style={{ fontSize: "0.8rem", opacity: 0.6 }}>›</span>
             </NavLink>
           ))}
+
+          {/* Mobile Theme Selector */}
+          <div className="navbar__mobile-theme-section">
+            <span className="navbar__mobile-theme-title">Aesthetic Theme</span>
+            <div className="navbar__mobile-theme-chips">
+              {THEME_OPTIONS.map((opt) => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  className={`navbar__mobile-theme-chip ${theme === opt.id ? "navbar__mobile-theme-chip--active" : ""}`}
+                  onClick={() => {
+                    handleSelectTheme(opt.id);
+                    closeMobileMenu();
+                  }}
+                >
+                  <span
+                    className="navbar__theme-dot"
+                    style={{ background: opt.color, boxShadow: `0 0 6px ${opt.color}` }}
+                  />
+                  <span>{opt.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </nav>
     </header>

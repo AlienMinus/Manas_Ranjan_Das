@@ -33,6 +33,7 @@ const Project = require("./models/Project");
 const Experience = require("./models/Experience");
 const ContactInfo = require("./models/ContactInfo");
 const Certification = require("./models/Certification");
+const SiteSettings = require("./models/SiteSettings");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -182,7 +183,7 @@ app.get("/api/portfolio-data", async (req, res) => {
   }
 
   try {
-    const [hero, about, skills, projects, experience, contact, certifications] =
+    const [hero, about, skills, projects, experience, contact, certifications, settings] =
       await Promise.all([
         Hero.findOne().sort({ updatedAt: -1 }),
         About.findOne().sort({ updatedAt: -1 }),
@@ -191,6 +192,7 @@ app.get("/api/portfolio-data", async (req, res) => {
         Experience.find().sort({ order: 1, createdAt: -1 }),
         ContactInfo.findOne().sort({ updatedAt: -1 }),
         Certification.find().sort({ order: 1, createdAt: -1 }),
+        SiteSettings.findOne().sort({ updatedAt: -1 }),
       ]);
 
     res.json({
@@ -203,6 +205,7 @@ app.get("/api/portfolio-data", async (req, res) => {
         experience,
         contact,
         certifications,
+        settings: settings || { theme: "cyberpunk", enableSound: true, terminalIntroEnabled: true },
       },
     });
   } catch (err) {
@@ -311,6 +314,20 @@ app.get("/api/contact-info", async (req, res) => {
     res.json({ success: true, contact });
   } catch (err) {
     console.error("Error fetching contact info:", err);
+    res.status(500).json({ success: false, error: "Server error" });
+  }
+});
+
+// 🎨 Site Settings & Theme
+app.get("/api/settings", async (req, res) => {
+  try {
+    let settings = await SiteSettings.findOne().sort({ updatedAt: -1 });
+    if (!settings) {
+      settings = await SiteSettings.create({ theme: "cyberpunk", enableSound: true, terminalIntroEnabled: true });
+    }
+    res.json({ success: true, settings });
+  } catch (err) {
+    console.error("Error fetching site settings:", err);
     res.status(500).json({ success: false, error: "Server error" });
   }
 });
@@ -545,6 +562,26 @@ app.put("/api/admin/contact-info", requireAdmin, async (req, res) => {
     res.json({ success: true, contact: doc });
   } catch (err) {
     console.error("Error updating contact info:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// --- Site Settings & Themes CRUD ---
+app.put("/api/admin/settings", requireAdmin, async (req, res) => {
+  try {
+    let settings = await SiteSettings.findOne().sort({ updatedAt: -1 });
+    if (settings) {
+      settings = await SiteSettings.findByIdAndUpdate(
+        settings._id,
+        { $set: req.body },
+        { new: true, strict: false }
+      );
+    } else {
+      settings = await SiteSettings.create(req.body);
+    }
+    res.json({ success: true, settings });
+  } catch (err) {
+    console.error("Error updating site settings:", err);
     res.status(500).json({ success: false, error: err.message });
   }
 });

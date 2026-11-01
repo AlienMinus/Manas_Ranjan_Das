@@ -11,6 +11,7 @@ import {
   FaAward,
   FaPhoneAlt,
   FaInbox,
+  FaPalette,
   FaCheckCircle,
   FaExclamationCircle,
   FaRedo,
@@ -34,9 +35,11 @@ import AdminSkills from "../components/admin/AdminSkills";
 import AdminCertifications from "../components/admin/AdminCertifications";
 import AdminContact from "../components/admin/AdminContact";
 import AdminMessages from "../components/admin/AdminMessages";
+import AdminTheme from "../components/admin/AdminTheme";
 
 const TABS = [
   { id: "overview", label: "Overview & Charts", icon: FaDatabase },
+  { id: "theme", label: "Themes & Styling", icon: FaPalette },
   { id: "hero", label: "Hero Profile", icon: FaUserAstronaut },
   { id: "about", label: "About & Education", icon: FaBookOpen },
   { id: "projects", label: "Projects CRUD", icon: FaCode },
@@ -241,6 +244,14 @@ function AdminPage() {
             messages={messages}
             about={about}
             certifications={certifications || []}
+          />
+        )}
+
+        {activeTab === "theme" && (
+          <AdminTheme
+            password={password}
+            onSaveSuccess={handleSaveSuccess}
+            onSaveError={handleSaveError}
           />
         )}
 

@@ -54,6 +54,7 @@ export async function getPortfolioData() {
     experience: json.data.experience || [],
     contact: json.data.contact || null,
     certifications: json.data.certifications || [],
+    settings: json.data.settings || { theme: "cyberpunk" },
     source: "mongodb",
   };
 }
@@ -301,6 +302,22 @@ export async function deleteAdminMessageApi(id, password) {
   const res = await fetch(`${API_BASE_URL}/admin/messages/${id}`, {
     method: "DELETE",
     headers: getAdminHeaders(password),
+  });
+  return res.json();
+}
+
+// --- Site Settings & Themes ---
+export async function getSettingsApi() {
+  const res = await fetchWithTimeout(`${API_BASE_URL}/settings`);
+  if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
+  return res.json();
+}
+
+export async function updateSettingsApi(settingsData, password) {
+  const res = await fetch(`${API_BASE_URL}/admin/settings`, {
+    method: "PUT",
+    headers: getAdminHeaders(password),
+    body: JSON.stringify(settingsData),
   });
   return res.json();
 }

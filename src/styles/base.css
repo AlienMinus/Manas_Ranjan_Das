@@ -17,10 +17,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--bg-primary);
-  background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 255, 102, 0.15), transparent),
-    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(16, 185, 129, 0.08), transparent),
-    radial-gradient(ellipse 50% 30% at 10% 40%, rgba(163, 230, 53, 0.05), transparent);
+  background-image: var(--bg-gradient);
   background-attachment: fixed;
   color: var(--text-primary);
   font-family: var(--font-primary);

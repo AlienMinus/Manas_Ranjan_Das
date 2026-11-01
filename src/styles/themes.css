@@ -1,0 +1,638 @@
+/* ==========================================================================
+   Themes.css - Multi-Theme Design System Engine
+   Themes: Cyberpunk Matrix | Glassmorphism | Skeuomorphism | Luxury Gold | Synthwave
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CYBERPUNK MATRIX (Default High-Tech Neon Green)
+   -------------------------------------------------------------------------- */
+[data-theme="cyberpunk"] {
+  --bg-primary: #040805;
+  --bg-secondary: #08130a;
+  --bg-tertiary: #0e1e12;
+  --bg-surface: rgba(10, 24, 15, 0.75);
+  --bg-surface-elevated: rgba(16, 36, 22, 0.8);
+  --bg-surface-hover: rgba(22, 48, 30, 0.9);
+
+  --glass-bg: rgba(8, 19, 12, 0.72);
+  --glass-bg-subtle: rgba(0, 255, 102, 0.03);
+  --glass-border: rgba(0, 255, 102, 0.14);
+  --glass-border-hover: rgba(0, 255, 102, 0.5);
+  --glass-border-active: rgba(16, 185, 129, 0.7);
+
+  --text-primary: #f0fdf4;
+  --text-secondary: #86efac;
+  --text-muted: #4ade80;
+  --text-dim: #22543d;
+  --text-inverse: #022c14;
+
+  --accent-neon: #00ff66;
+  --accent-neon-bright: #39ff14;
+  --accent-emerald: #10b981;
+  --accent-lime: #a3e635;
+  --accent-teal: #14b8a6;
+  --accent-cyan: #00ff66;
+  --accent-amber: #facc15;
+  --accent-rose: #ff3366;
+
+  --gradient-primary: linear-gradient(135deg, #00ff66 0%, #10b981 100%);
+  --gradient-secondary: linear-gradient(135deg, #10b981 0%, #a3e635 100%);
+  --gradient-accent: linear-gradient(135deg, #00ff66 0%, #14b8a6 50%, #84cc16 100%);
+  --gradient-emerald: linear-gradient(135deg, #00ff66 0%, #059669 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(0, 255, 102, 0.14) 0%, rgba(16, 185, 129, 0.14) 100%);
+  --gradient-surface: linear-gradient(180deg, rgba(0, 255, 102, 0.06) 0%, rgba(0, 255, 102, 0.01) 100%);
+  --gradient-glow: radial-gradient(circle, rgba(0, 255, 102, 0.22) 0%, rgba(16, 185, 129, 0.08) 40%, transparent 70%);
+
+  --bg-gradient: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 255, 102, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(16, 185, 129, 0.08), transparent),
+    radial-gradient(ellipse 50% 30% at 10% 40%, rgba(163, 230, 53, 0.05), transparent);
+
+  --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.6), 0 2px 8px -2px rgba(0, 255, 102, 0.1);
+  --shadow-lg: 0 16px 40px -8px rgba(0, 0, 0, 0.7), 0 4px 16px -2px rgba(0, 255, 102, 0.15);
+  --shadow-glow: 0 0 25px rgba(0, 255, 102, 0.35);
+  --shadow-glow-bright: 0 0 35px rgba(0, 255, 102, 0.55), 0 0 10px rgba(0, 255, 102, 0.3);
+  --shadow-glow-emerald: 0 0 30px rgba(16, 185, 129, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   2. GLASSMORPHISM (Ultra Frosted Glass, Cosmic Aura & Prismatic Glow)
+   -------------------------------------------------------------------------- */
+[data-theme="glassmorphism"] {
+  --bg-primary: #080914;
+  --bg-secondary: #0d0f21;
+  --bg-tertiary: #141730;
+  --bg-surface: rgba(255, 255, 255, 0.05);
+  --bg-surface-elevated: rgba(255, 255, 255, 0.08);
+  --bg-surface-hover: rgba(255, 255, 255, 0.13);
+
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --glass-border-hover: rgba(56, 189, 248, 0.65);
+  --glass-border-active: rgba(168, 85, 247, 0.85);
+
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --text-inverse: #030712;
+
+  --accent-neon: #38bdf8;        /* Vivid Cyan */
+  --accent-neon-bright: #67e8f9; /* Electric Cyan */
+  --accent-emerald: #818cf8;     /* Frosted Indigo */
+  --accent-lime: #c084fc;        /* Prismatic Violet */
+  --accent-teal: #22d3ee;        /* Soft Cyan */
+  --accent-cyan: #38bdf8;
+  --accent-amber: #fbbf24;
+  --accent-rose: #f43f5e;
+
+  --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #ec4899 100%);
+  --gradient-emerald: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(168, 85, 247, 0.12) 100%);
+  --gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --gradient-glow: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, rgba(168, 85, 247, 0.12) 40%, transparent 70%);
+
+  --bg-gradient: 
+    radial-gradient(circle at 18% 15%, rgba(56, 189, 248, 0.22), transparent 42%),
+    radial-gradient(circle at 82% 20%, rgba(168, 85, 247, 0.24), transparent 46%),
+    radial-gradient(circle at 50% 82%, rgba(236, 72, 153, 0.16), transparent 50%),
+    radial-gradient(circle at 80% 88%, rgba(99, 102, 241, 0.18), transparent 42%);
+
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 20px rgba(56, 189, 248, 0.15);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(168, 85, 247, 0.2);
+  --shadow-glow: 0 0 30px rgba(56, 189, 248, 0.45);
+  --shadow-glow-bright: 0 0 40px rgba(56, 189, 248, 0.65), 0 0 18px rgba(168, 85, 247, 0.45);
+  --shadow-glow-emerald: 0 0 35px rgba(129, 140, 248, 0.5);
+}
+
+/* Glassmorphism Structural Refinement */
+[data-theme="glassmorphism"] .card,
+[data-theme="glassmorphism"] .project-card,
+[data-theme="glassmorphism"] .cert-card,
+[data-theme="glassmorphism"] .experience-card,
+[data-theme="glassmorphism"] .skill-category,
+[data-theme="glassmorphism"] .about__card,
+[data-theme="glassmorphism"] .navbar {
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.32) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.08) !important;
+}
+
+[data-theme="glassmorphism"] .navbar {
+  background: rgba(14, 17, 36, 0.72) !important;
+}
+
+[data-theme="glassmorphism"] .btn.primary {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%) !important;
+  color: #030712 !important;
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4) !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. SKEUOMORPHISM (Tactile 3D Realistic Depth, Brushed Slate & Amber Bevels)
+   -------------------------------------------------------------------------- */
+[data-theme="skeuomorphism"] {
+  --bg-primary: #14171a;
+  --bg-secondary: #1a1e22;
+  --bg-tertiary: #22262d;
+  --bg-surface: #1e2228;
+  --bg-surface-elevated: #262b32;
+  --bg-surface-hover: #2e343d;
+
+  --glass-bg: #20242b;
+  --glass-bg-subtle: #191c22;
+  --glass-border: #2e343e;
+  --glass-border-hover: #f59e0b;
+  --glass-border-active: #d97706;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --text-inverse: #0f172a;
+
+  --accent-neon: #f59e0b;        /* Amber Tungsten */
+  --accent-neon-bright: #fbbf24; /* Warm Gold */
+  --accent-emerald: #d97706;     /* Deep Bronze */
+  --accent-lime: #f97316;        /* Warm Tangerine */
+  --accent-teal: #e2e8f0;        /* Brushed Steel */
+  --accent-cyan: #f59e0b;
+  --accent-amber: #f59e0b;
+  --accent-rose: #ef4444;
+
+  --gradient-primary: linear-gradient(180deg, #f59e0b 0%, #b45309 100%);
+  --gradient-secondary: linear-gradient(180deg, #3b424d 0%, #20242b 100%);
+  --gradient-accent: linear-gradient(180deg, #f59e0b 0%, #ea580c 100%);
+  --gradient-emerald: linear-gradient(180deg, #d97706 0%, #92400e 100%);
+  --gradient-subtle: linear-gradient(180deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.05) 100%);
+  --gradient-surface: linear-gradient(180deg, #282d35 0%, #1a1d23 100%);
+  --gradient-glow: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
+
+  --bg-gradient: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(245, 158, 11, 0.12), transparent 60%),
+    radial-gradient(circle at 85% 80%, rgba(28, 33, 40, 0.9), transparent 50%),
+    radial-gradient(circle at 10% 40%, rgba(24, 28, 34, 0.9), transparent 50%);
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.18), inset 0 -1px 2px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 18px 38px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.22);
+  --shadow-glow: 0 0 25px rgba(245, 158, 11, 0.35);
+  --shadow-glow-bright: 0 0 35px rgba(251, 191, 36, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  --shadow-glow-emerald: 0 0 30px rgba(217, 119, 6, 0.45);
+}
+
+/* Skeuomorphism Tactile 3D Controls & Bevels */
+[data-theme="skeuomorphism"] .card,
+[data-theme="skeuomorphism"] .project-card,
+[data-theme="skeuomorphism"] .cert-card,
+[data-theme="skeuomorphism"] .experience-card,
+[data-theme="skeuomorphism"] .skill-category,
+[data-theme="skeuomorphism"] .about__card,
+[data-theme="skeuomorphism"] .navbar {
+  background: linear-gradient(180deg, #252a32 0%, #191c22 100%) !important;
+  border: 1px solid #101215 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-bottom: 1px solid #0d0f12 !important;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+[data-theme="skeuomorphism"] .navbar {
+  background: linear-gradient(180deg, #262c35 0%, #181b21 100%) !important;
+}
+
+[data-theme="skeuomorphism"] .btn {
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid #101215 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+[data-theme="skeuomorphism"] .btn.primary {
+  background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%) !important;
+  color: #171100 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+}
+
+[data-theme="skeuomorphism"] .btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+[data-theme="skeuomorphism"] .btn:active {
+  transform: translateY(2px) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), inset 0 2px 4px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. LUXURY DARK GOLD (Obsidian Onyx & 24K Royal Champagne Gold)
+   -------------------------------------------------------------------------- */
+[data-theme="luxury-gold"] {
+  --bg-primary: #070709;
+  --bg-secondary: #0e0e12;
+  --bg-tertiary: #16161c;
+  --bg-surface: rgba(18, 18, 24, 0.85);
+  --bg-surface-elevated: rgba(26, 26, 35, 0.9);
+  --bg-surface-hover: rgba(36, 36, 48, 0.95);
+
+  --glass-bg: rgba(16, 16, 22, 0.85);
+  --glass-bg-subtle: rgba(212, 175, 55, 0.04);
+  --glass-border: rgba(212, 175, 55, 0.22);
+  --glass-border-hover: rgba(212, 175, 55, 0.65);
+  --glass-border-active: rgba(243, 229, 171, 0.9);
+
+  --text-primary: #fffaf0;
+  --text-secondary: #e6dfd3;
+  --text-muted: #d4af37;
+  --text-dim: #856a29;
+  --text-inverse: #070709;
+
+  --accent-neon: #d4af37;        /* Royal Gold */
+  --accent-neon-bright: #fef08a; /* Champagne Light */
+  --accent-emerald: #b45309;     /* Deep Amber */
+  --accent-lime: #f59e0b;        /* Gold Amber */
+  --accent-teal: #e2d9c8;        /* Pearl */
+  --accent-cyan: #d4af37;
+  --accent-amber: #facc15;
+  --accent-rose: #e11d48;
+
+  --gradient-primary: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #aa771c 100%);
+  --gradient-secondary: linear-gradient(135deg, #aa771c 0%, #fef08a 100%);
+  --gradient-accent: linear-gradient(135deg, #d4af37 0%, #f59e0b 50%, #f3e5ab 100%);
+  --gradient-emerald: linear-gradient(135deg, #d4af37 0%, #854d0e 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(212, 175, 55, 0.16) 0%, rgba(243, 229, 171, 0.05) 100%);
+  --gradient-surface: linear-gradient(180deg, rgba(212, 175, 55, 0.06) 0%, rgba(0, 0, 0, 0.25) 100%);
+  --gradient-glow: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(133, 77, 14, 0.08) 50%, transparent 70%);
+
+  --bg-gradient: 
+    radial-gradient(ellipse 70% 50% at 50% -15%, rgba(212, 175, 55, 0.16), transparent),
+    radial-gradient(circle at 90% 75%, rgba(180, 83, 9, 0.08), transparent 40%),
+    radial-gradient(circle at 10% 50%, rgba(212, 175, 55, 0.06), transparent 35%);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.7);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.8), 0 0 14px rgba(212, 175, 55, 0.15);
+  --shadow-lg: 0 16px 45px rgba(0, 0, 0, 0.85), 0 0 28px rgba(212, 175, 55, 0.22);
+  --shadow-glow: 0 0 25px rgba(212, 175, 55, 0.4);
+  --shadow-glow-bright: 0 0 35px rgba(212, 175, 55, 0.65), 0 0 12px rgba(243, 229, 171, 0.45);
+  --shadow-glow-emerald: 0 0 30px rgba(180, 83, 9, 0.45);
+}
+
+[data-theme="luxury-gold"] .navbar {
+  background: rgba(10, 10, 14, 0.94) !important;
+  border-color: rgba(212, 175, 55, 0.25) !important;
+}
+
+[data-theme="luxury-gold"] .btn.primary {
+  background: linear-gradient(135deg, #d4af37 0%, #aa771c 100%) !important;
+  color: #070709 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. SYNTHWAVE (80s Dusk Sunset, Laser Cyan & Neon Pink)
+   -------------------------------------------------------------------------- */
+[data-theme="synthwave"] {
+  --bg-primary: #0a0416;
+  --bg-secondary: #120826;
+  --bg-tertiary: #1b0c38;
+  --bg-surface: rgba(26, 12, 50, 0.8);
+  --bg-surface-elevated: rgba(36, 16, 70, 0.88);
+  --bg-surface-hover: rgba(50, 22, 96, 0.95);
+
+  --glass-bg: rgba(22, 10, 44, 0.78);
+  --glass-bg-subtle: rgba(255, 42, 133, 0.05);
+  --glass-border: rgba(255, 42, 133, 0.22);
+  --glass-border-hover: rgba(0, 240, 255, 0.65);
+  --glass-border-active: rgba(255, 42, 133, 0.9);
+
+  --text-primary: #fdf2f8;
+  --text-secondary: #f472b6;
+  --text-muted: #e879f9;
+  --text-dim: #9333ea;
+  --text-inverse: #16011c;
+
+  --accent-neon: #ff2a85;        /* Hot Neon Pink */
+  --accent-neon-bright: #00f0ff; /* Laser Cyan */
+  --accent-emerald: #a855f7;     /* Purple */
+  --accent-lime: #ff7b00;        /* Sunset Orange */
+  --accent-teal: #00f0ff;        /* Cyan */
+  --accent-cyan: #00f0ff;
+  --accent-amber: #facc15;
+  --accent-rose: #ff2a85;
+
+  --gradient-primary: linear-gradient(135deg, #ff2a85 0%, #9333ea 50%, #00f0ff 100%);
+  --gradient-secondary: linear-gradient(135deg, #ff7b00 0%, #ff2a85 100%);
+  --gradient-accent: linear-gradient(135deg, #00f0ff 0%, #ff2a85 100%);
+  --gradient-emerald: linear-gradient(135deg, #ff2a85 0%, #c026d3 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(255, 42, 133, 0.16) 0%, rgba(0, 240, 255, 0.12) 100%);
+  --gradient-surface: linear-gradient(180deg, rgba(255, 42, 133, 0.08) 0%, rgba(0, 240, 255, 0.02) 100%);
+  --gradient-glow: radial-gradient(circle, rgba(255, 42, 133, 0.32) 0%, rgba(0, 240, 255, 0.12) 50%, transparent 70%);
+
+  --bg-gradient: 
+    radial-gradient(ellipse 90% 50% at 50% -20%, rgba(255, 42, 133, 0.24), transparent),
+    radial-gradient(circle at 85% 80%, rgba(0, 240, 255, 0.14), transparent 45%),
+    radial-gradient(circle at 10% 40%, rgba(168, 85, 247, 0.16), transparent 40%);
+
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 16px rgba(255, 42, 133, 0.22);
+  --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.8), 0 0 32px rgba(0, 240, 255, 0.28);
+  --shadow-glow: 0 0 25px rgba(255, 42, 133, 0.5);
+  --shadow-glow-bright: 0 0 40px rgba(255, 42, 133, 0.65), 0 0 20px rgba(0, 240, 255, 0.55);
+  --shadow-glow-emerald: 0 0 30px rgba(168, 85, 247, 0.45);
+}
+
+[data-theme="synthwave"] .navbar {
+  background: rgba(16, 7, 34, 0.9) !important;
+  border-color: rgba(255, 42, 133, 0.3) !important;
+}
+
+[data-theme="synthwave"] .btn.primary {
+  background: linear-gradient(135deg, #ff2a85 0%, #a855f7 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(255, 42, 133, 0.45) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. CORPORATE (Executive Blue & Crisp White High-Trust Design)
+   -------------------------------------------------------------------------- */
+[data-theme="corporate"] {
+  --bg-primary: #070d1e;
+  --bg-secondary: #0d1733;
+  --bg-tertiary: #132147;
+  --bg-surface: rgba(16, 28, 62, 0.85);
+  --bg-surface-elevated: rgba(24, 40, 84, 0.9);
+  --bg-surface-hover: rgba(32, 54, 110, 0.95);
+
+  --glass-bg: rgba(14, 25, 56, 0.82);
+  --glass-bg-subtle: rgba(59, 130, 246, 0.04);
+  --glass-border: rgba(96, 165, 250, 0.22);
+  --glass-border-hover: rgba(96, 165, 250, 0.65);
+  --glass-border-active: rgba(147, 197, 253, 0.85);
+
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #93c5fd;
+  --text-dim: #3b82f6;
+  --text-inverse: #030816;
+
+  --accent-neon: #3b82f6;        /* Corporate Royal Blue */
+  --accent-neon-bright: #60a5fa; /* Vibrant Sky Blue */
+  --accent-emerald: #0ea5e9;     /* Ocean Cyan */
+  --accent-lime: #38bdf8;        /* Ice Blue */
+  --accent-teal: #93c5fd;        /* Crisp White-Blue */
+  --accent-cyan: #38bdf8;
+  --accent-amber: #f59e0b;
+  --accent-rose: #ef4444;
+
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #0284c7 100%);
+  --gradient-secondary: linear-gradient(135deg, #1e40af 0%, #60a5fa 100%);
+  --gradient-accent: linear-gradient(135deg, #2563eb 0%, #0284c7 50%, #38bdf8 100%);
+  --gradient-emerald: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(59, 130, 246, 0.16) 0%, rgba(147, 197, 253, 0.05) 100%);
+  --gradient-surface: linear-gradient(180deg, rgba(59, 130, 246, 0.08) 0%, rgba(2, 6, 23, 0.25) 100%);
+  --gradient-glow: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 70%);
+
+  --bg-gradient: 
+    radial-gradient(ellipse 80% 50% at 50% -15%, rgba(59, 130, 246, 0.18), transparent),
+    radial-gradient(circle at 90% 75%, rgba(29, 78, 216, 0.12), transparent 45%),
+    radial-gradient(circle at 10% 45%, rgba(2, 132, 199, 0.1), transparent 40%);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 12px rgba(59, 130, 246, 0.15);
+  --shadow-lg: 0 16px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(59, 130, 246, 0.2);
+  --shadow-glow: 0 0 25px rgba(59, 130, 246, 0.4);
+  --shadow-glow-bright: 0 0 35px rgba(96, 165, 250, 0.6), 0 0 10px rgba(147, 197, 253, 0.4);
+  --shadow-glow-emerald: 0 0 30px rgba(14, 165, 233, 0.4);
+}
+
+[data-theme="corporate"] .navbar {
+  background: rgba(9, 17, 38, 0.92) !important;
+  border-color: rgba(96, 165, 250, 0.25) !important;
+}
+
+[data-theme="corporate"] .btn.primary {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4) !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. RETRO THEME (Black & White Stark Monochrome Film Noir)
+   -------------------------------------------------------------------------- */
+[data-theme="retro-bw"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1f1f1f;
+  --bg-surface: #171717;
+  --bg-surface-elevated: #262626;
+  --bg-surface-hover: #333333;
+
+  --glass-bg: #141414;
+  --glass-bg-subtle: rgba(255, 255, 255, 0.03);
+  --glass-border: #3b3b3b;
+  --glass-border-hover: #ffffff;
+  --glass-border-active: #e5e5e5;
+
+  --text-primary: #ffffff;
+  --text-secondary: #d4d4d4;
+  --text-muted: #a3a3a3;
+  --text-dim: #737373;
+  --text-inverse: #000000;
+
+  --accent-neon: #ffffff;        /* Crisp Stark White */
+  --accent-neon-bright: #f5f5f5; /* Pure White */
+  --accent-emerald: #d4d4d4;     /* Silver Gray */
+  --accent-lime: #e5e5e5;        /* Light Ash */
+  --accent-teal: #a3a3a3;        /* Neutral Slate */
+  --accent-cyan: #ffffff;
+  --accent-amber: #e5e5e5;
+  --accent-rose: #d4d4d4;
+
+  --gradient-primary: linear-gradient(135deg, #ffffff 0%, #737373 100%);
+  --gradient-secondary: linear-gradient(135deg, #e5e5e5 0%, #404040 100%);
+  --gradient-accent: linear-gradient(135deg, #ffffff 0%, #525252 100%);
+  --gradient-emerald: linear-gradient(135deg, #ffffff 0%, #737373 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+  --gradient-surface: linear-gradient(180deg, #222222 0%, #121212 100%);
+  --gradient-glow: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+
+  --bg-gradient: 
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.07), transparent 60%),
+    radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.03), transparent 50%),
+    radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.03), transparent 45%);
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.8);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.08);
+  --shadow-lg: 0 16px 45px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 255, 255, 0.12);
+  --shadow-glow: 0 0 20px rgba(255, 255, 255, 0.25);
+  --shadow-glow-bright: 0 0 30px rgba(255, 255, 255, 0.45);
+  --shadow-glow-emerald: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="retro-bw"] .navbar {
+  background: #111111 !important;
+  border: 1px solid #333333 !important;
+}
+
+[data-theme="retro-bw"] .card,
+[data-theme="retro-bw"] .project-card,
+[data-theme="retro-bw"] .cert-card,
+[data-theme="retro-bw"] .experience-card,
+[data-theme="retro-bw"] .skill-category,
+[data-theme="retro-bw"] .about__card {
+  border: 1px solid #333333 !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8) !important;
+}
+
+[data-theme="retro-bw"] .card:hover,
+[data-theme="retro-bw"] .project-card:hover,
+[data-theme="retro-bw"] .cert-card:hover {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-theme="retro-bw"] .btn.primary {
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  border: 1px solid #ffffff !important;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.25) !important;
+}
+
+[data-theme="retro-bw"] .btn.outline {
+  border-color: #737373 !important;
+  color: #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. PIXELATTE (Retro Arcade 8-Bit / 16-Bit Video Game Console Aesthetic)
+   -------------------------------------------------------------------------- */
+[data-theme="pixelatte"] {
+  --bg-primary: #0f0728;
+  --bg-secondary: #170c3d;
+  --bg-tertiary: #221356;
+  --bg-surface: #1b0e45;
+  --bg-surface-elevated: #281566;
+  --bg-surface-hover: #351c86;
+
+  --glass-bg: #1c0e48;
+  --glass-bg-subtle: rgba(255, 230, 0, 0.05);
+  --glass-border: #facc15;
+  --glass-border-hover: #00f5d4;
+  --glass-border-active: #ff007f;
+
+  --text-primary: #ffff00;       /* Retro 8-bit Yellow */
+  --text-secondary: #00f5d4;     /* Arcade Cyan */
+  --text-muted: #ff70a6;         /* 8-bit Bubblegum */
+  --text-dim: #7b2cbf;
+  --text-inverse: #0f0728;
+
+  --accent-neon: #facc15;        /* Arcade Gold Coin */
+  --accent-neon-bright: #00f5d4; /* 1-Up Cyan */
+  --accent-emerald: #00f076;     /* High-Score Green */
+  --accent-lime: #ffe600;        /* Power-Up Yellow */
+  --accent-teal: #00f5d4;        /* Cyan */
+  --accent-cyan: #00f5d4;
+  --accent-amber: #ff9e00;       /* Boss Orange */
+  --accent-rose: #ff0055;        /* Heart Red */
+
+  --gradient-primary: linear-gradient(180deg, #ffe600 0%, #ff9e00 100%);
+  --gradient-secondary: linear-gradient(180deg, #00f5d4 0%, #00bbf9 100%);
+  --gradient-accent: linear-gradient(180deg, #ff007f 0%, #7b2cbf 100%);
+  --gradient-emerald: linear-gradient(180deg, #00f076 0%, #00a854 100%);
+  --gradient-subtle: linear-gradient(180deg, rgba(250, 204, 21, 0.2) 0%, rgba(0, 245, 212, 0.1) 100%);
+  --gradient-surface: linear-gradient(180deg, #281566 0%, #150a38 100%);
+  --gradient-glow: radial-gradient(circle, rgba(250, 204, 21, 0.3) 0%, rgba(0, 245, 212, 0.15) 50%, transparent 70%);
+
+  --bg-gradient: 
+    radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.15), transparent 50%),
+    radial-gradient(circle at 85% 75%, rgba(0, 245, 212, 0.12), transparent 45%),
+    radial-gradient(circle at 15% 45%, rgba(255, 0, 127, 0.14), transparent 40%);
+
+  --shadow-sm: 3px 3px 0px #000000;
+  --shadow-md: 5px 5px 0px #000000;
+  --shadow-lg: 7px 7px 0px #000000;
+  --shadow-glow: 0 0 15px rgba(250, 204, 21, 0.6);
+  --shadow-glow-bright: 0 0 25px rgba(0, 245, 212, 0.8);
+  --shadow-glow-emerald: 0 0 20px rgba(0, 240, 118, 0.7);
+
+  --font-heading: 'Roboto Mono', monospace;
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-full: 0px;
+}
+
+/* Pixelatte Chunky 8-Bit Arcade Structural Rules */
+[data-theme="pixelatte"] .card,
+[data-theme="pixelatte"] .project-card,
+[data-theme="pixelatte"] .cert-card,
+[data-theme="pixelatte"] .experience-card,
+[data-theme="pixelatte"] .skill-category,
+[data-theme="pixelatte"] .about__card,
+[data-theme="pixelatte"] .navbar {
+  border-radius: 0px !important;
+  border: 3px solid #facc15 !important;
+  box-shadow: 6px 6px 0px #000000 !important;
+}
+
+[data-theme="pixelatte"] .navbar {
+  background: #140b33 !important;
+  border: 3px solid #facc15 !important;
+}
+
+[data-theme="pixelatte"] .btn {
+  border-radius: 0px !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.05em !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  transition: transform 0.08s ease, box-shadow 0.08s ease !important;
+}
+
+[data-theme="pixelatte"] .btn.primary {
+  background: #facc15 !important;
+  color: #0f0728 !important;
+}
+
+[data-theme="pixelatte"] .btn.outline {
+  background: #1b0e45 !important;
+  color: #00f5d4 !important;
+  border: 3px solid #00f5d4 !important;
+}
+
+[data-theme="pixelatte"] .btn:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 6px 6px 0px #000000 !important;
+}
+
+[data-theme="pixelatte"] .btn:active {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 1px 1px 0px #000000 !important;
+}
+
+[data-theme="pixelatte"] .badge,
+[data-theme="pixelatte"] .cert-card__featured-tag,
+[data-theme="pixelatte"] .cert-card__specialization-tag,
+[data-theme="pixelatte"] .project-card__featured-tag,
+[data-theme="pixelatte"] .project-card__tag {
+  border-radius: 0px !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+  font-family: var(--font-mono) !important;
+}
+
+
