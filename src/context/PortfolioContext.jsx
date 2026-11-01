@@ -11,7 +11,7 @@ const INITIAL_STATE = {
   experience: [],
   contact: null,
   certifications: [],
-  settings: { theme: "cyberpunk" },
+  settings: { theme: "pixelatte" },
   source: "mongodb",
 };
 
@@ -20,7 +20,7 @@ export function PortfolioProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentTheme, setCurrentTheme] = useState(() => {
-    return localStorage.getItem("minus_portfolio_theme") || "cyberpunk";
+    return localStorage.getItem("minus_portfolio_theme") || "pixelatte";
   });
   const [currentMode, setCurrentMode] = useState(() => {
     return localStorage.getItem("minus_portfolio_mode") || "dark";

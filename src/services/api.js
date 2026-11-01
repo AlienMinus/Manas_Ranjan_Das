@@ -54,7 +54,7 @@ export async function getPortfolioData() {
     experience: json.data.experience || [],
     contact: json.data.contact || null,
     certifications: json.data.certifications || [],
-    settings: json.data.settings || { theme: "cyberpunk" },
+    settings: json.data.settings || { theme: "pixelatte" },
     source: "mongodb",
   };
 }

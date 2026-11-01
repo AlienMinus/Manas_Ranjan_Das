@@ -1,5 +1,6 @@
 // src/components/Experience.jsx
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
 import * as BsIcons from "react-icons/bs";
@@ -69,17 +70,44 @@ function Experience({ experience = [], showCount = true }) {
       <div className="experience__timeline">
         {experience.map((exp, idx) => {
           const Icon = getIconComponent(exp);
+          const expImage =
+            exp.image ||
+            exp.photo ||
+            (Array.isArray(exp.images) && exp.images[0]) ||
+            (Array.isArray(exp.photos) && exp.photos[0]);
 
           return (
             <article
               className="experience-card"
-              key={exp.role + exp.company + idx}
+              key={exp._id || exp.role + exp.company + idx}
             >
               <div className="experience-card__header">
-                <div className="experience-card__icon-box">
-                  {exp.image ? (
+                <div
+                  className={`experience-card__icon-box ${expImage ? "experience-card__icon-box--clickable" : ""}`}
+                  onClick={() => {
+                    if (expImage) {
+                      setActivePhoto({
+                        src: expImage,
+                        title: `${exp.role} • ${exp.company}`,
+                      });
+                    }
+                  }}
+                  title={expImage ? `Click to preview photo: ${exp.role} at ${exp.company}` : undefined}
+                  role={expImage ? "button" : undefined}
+                  tabIndex={expImage ? 0 : undefined}
+                  onKeyDown={(e) => {
+                    if (expImage && (e.key === "Enter" || e.key === " ")) {
+                      e.preventDefault();
+                      setActivePhoto({
+                        src: expImage,
+                        title: `${exp.role} • ${exp.company}`,
+                      });
+                    }
+                  }}
+                >
+                  {expImage ? (
                     <img
-                      src={exp.image}
+                      src={expImage}
                       alt={exp.company}
                       style={{
                         width: "100%",
@@ -109,27 +137,33 @@ function Experience({ experience = [], showCount = true }) {
               </div>
 
               {/* Experience Photo / Workplace Banner */}
-              {exp.image && (
+              {expImage && (
                 <div
                   className="experience-card__media-box"
                   onClick={() =>
                     setActivePhoto({
-                      src: exp.image,
+                      src: expImage,
                       title: `${exp.role} • ${exp.company}`,
                     })
                   }
                   title="Click to view full photo"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActivePhoto({
+                        src: expImage,
+                        title: `${exp.role} • ${exp.company}`,
+                      });
+                    }
+                  }}
                 >
                   <img
-                    src={exp.image}
+                    src={expImage}
                     alt={`${exp.role} at ${exp.company}`}
                     className="experience-card__img"
                     loading="lazy"
-                    onError={(e) => {
-                      if (e.target.parentElement) {
-                        e.target.parentElement.style.display = "none";
-                      }
-                    }}
                   />
                   <div className="experience-card__media-overlay">
                     <FaExpand size={13} />
@@ -147,42 +181,75 @@ function Experience({ experience = [], showCount = true }) {
                   ))}
                 </ul>
               )}
+
+              {expImage && (
+                <div style={{ marginTop: "1rem", display: "flex", justifyContent: "flex-end" }}>
+                  <button
+                    type="button"
+                    className="btn outline sm"
+                    onClick={() =>
+                      setActivePhoto({
+                        src: expImage,
+                        title: `${exp.role} • ${exp.company}`,
+                      })
+                    }
+                    title="Click to preview photo"
+                  >
+                    <FaExpand size={11} />
+                    <span>View Photo</span>
+                  </button>
+                </div>
+              )}
             </article>
           );
         })}
       </div>
 
-      {/* Experience Image Lightbox Modal */}
-      {activePhoto && (
-        <div
-          className="experience-lightbox"
-          onClick={() => setActivePhoto(null)}
-        >
+      {/* Experience Image Lightbox Modal rendered via Portal to document.body */}
+      {activePhoto &&
+        typeof document !== "undefined" &&
+        createPortal(
           <div
-            className="experience-lightbox__content"
-            onClick={(e) => e.stopPropagation()}
+            className="experience-lightbox"
+            onClick={() => setActivePhoto(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Experience photo preview"
           >
-            <button
-              type="button"
-              className="experience-lightbox__close"
-              onClick={() => setActivePhoto(null)}
-              aria-label="Close Preview"
+            <div
+              className="experience-lightbox__content"
+              onClick={(e) => e.stopPropagation()}
             >
-              <FaTimes size={15} />
-            </button>
-            <img
-              src={activePhoto.src}
-              alt={activePhoto.title}
-              className="experience-lightbox__img"
-            />
-            <div className="experience-lightbox__bar">
-              <span style={{ color: "var(--accent-neon)", fontWeight: 600, fontSize: "0.95rem" }}>
-                {activePhoto.title}
-              </span>
+              <button
+                type="button"
+                className="experience-lightbox__close"
+                onClick={() => setActivePhoto(null)}
+                aria-label="Close Preview"
+                title="Close (Esc)"
+              >
+                <FaTimes size={16} />
+              </button>
+              <img
+                src={activePhoto.src}
+                alt={activePhoto.title}
+                className="experience-lightbox__img"
+              />
+              <div className="experience-lightbox__bar">
+                <span style={{ color: "var(--accent-neon)", fontWeight: 600, fontSize: "0.95rem" }}>
+                  {activePhoto.title}
+                </span>
+                <button
+                  type="button"
+                  className="btn outline sm"
+                  onClick={() => setActivePhoto(null)}
+                >
+                  <span>Close</span>
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </section>
   );
 }

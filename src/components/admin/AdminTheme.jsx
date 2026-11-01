@@ -137,7 +137,7 @@ function AdminTheme({ password, onSaveSuccess, onSaveError }) {
   const [savingThemeId, setSavingThemeId] = useState(null);
   const [savingMode, setSavingMode] = useState(false);
 
-  const activeMasterTheme = settings?.theme || "cyberpunk";
+  const activeMasterTheme = settings?.theme || "pixelatte";
   const activeMasterMode = settings?.themeMode || "dark";
 
   // Quick preview locally

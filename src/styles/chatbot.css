@@ -115,7 +115,7 @@
   flex-direction: column;
   gap: 1rem;
   perspective: 1000px;
-  background: var(--bg-surface);
+  background: transparent;
   scrollbar-width: thin;
   scrollbar-color: var(--glass-border) transparent;
 }

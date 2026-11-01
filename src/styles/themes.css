@@ -90,68 +90,472 @@
   --accent-amber: #fbbf24;
   --accent-rose: #f43f5e;
 
-  --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  --gradient-primary: linear-gradient(135deg, rgba(56, 189, 248, 0.95) 0%, rgba(129, 140, 248, 0.95) 50%, rgba(192, 132, 252, 0.95) 100%);
   --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
   --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #ec4899 100%);
   --gradient-emerald: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
-  --gradient-subtle: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(168, 85, 247, 0.12) 100%);
-  --gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%);
-  --gradient-glow: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, rgba(168, 85, 247, 0.12) 40%, transparent 70%);
+  --gradient-subtle: linear-gradient(135deg, rgba(56, 189, 248, 0.18) 0%, rgba(168, 85, 247, 0.14) 100%);
+  --gradient-surface: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
+  --gradient-glow: radial-gradient(circle, rgba(56, 189, 248, 0.32) 0%, rgba(168, 85, 247, 0.16) 40%, transparent 70%);
 
+  /* Multi-Chromatic Liquid Caustic Orbs */
   --bg-gradient: 
-    radial-gradient(circle at 18% 15%, rgba(56, 189, 248, 0.22), transparent 42%),
-    radial-gradient(circle at 82% 20%, rgba(168, 85, 247, 0.24), transparent 46%),
-    radial-gradient(circle at 50% 82%, rgba(236, 72, 153, 0.16), transparent 50%),
-    radial-gradient(circle at 80% 88%, rgba(99, 102, 241, 0.18), transparent 42%);
+    radial-gradient(circle at 18% 15%, rgba(56, 189, 248, 0.32), transparent 45%),
+    radial-gradient(circle at 82% 20%, rgba(168, 85, 247, 0.34), transparent 48%),
+    radial-gradient(circle at 50% 82%, rgba(236, 72, 153, 0.24), transparent 52%),
+    radial-gradient(circle at 80% 88%, rgba(99, 102, 241, 0.28), transparent 46%);
 
-  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 20px rgba(56, 189, 248, 0.15);
-  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(168, 85, 247, 0.2);
-  --shadow-glow: 0 0 30px rgba(56, 189, 248, 0.45);
-  --shadow-glow-bright: 0 0 40px rgba(56, 189, 248, 0.65), 0 0 18px rgba(168, 85, 247, 0.45);
-  --shadow-glow-emerald: 0 0 35px rgba(129, 140, 248, 0.5);
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 14px 34px rgba(0, 0, 0, 0.5), 0 0 22px rgba(56, 189, 248, 0.18);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 38px rgba(168, 85, 247, 0.25);
+  --shadow-glow: 0 0 32px rgba(56, 189, 248, 0.5);
+  --shadow-glow-bright: 0 0 45px rgba(56, 189, 248, 0.7), 0 0 22px rgba(168, 85, 247, 0.5);
+  --shadow-glow-emerald: 0 0 38px rgba(129, 140, 248, 0.55);
 }
 
-/* Glassmorphism Structural Refinement */
+/* Liquid Glass Cards & Prismatic Refractive Sheen */
 [data-theme="glassmorphism"] .card,
 [data-theme="glassmorphism"] .project-card,
 [data-theme="glassmorphism"] .cert-card,
 [data-theme="glassmorphism"] .experience-card,
 [data-theme="glassmorphism"] .skill-category,
 [data-theme="glassmorphism"] .about__card,
+[data-theme="glassmorphism"] .contact__form-col,
+[data-theme="glassmorphism"] .contact-channel-card,
+[data-theme="glassmorphism"] .cert-card__media-box,
+[data-theme="glassmorphism"] .experience-lightbox__content,
+[data-theme="glassmorphism"] .cert-lightbox__content,
 [data-theme="glassmorphism"] .navbar {
-  backdrop-filter: blur(28px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.32) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.22) !important;
-  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.08) !important;
+  backdrop-filter: blur(36px) saturate(220%) brightness(112%) contrast(106%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(220%) brightness(112%) contrast(106%) !important;
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(56, 189, 248, 0.04) 75%, rgba(192, 132, 252, 0.06) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.65) !important;
+  border-left: 2px solid rgba(255, 255, 255, 0.4) !important;
+  border-right: 1px solid rgba(56, 189, 248, 0.25) !important;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: 
+    0 24px 55px -10px rgba(0, 0, 0, 0.6),
+    inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 25px 0 rgba(56, 189, 248, 0.1),
+    0 0 35px rgba(56, 189, 248, 0.15) !important;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal) !important;
 }
 
-[data-theme="glassmorphism"] .navbar {
-  background: rgba(14, 17, 36, 0.72) !important;
+[data-theme="glassmorphism"] .card:hover,
+[data-theme="glassmorphism"] .project-card:hover,
+[data-theme="glassmorphism"] .cert-card:hover,
+[data-theme="glassmorphism"] .contact-channel-card:hover {
+  transform: translateY(-5px) scale(1.008) !important;
+  border-color: rgba(56, 189, 248, 0.65) !important;
+  border-top-color: rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 
+    0 32px 70px -10px rgba(0, 0, 0, 0.75),
+    inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.75),
+    inset 0 0 32px rgba(56, 189, 248, 0.22),
+    0 0 48px rgba(56, 189, 248, 0.35) !important;
 }
 
+/* Liquid Glass Navbar */
+[data-theme="glassmorphism"] .navbar {
+  backdrop-filter: blur(36px) saturate(220%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(220%) !important;
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(8, 12, 32, 0.4) 50%, rgba(14, 20, 48, 0.45) 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Liquid Glass Dropdown Menu (Dark Mode - Optical Lens Blur) */
+[data-theme="glassmorphism"] .navbar__theme-dropdown {
+  backdrop-filter: blur(40px) saturate(230%) brightness(112%) contrast(106%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(230%) !important;
+  background: 
+    linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(56, 189, 248, 0.08) 75%, rgba(168, 85, 247, 0.06) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.75) !important;
+  border-left: 2px solid rgba(255, 255, 255, 0.5) !important;
+  border-right: 1px solid rgba(56, 189, 248, 0.3) !important;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.25) !important;
+  box-shadow: 
+    0 25px 65px -10px rgba(0, 0, 0, 0.75),
+    inset 0 2px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 25px rgba(56, 189, 248, 0.12),
+    0 0 35px rgba(56, 189, 248, 0.15) !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+[data-theme="glassmorphism"] .navbar__theme-dropdown-header {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+[data-theme="glassmorphism"] .navbar__theme-mode-toggle {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.55) !important;
+  color: #38bdf8 !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+[data-theme="glassmorphism"] .navbar__theme-mode-toggle:hover {
+  background: rgba(56, 189, 248, 0.22) !important;
+  border-color: #38bdf8 !important;
+  color: #7dd3fc !important;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+[data-theme="glassmorphism"] .navbar__theme-option {
+  border-radius: var(--radius-sm) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+[data-theme="glassmorphism"] .navbar__theme-name {
+  color: #f1f5f9 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="glassmorphism"] .navbar__theme-desc {
+  color: #94a3b8 !important;
+}
+
+[data-theme="glassmorphism"] .navbar__theme-option:hover {
+  background: rgba(255, 255, 255, 0.09) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  transform: translateX(2px) !important;
+}
+
+[data-theme="glassmorphism"] .navbar__theme-option--active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22) 0%, rgba(168, 85, 247, 0.15) 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.45) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 18px rgba(56, 189, 248, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+[data-theme="glassmorphism"] .navbar__theme-option--active .navbar__theme-name {
+  color: #38bdf8 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.4) !important;
+}
+
+[data-theme="glassmorphism"] .navbar__theme-option--active .navbar__theme-desc {
+  color: #7dd3fc !important;
+}
+
+[data-theme="glassmorphism"] .navbar__theme-check {
+  color: #38bdf8 !important;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6)) !important;
+}
+
+/* Dark Mode Mobile Drawer Glass Lens */
+[data-theme="glassmorphism"] .navbar__mobile-drawer {
+  backdrop-filter: blur(40px) saturate(230%) brightness(112%) contrast(106%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(230%) !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(8, 12, 32, 0.45) 50%, rgba(14, 20, 48, 0.5) 100%) !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Liquid Crystal Pill Buttons */
 [data-theme="glassmorphism"] .btn.primary {
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%) !important;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.9) 0%, rgba(99, 102, 241, 0.9) 50%, rgba(192, 132, 252, 0.9) 100%) !important;
   color: #030712 !important;
-  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4) !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 
+    0 8px 25px rgba(56, 189, 248, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+[data-theme="glassmorphism"] .btn.primary:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 
+    0 12px 32px rgba(56, 189, 248, 0.6),
+    0 0 30px rgba(168, 85, 247, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Liquid Glass Floating Controls (Music Toggle) */
+[data-theme="glassmorphism"] .music-toggle,
+[data-theme="glassmorphism"] .navbar__mode-btn,
+[data-theme="glassmorphism"] .navbar__theme-btn {
+  backdrop-filter: blur(24px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 50%, rgba(56, 189, 248, 0.08) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(56, 189, 248, 0.2) !important;
+}
+
+/* ==========================================================================
+   ChatBot Liquid Glass Pure Transparency (Dark Mode)
+   ========================================================================== */
+
+/* Floating Launcher Orb */
+[data-theme="glassmorphism"] .chatbot-toggler {
+  backdrop-filter: blur(24px) saturate(220%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(220%) !important;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.35) 0%, rgba(129, 140, 248, 0.25) 50%, rgba(192, 132, 252, 0.3) 100%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.85) !important;
+  color: #ffffff !important;
+  box-shadow: 
+    0 14px 35px rgba(0, 0, 0, 0.45),
+    inset 0 2px 2px rgba(255, 255, 255, 0.7),
+    0 0 25px rgba(56, 189, 248, 0.4) !important;
+}
+
+[data-theme="glassmorphism"] .chatbot-toggler:hover {
+  transform: scale(1.1) rotate(5deg) !important;
+  box-shadow: 
+    0 18px 45px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(56, 189, 248, 0.6),
+    inset 0 2px 2px rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Chatbot Floating Glass Window - Highly Transparent */
+[data-theme="glassmorphism"] .chatbot {
+  backdrop-filter: blur(40px) saturate(230%) brightness(112%) contrast(106%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(230%) brightness(112%) contrast(106%) !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(56, 189, 248, 0.08) 75%, rgba(168, 85, 247, 0.06) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.75) !important;
+  border-left: 2px solid rgba(255, 255, 255, 0.5) !important;
+  border-right: 1px solid rgba(56, 189, 248, 0.3) !important;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.25) !important;
+  box-shadow: 
+    0 30px 80px -15px rgba(0, 0, 0, 0.6),
+    inset 0 2px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 25px rgba(56, 189, 248, 0.1),
+    0 0 40px rgba(56, 189, 248, 0.15) !important;
+}
+
+/* Glass Chatbot Header */
+[data-theme="glassmorphism"] .chatbot-header {
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+/* Circular Frosted Close Button */
+[data-theme="glassmorphism"] .chatbot-close {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.6) !important;
+  color: #ffffff !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+[data-theme="glassmorphism"] .chatbot-close:hover {
+  background: rgba(56, 189, 248, 0.35) !important;
+  border-color: rgba(56, 189, 248, 0.75) !important;
+  transform: scale(1.1) !important;
+}
+
+/* Messages Container - Transparent so Background Content is Visible */
+[data-theme="glassmorphism"] .chatbot-messages {
+  background: transparent !important;
+}
+
+/* Translucent Glass Message Bubbles */
+[data-theme="glassmorphism"] .message.bot {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="glassmorphism"] .message.user {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.75) 0%, rgba(129, 140, 248, 0.75) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.5) !important;
+  color: #ffffff !important;
+}
+
+/* 3D Rich Cards Inside Chat */
+[data-theme="glassmorphism"] .chat-3d-card,
+[data-theme="glassmorphism"] .chat-skill-category,
+[data-theme="glassmorphism"] .chat-doc-card,
+[data-theme="glassmorphism"] .chat-exp-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="glassmorphism"] .chat-3d-card:hover,
+[data-theme="glassmorphism"] .chat-skill-category:hover,
+[data-theme="glassmorphism"] .chat-doc-card:hover,
+[data-theme="glassmorphism"] .chat-exp-card:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(56, 189, 248, 0.6) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 20px rgba(56, 189, 248, 0.2) !important;
+}
+
+/* Glass Input Bar */
+[data-theme="glassmorphism"] .chatbot-input {
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+[data-theme="glassmorphism"] .chatbot-input input {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="glassmorphism"] .chatbot-input input:focus {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(56, 189, 248, 0.8) !important;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
+}
+
+[data-theme="glassmorphism"] .chatbot-send-btn {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.85) 0%, rgba(129, 140, 248, 0.85) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.7) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Translucent Glass Modal Lightboxes */
+[data-theme="glassmorphism"] .cert-lightbox,
+[data-theme="glassmorphism"] .experience-lightbox {
+  background: rgba(4, 6, 18, 0.65) !important;
+  backdrop-filter: blur(24px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+}
+
+[data-theme="glassmorphism"] .form-input,
+[data-theme="glassmorphism"] .form-textarea,
+[data-theme="glassmorphism"] .cert-search-input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(16px) !important;
+  color: #ffffff !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+[data-theme="glassmorphism"] .form-input:focus,
+[data-theme="glassmorphism"] .form-textarea:focus,
+[data-theme="glassmorphism"] .cert-search-input:focus {
+  border-color: rgba(56, 189, 248, 0.8) !important;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Liquid Glass Floating Pills, Badges & Tags (Dark Mode) */
+[data-theme="glassmorphism"] .badge,
+[data-theme="glassmorphism"] .cert-skill-chip,
+[data-theme="glassmorphism"] .tag,
+[data-theme="glassmorphism"] .project-card__tag,
+[data-theme="glassmorphism"] .suggestion-chip,
+[data-theme="glassmorphism"] .cert-card__credential,
+[data-theme="glassmorphism"] .cert-card__date,
+[data-theme="glassmorphism"] .cert-card__spec-header,
+[data-theme="glassmorphism"] .cert-card__featured-tag,
+[data-theme="glassmorphism"] .cert-card__specialization-tag,
+[data-theme="glassmorphism"] .cert-carousel-counter,
+[data-theme="glassmorphism"] .experience-card__period {
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.05) 60%, rgba(56, 189, 248, 0.08) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.55) !important;
+  border-left: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  color: #e0f2fe !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.35), 0 0 15px rgba(56, 189, 248, 0.1) !important;
+  border-radius: var(--radius-full) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+[data-theme="glassmorphism"] .badge:hover,
+[data-theme="glassmorphism"] .cert-skill-chip:hover,
+[data-theme="glassmorphism"] .tag:hover,
+[data-theme="glassmorphism"] .project-card__tag:hover,
+[data-theme="glassmorphism"] .suggestion-chip:hover {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.3) 0%, rgba(168, 85, 247, 0.25) 100%) !important;
+  border-color: rgba(56, 189, 248, 0.65) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.6) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Liquid Glass Filter Buttons */
+[data-theme="glassmorphism"] .cert-filter-btn,
+[data-theme="glassmorphism"] .projects__filter-btn {
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  color: #cbd5e1 !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
+}
+
+[data-theme="glassmorphism"] .cert-filter-btn--active,
+[data-theme="glassmorphism"] .projects__filter-btn--active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.9) 0%, rgba(129, 140, 248, 0.9) 100%) !important;
+  color: #030712 !important;
+  font-weight: 700 !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
 }
 
 /* --------------------------------------------------------------------------
    3. SKEUOMORPHISM (Tactile 3D Realistic Depth, Brushed Slate & Amber Bevels)
    -------------------------------------------------------------------------- */
 [data-theme="skeuomorphism"] {
-  --bg-primary: #14171a;
-  --bg-secondary: #1a1e22;
-  --bg-tertiary: #22262d;
-  --bg-surface: #1e2228;
-  --bg-surface-elevated: #262b32;
-  --bg-surface-hover: #2e343d;
+  --bg-primary: #121518;
+  --bg-secondary: #171b1f;
+  --bg-tertiary: #1e2227;
+  --bg-surface: #1a1e23;
+  --bg-surface-elevated: #242930;
+  --bg-surface-hover: #2b313a;
 
-  --glass-bg: #20242b;
-  --glass-bg-subtle: #191c22;
-  --glass-border: #2e343e;
+  --glass-bg: #1c2025;
+  --glass-bg-subtle: #16191d;
+  --glass-border: #2c323b;
   --glass-border-hover: #f59e0b;
   --glass-border-active: #d97706;
 
@@ -161,78 +565,284 @@
   --text-dim: #64748b;
   --text-inverse: #0f172a;
 
-  --accent-neon: #f59e0b;        /* Amber Tungsten */
-  --accent-glow: rgba(245, 158, 11, 0.35);
-  --accent-neon-bright: #fbbf24; /* Warm Gold */
+  --accent-neon: #f59e0b;        /* Amber Tungsten Bulb */
+  --accent-glow: rgba(245, 158, 11, 0.4);
+  --accent-neon-bright: #fbbf24; /* Warm Gold Filament */
   --accent-emerald: #d97706;     /* Deep Bronze */
-  --accent-lime: #f97316;        /* Warm Tangerine */
+  --accent-lime: #f97316;        /* Warm Tangerine Indicator */
   --accent-teal: #e2e8f0;        /* Brushed Steel */
   --accent-cyan: #f59e0b;
   --accent-amber: #f59e0b;
   --accent-rose: #ef4444;
 
-  --gradient-primary: linear-gradient(180deg, #f59e0b 0%, #b45309 100%);
-  --gradient-secondary: linear-gradient(180deg, #3b424d 0%, #20242b 100%);
+  --gradient-primary: linear-gradient(180deg, #fcd34d 0%, #f59e0b 48%, #d97706 52%, #b45309 100%);
+  --gradient-secondary: linear-gradient(180deg, #3a424e 0%, #252b34 50%, #1a1f26 100%);
   --gradient-accent: linear-gradient(180deg, #f59e0b 0%, #ea580c 100%);
   --gradient-emerald: linear-gradient(180deg, #d97706 0%, #92400e 100%);
-  --gradient-subtle: linear-gradient(180deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.05) 100%);
-  --gradient-surface: linear-gradient(180deg, #282d35 0%, #1a1d23 100%);
-  --gradient-glow: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
+  --gradient-subtle: linear-gradient(180deg, rgba(245, 158, 11, 0.18) 0%, rgba(217, 119, 6, 0.05) 100%);
+  --gradient-surface: linear-gradient(180deg, #2a3039 0%, #1a1e23 100%);
+  --gradient-glow: radial-gradient(circle, rgba(245, 158, 11, 0.28) 0%, rgba(0, 0, 0, 0) 70%);
 
+  /* Tangible Micro-Textured Background with Warm Studio Spotlights */
   --bg-gradient: 
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(245, 158, 11, 0.12), transparent 60%),
-    radial-gradient(circle at 85% 80%, rgba(28, 33, 40, 0.9), transparent 50%),
-    radial-gradient(circle at 10% 40%, rgba(24, 28, 34, 0.9), transparent 50%);
+    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(245, 158, 11, 0.16), transparent 60%),
+    radial-gradient(circle at 85% 80%, rgba(28, 33, 40, 0.95), transparent 50%),
+    radial-gradient(circle at 10% 40%, rgba(24, 28, 34, 0.95), transparent 50%),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.15) 2px, rgba(0, 0, 0, 0.15) 4px);
 
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.18), inset 0 -1px 2px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 18px 38px rgba(0, 0, 0, 0.8), 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.22);
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --shadow-md: 0 10px 24px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.22), inset 0 -1px 3px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 22px 48px rgba(0, 0, 0, 0.85), 0 4px 10px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.28), inset 0 -2px 4px rgba(0, 0, 0, 0.8);
   --shadow-glow: 0 0 25px rgba(245, 158, 11, 0.35);
   --shadow-glow-bright: 0 0 35px rgba(251, 191, 36, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   --shadow-glow-emerald: 0 0 30px rgba(217, 119, 6, 0.45);
 }
 
-/* Skeuomorphism Tactile 3D Controls & Bevels */
+/* Skeuomorphism 3D Texturized Physical Cards & Surfaces */
 [data-theme="skeuomorphism"] .card,
 [data-theme="skeuomorphism"] .project-card,
 [data-theme="skeuomorphism"] .cert-card,
 [data-theme="skeuomorphism"] .experience-card,
 [data-theme="skeuomorphism"] .skill-category,
 [data-theme="skeuomorphism"] .about__card,
+[data-theme="skeuomorphism"] .contact__form-col,
+[data-theme="skeuomorphism"] .contact-channel-card,
+[data-theme="skeuomorphism"] .cert-card__media-box,
+[data-theme="skeuomorphism"] .experience-lightbox__content,
+[data-theme="skeuomorphism"] .cert-lightbox__content,
 [data-theme="skeuomorphism"] .navbar {
-  background: linear-gradient(180deg, #252a32 0%, #191c22 100%) !important;
-  border: 1px solid #101215 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
-  border-bottom: 1px solid #0d0f12 !important;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  background: 
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.3) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(255, 255, 255, 0.015) 3px, rgba(255, 255, 255, 0.015) 6px),
+    linear-gradient(180deg, #282f3a 0%, #1c2128 50%, #15181e 100%) !important;
+  border: 1px solid #0d0f13 !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.28) !important;
+  border-bottom: 3.5px solid #06080a !important;
+  border-left: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.6) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 
+    0 20px 42px rgba(0, 0, 0, 0.8),
+    0 5px 12px rgba(0, 0, 0, 0.55),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.24),
+    inset 0 -2.5px 4px rgba(0, 0, 0, 0.75) !important;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal) !important;
 }
 
-[data-theme="skeuomorphism"] .navbar {
-  background: linear-gradient(180deg, #262c35 0%, #181b21 100%) !important;
+[data-theme="skeuomorphism"] .card:hover,
+[data-theme="skeuomorphism"] .project-card:hover,
+[data-theme="skeuomorphism"] .cert-card:hover,
+[data-theme="skeuomorphism"] .contact-channel-card:hover {
+  transform: translateY(-3px) !important;
+  border-top-color: rgba(251, 191, 36, 0.7) !important;
+  box-shadow: 
+    0 26px 52px rgba(0, 0, 0, 0.9),
+    0 8px 16px rgba(0, 0, 0, 0.65),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.38),
+    inset 0 -2.5px 4px rgba(0, 0, 0, 0.85),
+    0 0 24px rgba(245, 158, 11, 0.25) !important;
 }
 
+/* Debossed Physical Typography Relief */
+[data-theme="skeuomorphism"] .section__title,
+[data-theme="skeuomorphism"] .hero__name,
+[data-theme="skeuomorphism"] .project-card__title,
+[data-theme="skeuomorphism"] .cert-card__title,
+[data-theme="skeuomorphism"] .experience-card__role,
+[data-theme="skeuomorphism"] .contact__info-header h3 {
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Stamped Physical Buttons & Hardware Controls */
 [data-theme="skeuomorphism"] .btn {
   border-radius: var(--radius-sm) !important;
-  border: 1px solid #101215 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
-  transition: all var(--transition-fast) !important;
+  border: 1px solid #0d0f12 !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.32) !important;
+  border-bottom: 2.5px solid #07090b !important;
+  background: linear-gradient(180deg, #37404c 0%, #262c35 48%, #1c2128 52%, #222831 100%) !important;
+  box-shadow: 
+    0 5px 10px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.28),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.6) !important;
+  color: #f8fafc !important;
+  font-weight: 700 !important;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.8) !important;
+  transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 [data-theme="skeuomorphism"] .btn.primary {
-  background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%) !important;
-  color: #171100 !important;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  background: linear-gradient(180deg, #fcd34d 0%, #f59e0b 46%, #d97706 54%, #b45309 100%) !important;
+  border-top: 2px solid #fef3c7 !important;
+  border-bottom: 3.5px solid #78350f !important;
+  border-left: 1px solid #b45309 !important;
+  border-right: 1px solid #b45309 !important;
+  color: #1a0f00 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 
+    0 6px 14px rgba(0, 0, 0, 0.65),
+    0 0 16px rgba(245, 158, 11, 0.35),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 3px rgba(120, 53, 15, 0.6) !important;
 }
 
 [data-theme="skeuomorphism"] .btn:hover {
-  transform: translateY(-1px) !important;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.7),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.6) !important;
 }
 
 [data-theme="skeuomorphism"] .btn:active {
   transform: translateY(2px) !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), inset 0 2px 4px rgba(0, 0, 0, 0.7) !important;
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.85),
+    inset 0 3px 6px rgba(0, 0, 0, 0.85),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Recessed Inset Form Inputs, Search & Wells */
+[data-theme="skeuomorphism"] .form-input,
+[data-theme="skeuomorphism"] .form-textarea,
+[data-theme="skeuomorphism"] .chatbot-input input,
+[data-theme="skeuomorphism"] .cert-search-input {
+  background: #121519 !important;
+  border: 1px solid #090b0e !important;
+  border-top: 2px solid #050608 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 
+    inset 0 3px 6px rgba(0, 0, 0, 0.85),
+    inset 0 1px 2px rgba(0, 0, 0, 0.9),
+    0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--radius-sm) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="skeuomorphism"] .form-input:focus,
+[data-theme="skeuomorphism"] .form-textarea:focus,
+[data-theme="skeuomorphism"] .chatbot-input input:focus,
+[data-theme="skeuomorphism"] .cert-search-input:focus {
+  border-color: #f59e0b !important;
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 12px rgba(245, 158, 11, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Stamped Metal Badges, Chips & Tags (Dark Mode) */
+[data-theme="skeuomorphism"] .badge,
+[data-theme="skeuomorphism"] .cert-skill-chip,
+[data-theme="skeuomorphism"] .tag,
+[data-theme="skeuomorphism"] .project-card__tag,
+[data-theme="skeuomorphism"] .suggestion-chip,
+[data-theme="skeuomorphism"] .cert-card__credential {
+  background: linear-gradient(180deg, #353e4b 0%, #252b34 48%, #1c2128 52%, #20262f 100%) !important;
+  border: 1px solid #0d0f12 !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.28) !important;
+  border-bottom: 2px solid #080a0c !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.5) !important;
+  border-radius: var(--radius-sm) !important;
+  color: #fbbf24 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 0 8px rgba(245, 158, 11, 0.3) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+[data-theme="skeuomorphism"] .badge:hover,
+[data-theme="skeuomorphism"] .cert-skill-chip:hover,
+[data-theme="skeuomorphism"] .tag:hover,
+[data-theme="skeuomorphism"] .project-card__tag:hover,
+[data-theme="skeuomorphism"] .suggestion-chip:hover {
+  background: linear-gradient(180deg, #404a59 0%, #2e3642 100%) !important;
+  border-color: #f59e0b !important;
+  color: #fef08a !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.75), 0 0 14px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Recessed Inset Wells (Countersunk Pockets) */
+[data-theme="skeuomorphism"] .cert-card__date,
+[data-theme="skeuomorphism"] .cert-card__spec-header,
+[data-theme="skeuomorphism"] .cert-card__featured-tag,
+[data-theme="skeuomorphism"] .cert-card__specialization-tag,
+[data-theme="skeuomorphism"] .cert-carousel-counter,
+[data-theme="skeuomorphism"] .experience-card__period {
+  background: #111418 !important;
+  border: 1px solid #090b0e !important;
+  border-top: 2px solid #040507 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 
+    inset 0 2px 5px rgba(0, 0, 0, 0.9),
+    0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  color: #f59e0b !important;
+  font-weight: 700 !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* Hardware Push-Button Filters (Dark Mode) */
+[data-theme="skeuomorphism"] .cert-filter-btn,
+[data-theme="skeuomorphism"] .projects__filter-btn,
+[data-theme="skeuomorphism"] .cert-carousel-arrow,
+[data-theme="skeuomorphism"] .cert-lightbox__arrow {
+  background: linear-gradient(180deg, #37404c 0%, #262c35 48%, #1c2128 52%, #222831 100%) !important;
+  border: 1px solid #0d0f12 !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+  border-bottom: 2.5px solid #07090b !important;
+  color: #cbd5e1 !important;
+  font-weight: 700 !important;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
+  transition: all 0.12s ease !important;
+}
+
+[data-theme="skeuomorphism"] .cert-filter-btn:hover,
+[data-theme="skeuomorphism"] .projects__filter-btn:hover,
+[data-theme="skeuomorphism"] .cert-carousel-arrow:hover,
+[data-theme="skeuomorphism"] .cert-lightbox__arrow:hover {
+  transform: translateY(-1px) !important;
+  color: #fef08a !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.35) !important;
+}
+
+[data-theme="skeuomorphism"] .cert-filter-btn--active,
+[data-theme="skeuomorphism"] .projects__filter-btn--active {
+  background: linear-gradient(180deg, #fcd34d 0%, #f59e0b 46%, #d97706 54%, #b45309 100%) !important;
+  border-top: 1.5px solid #fef3c7 !important;
+  border-bottom: 2.5px solid #78350f !important;
+  color: #1a0f00 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Physical Hardware Toggles (Audio & Chatbot) */
+[data-theme="skeuomorphism"] .music-toggle,
+[data-theme="skeuomorphism"] .chatbot-toggler,
+[data-theme="skeuomorphism"] .navbar__mode-btn,
+[data-theme="skeuomorphism"] .navbar__theme-btn {
+  background: linear-gradient(180deg, #37404d 0%, #252b34 48%, #1a1f26 52%, #222830 100%) !important;
+  border: 1px solid #0c0e11 !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.32) !important;
+  border-bottom: 2.5px solid #07080a !important;
+  box-shadow: 
+    0 8px 18px rgba(0, 0, 0, 0.75),
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="skeuomorphism"] .music-toggle--playing {
+  border-color: #f59e0b !important;
+  box-shadow: 
+    0 8px 18px rgba(0, 0, 0, 0.75),
+    0 0 18px rgba(245, 158, 11, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.6) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -857,6 +1467,111 @@
   color: #00f5d4 !important;
 }
 
+/* Pixelatte Contact Page & Message Component */
+[data-theme="pixelatte"] .contact__form-col,
+[data-theme="pixelatte"] .contact-channel-card {
+  border-radius: 0px !important;
+  border: 3px solid #facc15 !important;
+  box-shadow: 6px 6px 0px #000000 !important;
+  background: #140b33 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[data-theme="pixelatte"] .contact-channel-card:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 8px 8px 0px #000000 !important;
+  border-color: #00f5d4 !important;
+}
+
+[data-theme="pixelatte"] .contact-channel-icon {
+  border-radius: 0px !important;
+  border: 2px solid #facc15 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+  background: #1c0e48 !important;
+  color: #facc15 !important;
+}
+
+[data-theme="pixelatte"] .contact__info-header h3 {
+  font-family: var(--font-heading) !important;
+  color: #ffff00 !important;
+}
+
+[data-theme="pixelatte"] .form-label {
+  font-family: var(--font-mono) !important;
+  color: #ffff00 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  font-size: 0.8rem !important;
+}
+
+[data-theme="pixelatte"] .form-input,
+[data-theme="pixelatte"] .form-textarea {
+  border-radius: 0px !important;
+  border: 2px solid #facc15 !important;
+  background: #1c0e48 !important;
+  color: #ffff00 !important;
+  box-shadow: inset 2px 2px 0px #000000 !important;
+  font-family: var(--font-mono) !important;
+}
+
+[data-theme="pixelatte"] .form-input:focus,
+[data-theme="pixelatte"] .form-textarea:focus {
+  border-color: #00f5d4 !important;
+  box-shadow: inset 2px 2px 0px #000000, 0 0 0 1px #00f5d4 !important;
+}
+
+[data-theme="pixelatte"] .form-alert {
+  border-radius: 0px !important;
+  font-family: var(--font-mono) !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+}
+
+[data-theme="pixelatte"] .form-alert--success {
+  background: #140b33 !important;
+  border: 2px solid #00f5d4 !important;
+  color: #00f5d4 !important;
+}
+
+[data-theme="pixelatte"] .form-alert--error {
+  background: #2a0b16 !important;
+  border: 2px solid #ff0055 !important;
+  color: #ff0055 !important;
+}
+
+/* Pixelatte Experience Lightbox Modal & Media */
+[data-theme="pixelatte"] .experience-lightbox__content {
+  border-radius: 0px !important;
+  border: 4px solid #facc15 !important;
+  background: #140b33 !important;
+  box-shadow: 8px 8px 0px #000000 !important;
+}
+
+[data-theme="pixelatte"] .experience-lightbox__bar {
+  background: #1c0e48 !important;
+  border-top: 3px solid #facc15 !important;
+}
+
+[data-theme="pixelatte"] .experience-lightbox__close {
+  border-radius: 0px !important;
+  border: 2px solid #facc15 !important;
+  background: #140b33 !important;
+  color: #facc15 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+[data-theme="pixelatte"] .experience-card__media-box {
+  border-radius: 0px !important;
+  border: 2px solid #facc15 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+}
+
+[data-theme="pixelatte"] .experience-card__icon-box {
+  border-radius: 0px !important;
+  border: 2px solid #facc15 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
 /* ==========================================================================
    WHITE / LIGHT MODE COUNTERPARTS FOR ALL THEMES
    Applied automatically when [data-mode="light"]
@@ -939,6 +1654,34 @@
 [data-mode="light"] .navbar__mobile-mode-btn:hover {
   background: rgba(0, 0, 0, 0.08) !important;
   border-color: var(--accent-neon) !important;
+}
+
+[data-mode="light"] .contact__form-col,
+[data-mode="light"] .contact-channel-card {
+  background: var(--bg-surface) !important;
+  border-color: var(--glass-border) !important;
+}
+
+[data-mode="light"] .contact-channel-icon {
+  background: var(--bg-secondary) !important;
+  border-color: var(--glass-border) !important;
+}
+
+[data-mode="light"] .form-label {
+  color: var(--text-primary) !important;
+}
+
+[data-mode="light"] .form-input,
+[data-mode="light"] .form-textarea {
+  background: var(--bg-secondary) !important;
+  border-color: var(--glass-border) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-mode="light"] .form-input:focus,
+[data-mode="light"] .form-textarea:focus {
+  border-color: var(--accent-neon) !important;
+  background: #ffffff !important;
 }
 
 [data-mode="light"] .navbar__mobile-drawer,
@@ -1032,13 +1775,13 @@
   --bg-primary: #f1f5f9;
   --bg-secondary: #e2e8f0;
   --bg-tertiary: #cbd5e1;
-  --bg-surface: rgba(255, 255, 255, 0.7);
-  --bg-surface-elevated: rgba(255, 255, 255, 0.85);
-  --bg-surface-hover: rgba(255, 255, 255, 0.95);
+  --bg-surface: rgba(255, 255, 255, 0.38);
+  --bg-surface-elevated: rgba(255, 255, 255, 0.52);
+  --bg-surface-hover: rgba(255, 255, 255, 0.65);
 
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-bg-subtle: rgba(56, 189, 248, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-bg-subtle: rgba(56, 189, 248, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.75);
   --glass-border-hover: rgba(2, 132, 199, 0.65);
   --glass-border-active: rgba(147, 51, 234, 0.85);
 
@@ -1062,7 +1805,7 @@
   --gradient-accent: linear-gradient(135deg, #0284c7 0%, #9333ea 50%, #db2777 100%);
   --gradient-emerald: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
   --gradient-subtle: linear-gradient(135deg, rgba(2, 132, 199, 0.12) 0%, rgba(168, 85, 247, 0.08) 100%);
-  --gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+  --gradient-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.35) 100%);
   --gradient-glow: radial-gradient(circle, rgba(2, 132, 199, 0.2) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 70%);
 
   --bg-gradient: 
@@ -1076,43 +1819,525 @@
   --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.12), 0 0 25px rgba(168, 85, 247, 0.15);
 }
 
+/* Light Mode Liquid Glass Cards & Surfaces */
 [data-mode="light"][data-theme="glassmorphism"] .card,
 [data-mode="light"][data-theme="glassmorphism"] .project-card,
 [data-mode="light"][data-theme="glassmorphism"] .cert-card,
 [data-mode="light"][data-theme="glassmorphism"] .experience-card,
 [data-mode="light"][data-theme="glassmorphism"] .skill-category,
 [data-mode="light"][data-theme="glassmorphism"] .about__card,
+[data-mode="light"][data-theme="glassmorphism"] .contact__form-col,
+[data-mode="light"][data-theme="glassmorphism"] .contact-channel-card,
+[data-mode="light"][data-theme="glassmorphism"] .cert-card__media-box,
+[data-mode="light"][data-theme="glassmorphism"] .experience-lightbox__content,
+[data-mode="light"][data-theme="glassmorphism"] .cert-lightbox__content,
 [data-mode="light"] [data-theme="glassmorphism"] .card,
 [data-mode="light"] [data-theme="glassmorphism"] .project-card,
 [data-mode="light"] [data-theme="glassmorphism"] .cert-card,
 [data-mode="light"] [data-theme="glassmorphism"] .experience-card,
 [data-mode="light"] [data-theme="glassmorphism"] .skill-category,
-[data-mode="light"] [data-theme="glassmorphism"] .about__card {
-  background: rgba(255, 255, 255, 0.72) !important;
+[data-mode="light"] [data-theme="glassmorphism"] .about__card,
+[data-mode="light"] [data-theme="glassmorphism"] .contact__form-col,
+[data-mode="light"] [data-theme="glassmorphism"] .contact-channel-card,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-card__media-box,
+[data-mode="light"] [data-theme="glassmorphism"] .experience-lightbox__content,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-lightbox__content {
+  backdrop-filter: blur(32px) saturate(210%) brightness(105%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(210%) brightness(105%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.52) 0%, rgba(255, 255, 255, 0.24) 42%, rgba(240, 249, 255, 0.42) 80%, rgba(245, 243, 255, 0.32) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  border-top: 2.5px solid #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  border-right: 1.5px solid rgba(255, 255, 255, 0.7) !important;
+  border-bottom: 1.5px solid rgba(203, 213, 225, 0.5) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: 
+    0 20px 48px -10px rgba(15, 23, 42, 0.08),
+    inset 0 1.5px 2px 0 #ffffff,
+    inset 0 -1px 25px 0 rgba(56, 189, 248, 0.07),
+    0 0 30px rgba(56, 189, 248, 0.12) !important;
+}
+
+/* Light Mode Liquid Glass Navbar */
+[data-mode="light"][data-theme="glassmorphism"] .navbar,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar {
+  backdrop-filter: blur(32px) saturate(210%) brightness(105%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(210%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(240, 249, 255, 0.35) 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06), inset 0 -1px 0 #ffffff !important;
+}
+
+/* Light Mode Liquid Glass Dropdown Menu - Crystalline Lens Blur */
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-dropdown,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-dropdown {
+  backdrop-filter: blur(40px) saturate(220%) brightness(105%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(220%) !important;
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.16) 45%, rgba(240, 249, 255, 0.32) 85%, rgba(245, 243, 255, 0.22) 100%) !important;
   border: 1px solid rgba(255, 255, 255, 0.9) !important;
-  border-top: 2px solid #ffffff !important;
-  box-shadow: 0 16px 40px -8px rgba(15, 23, 42, 0.08), 0 0 20px rgba(56, 189, 248, 0.1) !important;
+  border-top: 2.5px solid #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  border-right: 1.5px solid rgba(255, 255, 255, 0.8) !important;
+  border-bottom: 1.5px solid rgba(203, 213, 225, 0.65) !important;
+  box-shadow: 
+    0 25px 65px -12px rgba(15, 23, 42, 0.14),
+    inset 0 2px 2px #ffffff,
+    inset 0 -1px 25px rgba(56, 189, 248, 0.08),
+    0 0 35px rgba(56, 189, 248, 0.15) !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-dropdown-header,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-dropdown-header {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  color: #334155 !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-mode-toggle,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-mode-toggle {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-top: 1.5px solid #ffffff !important;
+  color: #0369a1 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05), inset 0 1px 1px #ffffff !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-mode-toggle:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-mode-toggle:hover {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-option,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-option {
+  border-radius: var(--radius-sm) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-name,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-name {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-desc,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-desc {
+  color: #475569 !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-option:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-option:hover {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  border-top: 1.5px solid #ffffff !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06), inset 0 1px 1px #ffffff !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  transform: translateX(2px) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-option--active,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-option--active {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.18) 0%, rgba(99, 102, 241, 0.12) 100%) !important;
+  border: 1px solid rgba(2, 132, 199, 0.45) !important;
+  border-top: 1.5px solid #ffffff !important;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.16), inset 0 1px 1px #ffffff !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-option--active .navbar__theme-name,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-option--active .navbar__theme-name {
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-option--active .navbar__theme-desc,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-option--active .navbar__theme-desc {
+  color: #0369a1 !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-check,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-check {
+  color: #0284c7 !important;
+  filter: drop-shadow(0 0 6px rgba(2, 132, 199, 0.4)) !important;
+}
+
+/* Light Mode Mobile Drawer Glass Lens */
+[data-mode="light"][data-theme="glassmorphism"] .navbar__mobile-drawer,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__mobile-drawer {
+  backdrop-filter: blur(40px) saturate(220%) brightness(105%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(220%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(240, 249, 255, 0.35) 100%) !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.12), inset 0 1px 2px #ffffff !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .card:hover,
+[data-mode="light"][data-theme="glassmorphism"] .project-card:hover,
+[data-mode="light"][data-theme="glassmorphism"] .cert-card:hover,
+[data-mode="light"][data-theme="glassmorphism"] .contact-channel-card:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .card:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .project-card:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-card:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .contact-channel-card:hover {
+  transform: translateY(-5px) scale(1.008) !important;
+  border-color: rgba(2, 132, 199, 0.55) !important;
+  border-top-color: #ffffff !important;
+  box-shadow: 
+    0 28px 60px -10px rgba(15, 23, 42, 0.16),
+    inset 0 1.5px 2px 0 #ffffff,
+    0 0 40px rgba(2, 132, 199, 0.25) !important;
 }
 
 [data-mode="light"][data-theme="glassmorphism"] .btn.primary,
 [data-mode="light"] [data-theme="glassmorphism"] .btn.primary {
+  background: linear-gradient(135deg, #0284c7 0%, #6366f1 50%, #a855f7 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-top: 1.5px solid #ffffff !important;
+  box-shadow: 0 8px 25px rgba(2, 132, 199, 0.35), inset 0 1px 1px #ffffff !important;
+}
+
+/* Light Mode Liquid Glass Floating Pills, Badges & Tags */
+[data-mode="light"][data-theme="glassmorphism"] .badge,
+[data-mode="light"][data-theme="glassmorphism"] .cert-skill-chip,
+[data-mode="light"][data-theme="glassmorphism"] .tag,
+[data-mode="light"][data-theme="glassmorphism"] .project-card__tag,
+[data-mode="light"][data-theme="glassmorphism"] .suggestion-chip,
+[data-mode="light"][data-theme="glassmorphism"] .cert-card__credential,
+[data-mode="light"][data-theme="glassmorphism"] .cert-card__date,
+[data-mode="light"][data-theme="glassmorphism"] .cert-card__spec-header,
+[data-mode="light"][data-theme="glassmorphism"] .cert-card__featured-tag,
+[data-mode="light"][data-theme="glassmorphism"] .cert-card__specialization-tag,
+[data-mode="light"][data-theme="glassmorphism"] .cert-carousel-counter,
+[data-mode="light"][data-theme="glassmorphism"] .experience-card__period,
+[data-mode="light"] [data-theme="glassmorphism"] .badge,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-skill-chip,
+[data-mode="light"] [data-theme="glassmorphism"] .tag,
+[data-mode="light"] [data-theme="glassmorphism"] .project-card__tag,
+[data-mode="light"] [data-theme="glassmorphism"] .suggestion-chip,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-card__credential,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-card__date,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-card__spec-header,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-card__featured-tag,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-card__specialization-tag,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-carousel-counter,
+[data-mode="light"] [data-theme="glassmorphism"] .experience-card__period {
+  backdrop-filter: blur(20px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(240, 249, 255, 0.72) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  border-top: 2px solid #ffffff !important;
+  border-bottom: 1.5px solid rgba(203, 213, 225, 0.6) !important;
+  color: #0369a1 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06), inset 0 1px 1px #ffffff, 0 0 12px rgba(56, 189, 248, 0.1) !important;
+  border-radius: var(--radius-full) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .badge:hover,
+[data-mode="light"][data-theme="glassmorphism"] .cert-skill-chip:hover,
+[data-mode="light"][data-theme="glassmorphism"] .tag:hover,
+[data-mode="light"][data-theme="glassmorphism"] .project-card__tag:hover,
+[data-mode="light"][data-theme="glassmorphism"] .suggestion-chip:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .badge:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-skill-chip:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .tag:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .project-card__tag:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .suggestion-chip:hover {
   background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%) !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Light Mode Liquid Glass Filter Buttons */
+[data-mode="light"][data-theme="glassmorphism"] .cert-filter-btn,
+[data-mode="light"][data-theme="glassmorphism"] .projects__filter-btn,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-filter-btn,
+[data-mode="light"] [data-theme="glassmorphism"] .projects__filter-btn {
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  border-top: 2px solid #ffffff !important;
+  border-bottom: 1.5px solid rgba(203, 213, 225, 0.6) !important;
+  color: #334155 !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05), inset 0 1px 1px #ffffff !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .cert-filter-btn--active,
+[data-mode="light"][data-theme="glassmorphism"] .projects__filter-btn--active,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-filter-btn--active,
+[data-mode="light"] [data-theme="glassmorphism"] .projects__filter-btn--active {
+  background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ==========================================================================
+   ChatBot Liquid Glass Pure Transparency (Light Mode)
+   ========================================================================== */
+
+/* Floating Launcher Orb (Light Mode) */
+[data-mode="light"][data-theme="glassmorphism"] .chatbot-toggler,
+[data-mode="light"] [data-theme="glassmorphism"] .chatbot-toggler {
+  backdrop-filter: blur(24px) saturate(220%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(220%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(224, 242, 254, 0.6) 50%, rgba(243, 232, 255, 0.65) 100%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+  border-top: 2.5px solid #ffffff !important;
+  color: #0284c7 !important;
+  box-shadow: 
+    0 14px 35px rgba(15, 23, 42, 0.12),
+    inset 0 2px 2px #ffffff,
+    0 0 25px rgba(56, 189, 248, 0.25) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .chatbot-toggler:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .chatbot-toggler:hover {
+  transform: scale(1.1) rotate(5deg) !important;
+  box-shadow: 
+    0 18px 45px rgba(15, 23, 42, 0.16),
+    0 0 35px rgba(2, 132, 199, 0.4),
+    inset 0 2px 2px #ffffff !important;
+}
+
+/* Chatbot Floating Glass Window (Light Mode) - Crystalline Ice Glass */
+[data-mode="light"][data-theme="glassmorphism"] .chatbot,
+[data-mode="light"] [data-theme="glassmorphism"] .chatbot {
+  backdrop-filter: blur(40px) saturate(220%) brightness(105%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(220%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 45%, rgba(240, 249, 255, 0.35) 85%, rgba(245, 243, 255, 0.25) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-top: 2.5px solid #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  border-right: 1.5px solid rgba(255, 255, 255, 0.8) !important;
+  border-bottom: 1.5px solid rgba(203, 213, 225, 0.65) !important;
+  box-shadow: 
+    0 30px 70px -15px rgba(15, 23, 42, 0.12),
+    inset 0 2px 2px #ffffff,
+    inset 0 -1px 25px rgba(56, 189, 248, 0.08),
+    0 0 35px rgba(56, 189, 248, 0.15) !important;
+}
+
+/* Glass Chatbot Header (Light Mode) */
+[data-mode="light"][data-theme="glassmorphism"] .chatbot-header,
+[data-mode="light"] [data-theme="glassmorphism"] .chatbot-header {
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Circular Frosted Close Button (Light Mode) */
+[data-mode="light"][data-theme="glassmorphism"] .chatbot-close,
+[data-mode="light"] [data-theme="glassmorphism"] .chatbot-close {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-top: 1.5px solid #ffffff !important;
+  color: #0369a1 !important;
+  box-shadow: inset 0 1px 1px #ffffff !important;
+  transition: all var(--transition-fast) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .chatbot-close:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .chatbot-close:hover {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  transform: scale(1.1) !important;
+}
+
+/* Messages Container - Transparent so Background Content is Visible */
+[data-mode="light"][data-theme="glassmorphism"] .chatbot-messages,
+[data-mode="light"] [data-theme="glassmorphism"] .chatbot-messages {
+  background: transparent !important;
+}
+
+/* Translucent Glass Message Bubbles (Light Mode) */
+[data-mode="light"][data-theme="glassmorphism"] .message.bot,
+[data-mode="light"] [data-theme="glassmorphism"] .message.bot {
+  background: rgba(255, 255, 255, 0.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-top: 1.5px solid #ffffff !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05), inset 0 1px 1px #ffffff !important;
+  color: #0f172a !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .message.user,
+[data-mode="light"] [data-theme="glassmorphism"] .message.user {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.85) 0%, rgba(99, 102, 241, 0.85) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-top: 1.5px solid #ffffff !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.3), inset 0 1px 1px #ffffff !important;
   color: #ffffff !important;
 }
 
-/* 3. SKEUOMORPHISM (Light Mode) */
+/* 3D Rich Cards Inside Chat (Light Mode) */
+[data-mode="light"][data-theme="glassmorphism"] .chat-3d-card,
+[data-mode="light"][data-theme="glassmorphism"] .chat-skill-category,
+[data-mode="light"][data-theme="glassmorphism"] .chat-doc-card,
+[data-mode="light"][data-theme="glassmorphism"] .chat-exp-card,
+[data-mode="light"] [data-theme="glassmorphism"] .chat-3d-card,
+[data-mode="light"] [data-theme="glassmorphism"] .chat-skill-category,
+[data-mode="light"] [data-theme="glassmorphism"] .chat-doc-card,
+[data-mode="light"] [data-theme="glassmorphism"] .chat-exp-card {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-top: 2px solid #ffffff !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05), inset 0 1px 1px #ffffff !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .chat-3d-card:hover,
+[data-mode="light"][data-theme="glassmorphism"] .chat-skill-category:hover,
+[data-mode="light"][data-theme="glassmorphism"] .chat-doc-card:hover,
+[data-mode="light"][data-theme="glassmorphism"] .chat-exp-card:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .chat-3d-card:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .chat-skill-category:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .chat-doc-card:hover,
+[data-mode="light"] [data-theme="glassmorphism"] .chat-exp-card:hover {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.2), inset 0 1px 1px #ffffff !important;
+}
+
+/* Glass Input Bar (Light Mode) */
+[data-mode="light"][data-theme="glassmorphism"] .chatbot-input,
+[data-mode="light"] [data-theme="glassmorphism"] .chatbot-input {
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .chatbot-input input,
+[data-mode="light"] [data-theme="glassmorphism"] .chatbot-input input {
+  background: rgba(255, 255, 255, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-top: 1.5px solid #ffffff !important;
+  color: #0f172a !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .chatbot-input input:focus,
+[data-mode="light"] [data-theme="glassmorphism"] .chatbot-input input:focus {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 20px rgba(2, 132, 199, 0.25), inset 0 1px 2px #ffffff !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .chatbot-send-btn,
+[data-mode="light"] [data-theme="glassmorphism"] .chatbot-send-btn {
+  background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-top: 1.5px solid #ffffff !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.35), inset 0 1px 1px #ffffff !important;
+}
+
+/* Light Mode Liquid Glass Inputs */
+[data-mode="light"][data-theme="glassmorphism"] .form-input,
+[data-mode="light"][data-theme="glassmorphism"] .form-textarea,
+[data-mode="light"][data-theme="glassmorphism"] .cert-search-input,
+[data-mode="light"] [data-theme="glassmorphism"] .form-input,
+[data-mode="light"] [data-theme="glassmorphism"] .form-textarea,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-search-input {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  border-top: 1.5px solid #ffffff !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  color: #0f172a !important;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .form-input:focus,
+[data-mode="light"][data-theme="glassmorphism"] .form-textarea:focus,
+[data-mode="light"][data-theme="glassmorphism"] .cert-search-input:focus,
+[data-mode="light"] [data-theme="glassmorphism"] .form-input:focus,
+[data-mode="light"] [data-theme="glassmorphism"] .form-textarea:focus,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-search-input:focus {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 20px rgba(2, 132, 199, 0.25), inset 0 1px 2px #ffffff !important;
+}
+
+/* Translucent Glass Modal Lightboxes (Light Mode) */
+[data-mode="light"][data-theme="glassmorphism"] .cert-lightbox,
+[data-mode="light"][data-theme="glassmorphism"] .experience-lightbox,
+[data-mode="light"] [data-theme="glassmorphism"] .cert-lightbox,
+[data-mode="light"] [data-theme="glassmorphism"] .experience-lightbox {
+  background: rgba(241, 245, 249, 0.65) !important;
+  backdrop-filter: blur(24px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+}
+
+/* Light Mode Liquid Glass Floating Controls */
+[data-mode="light"][data-theme="glassmorphism"] .music-toggle,
+[data-mode="light"][data-theme="glassmorphism"] .navbar__mode-btn,
+[data-mode="light"][data-theme="glassmorphism"] .navbar__theme-btn,
+[data-mode="light"] [data-theme="glassmorphism"] .music-toggle,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__mode-btn,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-btn {
+  backdrop-filter: blur(24px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(240, 249, 255, 0.45) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  border-top: 1.5px solid #ffffff !important;
+  box-shadow: 
+    0 12px 30px rgba(15, 23, 42, 0.1),
+    inset 0 1px 2px #ffffff,
+    0 0 20px rgba(56, 189, 248, 0.15) !important;
+  color: #0284c7 !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .music-toggle--playing,
+[data-mode="light"] [data-theme="glassmorphism"] .music-toggle--playing {
+  border-color: #0284c7 !important;
+  box-shadow: 
+    0 12px 30px rgba(15, 23, 42, 0.1),
+    0 0 20px rgba(2, 132, 199, 0.35),
+    inset 0 1px 2px #ffffff !important;
+}
+
+/* 3. SKEUOMORPHISM (Light Mode -> Tactile 3D Physical Relief & Brushed Alloy) */
 [data-mode="light"][data-theme="skeuomorphism"],
 [data-mode="light"] [data-theme="skeuomorphism"] {
-  --bg-primary: #e8ebf0;
-  --bg-secondary: #dfe2e8;
-  --bg-tertiary: #d4d8e0;
-  --bg-surface: #f0f2f6;
-  --bg-surface-elevated: #f7f8fa;
-  --bg-surface-hover: #e5e8ee;
+  --bg-primary: #e6e9f0;
+  --bg-secondary: #dde1e9;
+  --bg-tertiary: #d2d7e1;
+  --bg-surface: #eff1f5;
+  --bg-surface-elevated: #f6f8fb;
+  --bg-surface-hover: #e4e7ee;
 
-  --glass-bg: #edf0f5;
-  --glass-bg-subtle: #e2e5eb;
-  --glass-border: #c8ccd6;
+  --glass-bg: #eceff4;
+  --glass-bg-subtle: #e0e4eb;
+  --glass-border: #c4c9d4;
   --glass-border-hover: #d97706;
   --glass-border-active: #b45309;
 
@@ -1131,7 +2356,7 @@
   --accent-amber: #d97706;
   --accent-rose: #dc2626;
 
-  --gradient-primary: linear-gradient(180deg, #f59e0b 0%, #b45309 100%);
+  --gradient-primary: linear-gradient(180deg, #fcd34d 0%, #f59e0b 46%, #d97706 54%, #b45309 100%);
   --gradient-secondary: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%);
   --gradient-accent: linear-gradient(180deg, #d97706 0%, #c2410c 100%);
   --gradient-emerald: linear-gradient(180deg, #b45309 0%, #78350f 100%);
@@ -1142,46 +2367,356 @@
   --bg-gradient: 
     radial-gradient(ellipse 90% 60% at 50% -10%, rgba(217, 119, 6, 0.1), transparent 60%),
     radial-gradient(circle at 85% 80%, rgba(218, 222, 230, 0.9), transparent 50%),
-    radial-gradient(circle at 10% 40%, rgba(226, 230, 238, 0.9), transparent 50%);
+    radial-gradient(circle at 10% 40%, rgba(226, 230, 238, 0.9), transparent 50%),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.015) 2px, rgba(0, 0, 0, 0.015) 4px);
 
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 1px 0 #ffffff;
   --shadow-md: 0 8px 18px rgba(0, 0, 0, 0.12), inset 0 1px 1px #ffffff, inset 0 -1px 2px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 18px 36px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.08), inset 0 1px 1px #ffffff;
 }
 
+/* Skeuomorphism Light Mode 3D Texturized Physical Cards & Surfaces */
 [data-mode="light"][data-theme="skeuomorphism"] .card,
 [data-mode="light"][data-theme="skeuomorphism"] .project-card,
 [data-mode="light"][data-theme="skeuomorphism"] .cert-card,
 [data-mode="light"][data-theme="skeuomorphism"] .experience-card,
 [data-mode="light"][data-theme="skeuomorphism"] .skill-category,
 [data-mode="light"][data-theme="skeuomorphism"] .about__card,
+[data-mode="light"][data-theme="skeuomorphism"] .contact__form-col,
+[data-mode="light"][data-theme="skeuomorphism"] .contact-channel-card,
 [data-mode="light"][data-theme="skeuomorphism"] .navbar,
+[data-mode="light"][data-theme="skeuomorphism"] .experience-lightbox__content,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-lightbox__content,
 [data-mode="light"] [data-theme="skeuomorphism"] .card,
 [data-mode="light"] [data-theme="skeuomorphism"] .project-card,
 [data-mode="light"] [data-theme="skeuomorphism"] .cert-card,
 [data-mode="light"] [data-theme="skeuomorphism"] .experience-card,
 [data-mode="light"] [data-theme="skeuomorphism"] .skill-category,
 [data-mode="light"] [data-theme="skeuomorphism"] .about__card,
-[data-mode="light"] [data-theme="skeuomorphism"] .navbar {
-  background: linear-gradient(180deg, #ffffff 0%, #e8ebf1 100%) !important;
-  border: 1px solid #c2c7d2 !important;
-  border-top: 1px solid #ffffff !important;
-  border-bottom: 1px solid #b2b7c4 !important;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04), inset 0 1px 0 #ffffff !important;
+[data-mode="light"] [data-theme="skeuomorphism"] .contact__form-col,
+[data-mode="light"] [data-theme="skeuomorphism"] .contact-channel-card,
+[data-mode="light"] [data-theme="skeuomorphism"] .navbar,
+[data-mode="light"] [data-theme="skeuomorphism"] .experience-lightbox__content,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-lightbox__content {
+  background: 
+    linear-gradient(180deg, #ffffff 0%, #f6f8fb 35%, #ebf0f7 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 0, 0, 0.012) 3px, rgba(0, 0, 0, 0.012) 6px) !important;
+  border: 1px solid #c2c9d6 !important;
+  border-top: 2.5px solid #ffffff !important;
+  border-left: 1.5px solid #ffffff !important;
+  border-right: 1.5px solid #b6beca !important;
+  border-bottom: 3.5px solid #9aa3b2 !important;
+  box-shadow: 
+    0 18px 36px -6px rgba(15, 23, 42, 0.12),
+    0 4px 10px rgba(15, 23, 42, 0.06),
+    inset 0 1.5px 1.5px #ffffff,
+    inset 0 -2px 3px rgba(15, 23, 42, 0.07) !important;
+}
+
+[data-mode="light"][data-theme="skeuomorphism"] .card:hover,
+[data-mode="light"][data-theme="skeuomorphism"] .project-card:hover,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-card:hover,
+[data-mode="light"][data-theme="skeuomorphism"] .contact-channel-card:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .card:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .project-card:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-card:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .contact-channel-card:hover {
+  transform: translateY(-3px) !important;
+  border-top-color: #ffffff !important;
+  box-shadow: 
+    0 22px 44px -6px rgba(15, 23, 42, 0.16),
+    0 6px 14px rgba(15, 23, 42, 0.08),
+    inset 0 1.5px 1.5px #ffffff,
+    inset 0 -2px 3px rgba(15, 23, 42, 0.07),
+    0 0 18px rgba(217, 119, 6, 0.15) !important;
+}
+
+[data-mode="light"][data-theme="skeuomorphism"] .section__title,
+[data-mode="light"][data-theme="skeuomorphism"] .hero__name,
+[data-mode="light"][data-theme="skeuomorphism"] .project-card__title,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-card__title,
+[data-mode="light"][data-theme="skeuomorphism"] .experience-card__role,
+[data-mode="light"][data-theme="skeuomorphism"] .contact__info-header h3,
+[data-mode="light"] [data-theme="skeuomorphism"] .section__title,
+[data-mode="light"] [data-theme="skeuomorphism"] .hero__name,
+[data-mode="light"] [data-theme="skeuomorphism"] .project-card__title,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-card__title,
+[data-mode="light"] [data-theme="skeuomorphism"] .experience-card__role,
+[data-mode="light"] [data-theme="skeuomorphism"] .contact__info-header h3 {
+  text-shadow: 0 1px 0 #ffffff, 0 -1px 1px rgba(0, 0, 0, 0.15) !important;
 }
 
 [data-mode="light"][data-theme="skeuomorphism"] .btn,
 [data-mode="light"] [data-theme="skeuomorphism"] .btn {
+  background: linear-gradient(180deg, #ffffff 0%, #edf1f7 48%, #dfe4ed 52%, #e5eaf2 100%) !important;
   border: 1px solid #b8bdc8 !important;
-  border-top: 1px solid #ffffff !important;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 #ffffff, inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+  border-top: 1.5px solid #ffffff !important;
+  border-bottom: 2.5px solid #9fa4b0 !important;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px #ffffff,
+    inset 0 -1px 2px rgba(0, 0, 0, 0.08) !important;
+  color: #1e2430 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 0 #ffffff !important;
 }
 
 [data-mode="light"][data-theme="skeuomorphism"] .btn.primary,
 [data-mode="light"] [data-theme="skeuomorphism"] .btn.primary {
-  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%) !important;
-  color: #ffffff !important;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3) !important;
+  background: linear-gradient(180deg, #fcd34d 0%, #f59e0b 46%, #d97706 54%, #b45309 100%) !important;
+  border: 1px solid #b45309 !important;
+  border-top: 2px solid #fef3c7 !important;
+  border-bottom: 3.5px solid #78350f !important;
+  border-left: 1px solid #b45309 !important;
+  border-right: 1px solid #b45309 !important;
+  color: #1a0f00 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 
+    0 6px 14px rgba(217, 119, 6, 0.4),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 3px rgba(120, 53, 15, 0.5) !important;
+}
+
+[data-mode="light"][data-theme="skeuomorphism"] .btn:active,
+[data-mode="light"] [data-theme="skeuomorphism"] .btn:active {
+  transform: translateY(2px) !important;
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    inset 0 3px 5px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* Stamped Metal Badges, Chips & Tags (Light Mode - Tactile Aluminum Embossed) */
+[data-mode="light"][data-theme="skeuomorphism"] .badge,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-skill-chip,
+[data-mode="light"][data-theme="skeuomorphism"] .tag,
+[data-mode="light"][data-theme="skeuomorphism"] .project-card__tag,
+[data-mode="light"][data-theme="skeuomorphism"] .suggestion-chip,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-card__credential,
+[data-mode="light"] [data-theme="skeuomorphism"] .badge,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-skill-chip,
+[data-mode="light"] [data-theme="skeuomorphism"] .tag,
+[data-mode="light"] [data-theme="skeuomorphism"] .project-card__tag,
+[data-mode="light"] [data-theme="skeuomorphism"] .suggestion-chip,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-card__credential {
+  background: linear-gradient(180deg, #ffffff 0%, #edf1f7 48%, #dfe4ed 52%, #e5eaf2 100%) !important;
+  border: 1px solid #c2c9d6 !important;
+  border-top: 1.5px solid #ffffff !important;
+  border-bottom: 2.5px solid #9fa9b7 !important;
+  border-left: 1px solid #ffffff !important;
+  border-right: 1px solid #b4bcc8 !important;
+  box-shadow: 
+    0 2px 5px rgba(15, 23, 42, 0.12),
+    0 1px 2px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 #ffffff !important;
+  border-radius: var(--radius-sm) !important;
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 0 #ffffff !important;
+  transition: all var(--transition-fast) !important;
+}
+
+[data-mode="light"][data-theme="skeuomorphism"] .badge:hover,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-skill-chip:hover,
+[data-mode="light"][data-theme="skeuomorphism"] .tag:hover,
+[data-mode="light"][data-theme="skeuomorphism"] .project-card__tag:hover,
+[data-mode="light"][data-theme="skeuomorphism"] .suggestion-chip:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .badge:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-skill-chip:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .tag:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .project-card__tag:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .suggestion-chip:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #fef3c7 48%, #fde68a 52%, #fef3c7 100%) !important;
+  border-color: #d97706 !important;
+  color: #92400e !important;
+  box-shadow: 0 3px 8px rgba(217, 119, 6, 0.25), inset 0 1px 0 #ffffff !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Recessed Inset Wells (Light Mode - Countersunk Grooves) */
+[data-mode="light"][data-theme="skeuomorphism"] .cert-card__date,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-card__spec-header,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-card__featured-tag,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-card__specialization-tag,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-carousel-counter,
+[data-mode="light"][data-theme="skeuomorphism"] .experience-card__period,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-card__date,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-card__spec-header,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-card__featured-tag,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-card__specialization-tag,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-carousel-counter,
+[data-mode="light"] [data-theme="skeuomorphism"] .experience-card__period {
+  background: linear-gradient(180deg, #e4e8f1 0%, #edf1f8 100%) !important;
+  border: 1px solid #bcc4d2 !important;
+  border-top: 1.5px solid #9aa3b2 !important;
+  border-bottom: 1px solid #ffffff !important;
+  box-shadow: 
+    inset 0 2px 4px rgba(15, 23, 42, 0.14),
+    0 1px 0 #ffffff !important;
+  color: #334155 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 0 #ffffff !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* Hardware Push-Button Filters (Light Mode) */
+[data-mode="light"][data-theme="skeuomorphism"] .cert-filter-btn,
+[data-mode="light"][data-theme="skeuomorphism"] .projects__filter-btn,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-carousel-arrow,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-lightbox__arrow,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-filter-btn,
+[data-mode="light"] [data-theme="skeuomorphism"] .projects__filter-btn,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-carousel-arrow,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-lightbox__arrow {
+  background: linear-gradient(180deg, #ffffff 0%, #edf1f7 48%, #dfe4ed 52%, #e5eaf2 100%) !important;
+  border: 1px solid #b8bdc8 !important;
+  border-top: 1.5px solid #ffffff !important;
+  border-bottom: 2.5px solid #9fa4b0 !important;
+  color: #1e2430 !important;
+  font-weight: 700 !important;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px #ffffff !important;
+  transition: all 0.12s ease !important;
+}
+
+[data-mode="light"][data-theme="skeuomorphism"] .cert-filter-btn:hover,
+[data-mode="light"][data-theme="skeuomorphism"] .projects__filter-btn:hover,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-carousel-arrow:hover,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-lightbox__arrow:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-filter-btn:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .projects__filter-btn:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-carousel-arrow:hover,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-lightbox__arrow:hover {
+  transform: translateY(-1px) !important;
+  color: #b45309 !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.14), inset 0 1px 1px #ffffff !important;
+}
+
+[data-mode="light"][data-theme="skeuomorphism"] .cert-filter-btn--active,
+[data-mode="light"][data-theme="skeuomorphism"] .projects__filter-btn--active,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-filter-btn--active,
+[data-mode="light"] [data-theme="skeuomorphism"] .projects__filter-btn--active {
+  background: linear-gradient(180deg, #fcd34d 0%, #f59e0b 46%, #d97706 54%, #b45309 100%) !important;
+  border-top: 1.5px solid #fef3c7 !important;
+  border-bottom: 2.5px solid #78350f !important;
+  color: #1a0f00 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Recessed Inset Form Inputs, Search & Wells (Light Mode) */
+[data-mode="light"][data-theme="skeuomorphism"] .form-input,
+[data-mode="light"][data-theme="skeuomorphism"] .form-textarea,
+[data-mode="light"][data-theme="skeuomorphism"] .chatbot-input input,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-search-input,
+[data-mode="light"] [data-theme="skeuomorphism"] .form-input,
+[data-mode="light"] [data-theme="skeuomorphism"] .form-textarea,
+[data-mode="light"] [data-theme="skeuomorphism"] .chatbot-input input,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-search-input {
+  background: #eaedf4 !important;
+  border: 1px solid #b8c0cd !important;
+  border-top: 2px solid #9ba4b3 !important;
+  border-bottom: 1px solid #ffffff !important;
+  box-shadow: 
+    inset 0 3px 6px rgba(15, 23, 42, 0.15),
+    inset 0 1px 2px rgba(15, 23, 42, 0.12),
+    0 1px 0 #ffffff !important;
+  border-radius: var(--radius-sm) !important;
+  color: #1e2430 !important;
+}
+
+[data-mode="light"][data-theme="skeuomorphism"] .form-input:focus,
+[data-mode="light"][data-theme="skeuomorphism"] .form-textarea:focus,
+[data-mode="light"][data-theme="skeuomorphism"] .chatbot-input input:focus,
+[data-mode="light"][data-theme="skeuomorphism"] .cert-search-input:focus,
+[data-mode="light"] [data-theme="skeuomorphism"] .form-input:focus,
+[data-mode="light"] [data-theme="skeuomorphism"] .form-textarea:focus,
+[data-mode="light"] [data-theme="skeuomorphism"] .chatbot-input input:focus,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-search-input:focus {
+  border-color: #d97706 !important;
+  box-shadow: 
+    inset 0 2px 4px rgba(15, 23, 42, 0.15),
+    0 0 10px rgba(217, 119, 6, 0.35),
+    0 1px 0 #ffffff !important;
+}
+
+/* Light Mode Hardware Console (Chatbot Window & Controls) */
+[data-mode="light"][data-theme="skeuomorphism"] .chatbot,
+[data-mode="light"] [data-theme="skeuomorphism"] .chatbot {
+  background: linear-gradient(180deg, #ffffff 0%, #f4f6fa 40%, #e6eaf1 100%) !important;
+  border: 1px solid #c2c9d6 !important;
+  border-top: 2.5px solid #ffffff !important;
+  border-bottom: 3.5px solid #9aa3b2 !important;
+  box-shadow: 
+    0 25px 50px rgba(15, 23, 42, 0.2),
+    inset 0 1.5px 1.5px #ffffff !important;
+}
+
+[data-mode="light"][data-theme="skeuomorphism"] .chatbot-header,
+[data-mode="light"] [data-theme="skeuomorphism"] .chatbot-header {
+  background: linear-gradient(180deg, #f6f8fb 0%, #e8ecf4 100%) !important;
+  border-bottom: 2px solid #b8c0cd !important;
+}
+
+[data-mode="light"][data-theme="skeuomorphism"] .message.bot,
+[data-mode="light"] [data-theme="skeuomorphism"] .message.bot {
+  background: linear-gradient(180deg, #ffffff 0%, #f0f3f8 100%) !important;
+  border: 1px solid #c8cfdc !important;
+  border-top: 1.5px solid #ffffff !important;
+  border-bottom: 2px solid #aeb7c6 !important;
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.08), inset 0 1px 0 #ffffff !important;
+  color: #1e2430 !important;
+}
+
+[data-mode="light"][data-theme="skeuomorphism"] .message.user,
+[data-mode="light"] [data-theme="skeuomorphism"] .message.user {
+  background: linear-gradient(180deg, #fcd34d 0%, #f59e0b 46%, #d97706 54%, #b45309 100%) !important;
+  border: 1px solid #b45309 !important;
+  border-top: 1.5px solid #fef3c7 !important;
+  border-bottom: 2.5px solid #78350f !important;
+  color: #1a0f00 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 3px 8px rgba(217, 119, 6, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Light Mode Hardware Toggles (Audio, Chatbot, Mode & Theme) */
+[data-mode="light"][data-theme="skeuomorphism"] .music-toggle,
+[data-mode="light"][data-theme="skeuomorphism"] .chatbot-toggler,
+[data-mode="light"][data-theme="skeuomorphism"] .navbar__mode-btn,
+[data-mode="light"][data-theme="skeuomorphism"] .navbar__theme-btn,
+[data-mode="light"] [data-theme="skeuomorphism"] .music-toggle,
+[data-mode="light"] [data-theme="skeuomorphism"] .chatbot-toggler,
+[data-mode="light"] [data-theme="skeuomorphism"] .navbar__mode-btn,
+[data-mode="light"] [data-theme="skeuomorphism"] .navbar__theme-btn {
+  background: linear-gradient(180deg, #ffffff 0%, #edf1f7 48%, #dfe4ed 52%, #e5eaf2 100%) !important;
+  border: 1px solid #b8bdc8 !important;
+  border-top: 1.5px solid #ffffff !important;
+  border-bottom: 2.5px solid #9fa4b0 !important;
+  box-shadow: 
+    0 6px 14px rgba(15, 23, 42, 0.12),
+    inset 0 1px 1px #ffffff,
+    inset 0 -1px 2px rgba(0, 0, 0, 0.08) !important;
+  color: #1e2430 !important;
+}
+
+[data-mode="light"][data-theme="skeuomorphism"] .music-toggle--playing,
+[data-mode="light"] [data-theme="skeuomorphism"] .music-toggle--playing {
+  border-color: #d97706 !important;
+  box-shadow: 
+    0 6px 14px rgba(15, 23, 42, 0.12),
+    0 0 14px rgba(217, 119, 6, 0.35),
+    inset 0 1px 1px #ffffff,
+    inset 0 -1px 2px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Tactile Media Boxes */
+[data-mode="light"][data-theme="skeuomorphism"] .cert-card__media-box,
+[data-mode="light"][data-theme="skeuomorphism"] .experience-card__media-box,
+[data-mode="light"] [data-theme="skeuomorphism"] .cert-card__media-box,
+[data-mode="light"] [data-theme="skeuomorphism"] .experience-card__media-box {
+  background: #eaedf4 !important;
+  border-bottom: 2px solid #b8c0cd !important;
+  box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.1) !important;
 }
 
 /* 4. LUXURY DARK GOLD (Light Mode -> Champagne & Royal Gold) */
@@ -1512,6 +3047,319 @@
   background: #ffffff !important;
   color: #007769 !important;
   border: 3px solid #007769 !important;
+}
+
+/* Pixelatte Light Mode Audio Floating Button - Solid Shadow & Frame */
+[data-mode="light"][data-theme="pixelatte"] .music-toggle,
+[data-mode="light"] [data-theme="pixelatte"] .music-toggle {
+  border-radius: 0px !important;
+  border: 3px solid #1f1d16 !important;
+  background: #ffffff !important;
+  color: #1f1d16 !important;
+  box-shadow: 5px 5px 0px #1f1d16 !important;
+  font-family: var(--font-mono) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .music-toggle:hover,
+[data-mode="light"] [data-theme="pixelatte"] .music-toggle:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 7px 7px 0px #1f1d16 !important;
+  border-color: #1f1d16 !important;
+  background: #fdfbf7 !important;
+  color: #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .music-toggle:active,
+[data-mode="light"] [data-theme="pixelatte"] .music-toggle:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .music-toggle--playing,
+[data-mode="light"] [data-theme="pixelatte"] .music-toggle--playing {
+  border-color: #1f1d16 !important;
+  background: #fef08a !important;
+  color: #1f1d16 !important;
+  box-shadow: 5px 5px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .music-toggle--playing:hover,
+[data-mode="light"] [data-theme="pixelatte"] .music-toggle--playing:hover {
+  box-shadow: 7px 7px 0px #1f1d16 !important;
+  transform: translate(-2px, -2px) !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .sound-bar,
+[data-mode="light"] [data-theme="pixelatte"] .sound-bar {
+  border-radius: 0px !important;
+  background: #1f1d16 !important;
+}
+
+/* Pixelatte Light Mode Chatbot - Thick Border & Solid Shadow */
+[data-mode="light"][data-theme="pixelatte"] .chatbot-toggler,
+[data-mode="light"] [data-theme="pixelatte"] .chatbot-toggler {
+  border-radius: 0px !important;
+  border: 3px solid #1f1d16 !important;
+  background: #f59e0b !important;
+  color: #1f1d16 !important;
+  box-shadow: 5px 5px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .chatbot-toggler:hover,
+[data-mode="light"] [data-theme="pixelatte"] .chatbot-toggler:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 7px 7px 0px #1f1d16 !important;
+  background: #fbbf24 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .chatbot,
+[data-mode="light"] [data-theme="pixelatte"] .chatbot {
+  border-radius: 0px !important;
+  border: 4px solid #1f1d16 !important;
+  background: #ffffff !important;
+  box-shadow: 8px 8px 0px #1f1d16 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .chatbot-header,
+[data-mode="light"] [data-theme="pixelatte"] .chatbot-header {
+  border-radius: 0px !important;
+  border-bottom: 3px solid #1f1d16 !important;
+  background: #f4f0e6 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .chatbot-header__title h3,
+[data-mode="light"] [data-theme="pixelatte"] .chatbot-header__title h3 {
+  font-family: var(--font-mono) !important;
+  color: #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .chatbot-close,
+[data-mode="light"] [data-theme="pixelatte"] .chatbot-close {
+  border-radius: 0px !important;
+  border: 2px solid #1f1d16 !important;
+  background: #ffffff !important;
+  color: #1f1d16 !important;
+  box-shadow: 2px 2px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .chatbot-close:hover,
+[data-mode="light"] [data-theme="pixelatte"] .chatbot-close:hover {
+  background: #f59e0b !important;
+  color: #1f1d16 !important;
+  box-shadow: 3px 3px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .chatbot-messages,
+[data-mode="light"] [data-theme="pixelatte"] .chatbot-messages {
+  background: #faf8f2 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .message,
+[data-mode="light"] [data-theme="pixelatte"] .message {
+  border-radius: 0px !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .message.bot,
+[data-mode="light"] [data-theme="pixelatte"] .message.bot {
+  background: #ffffff !important;
+  border: 2px solid #1f1d16 !important;
+  color: #1f1d16 !important;
+  box-shadow: 3px 3px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .message.user,
+[data-mode="light"] [data-theme="pixelatte"] .message.user {
+  background: #f59e0b !important;
+  color: #1f1d16 !important;
+  border: 2px solid #1f1d16 !important;
+  box-shadow: 3px 3px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .suggestion-chip,
+[data-mode="light"] [data-theme="pixelatte"] .suggestion-chip {
+  border-radius: 0px !important;
+  border: 2px solid #1f1d16 !important;
+  background: #ffffff !important;
+  color: #1f1d16 !important;
+  box-shadow: 2px 2px 0px #1f1d16 !important;
+  font-family: var(--font-mono) !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .suggestion-chip:hover,
+[data-mode="light"] [data-theme="pixelatte"] .suggestion-chip:hover {
+  background: #f59e0b !important;
+  color: #1f1d16 !important;
+  box-shadow: 3px 3px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .chat-3d-card,
+[data-mode="light"][data-theme="pixelatte"] .chat-skill-category,
+[data-mode="light"][data-theme="pixelatte"] .chat-exp-card,
+[data-mode="light"] [data-theme="pixelatte"] .chat-3d-card,
+[data-mode="light"] [data-theme="pixelatte"] .chat-skill-category,
+[data-mode="light"] [data-theme="pixelatte"] .chat-exp-card {
+  border-radius: 0px !important;
+  border: 2px solid #1f1d16 !important;
+  background: #ffffff !important;
+  box-shadow: 4px 4px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .chatbot-input,
+[data-mode="light"] [data-theme="pixelatte"] .chatbot-input {
+  border-top: 3px solid #1f1d16 !important;
+  background: #f4f0e6 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .chatbot-input input,
+[data-mode="light"] [data-theme="pixelatte"] .chatbot-input input {
+  border-radius: 0px !important;
+  border: 2px solid #1f1d16 !important;
+  background: #ffffff !important;
+  color: #1f1d16 !important;
+  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .chatbot-send-btn,
+[data-mode="light"] [data-theme="pixelatte"] .chatbot-send-btn {
+  border-radius: 0px !important;
+  border: 2px solid #1f1d16 !important;
+  background: #f59e0b !important;
+  color: #1f1d16 !important;
+  box-shadow: 2px 2px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .navbar__mode-btn,
+[data-mode="light"][data-theme="pixelatte"] .navbar__theme-btn,
+[data-mode="light"] [data-theme="pixelatte"] .navbar__mode-btn,
+[data-mode="light"] [data-theme="pixelatte"] .navbar__theme-btn {
+  border-radius: 0px !important;
+  border: 2px solid #1f1d16 !important;
+  box-shadow: 2px 2px 0px #1f1d16 !important;
+}
+
+/* Pixelatte Light Mode Contact Page & Message Component */
+[data-mode="light"][data-theme="pixelatte"] .contact__form-col,
+[data-mode="light"][data-theme="pixelatte"] .contact-channel-card,
+[data-mode="light"] [data-theme="pixelatte"] .contact__form-col,
+[data-mode="light"] [data-theme="pixelatte"] .contact-channel-card {
+  border-radius: 0px !important;
+  border: 3px solid #1f1d16 !important;
+  box-shadow: 6px 6px 0px #1f1d16 !important;
+  background: #ffffff !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .contact-channel-card:hover,
+[data-mode="light"] [data-theme="pixelatte"] .contact-channel-card:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 8px 8px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .contact-channel-icon,
+[data-mode="light"] [data-theme="pixelatte"] .contact-channel-icon {
+  border-radius: 0px !important;
+  border: 2px solid #1f1d16 !important;
+  box-shadow: 2px 2px 0px #1f1d16 !important;
+  background: #f4f0e6 !important;
+  color: #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .contact__info-header h3,
+[data-mode="light"] [data-theme="pixelatte"] .contact__info-header h3 {
+  font-family: var(--font-heading) !important;
+  color: #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .form-label,
+[data-mode="light"] [data-theme="pixelatte"] .form-label {
+  font-family: var(--font-mono) !important;
+  color: #1f1d16 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  font-size: 0.8rem !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .form-input,
+[data-mode="light"][data-theme="pixelatte"] .form-textarea,
+[data-mode="light"] [data-theme="pixelatte"] .form-input,
+[data-mode="light"] [data-theme="pixelatte"] .form-textarea {
+  border-radius: 0px !important;
+  border: 2px solid #1f1d16 !important;
+  background: #ffffff !important;
+  color: #1f1d16 !important;
+  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1) !important;
+  font-family: var(--font-mono) !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .form-input:focus,
+[data-mode="light"][data-theme="pixelatte"] .form-textarea:focus,
+[data-mode="light"] [data-theme="pixelatte"] .form-input:focus,
+[data-mode="light"] [data-theme="pixelatte"] .form-textarea:focus {
+  border-color: #007769 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .form-alert,
+[data-mode="light"] [data-theme="pixelatte"] .form-alert {
+  border-radius: 0px !important;
+  font-family: var(--font-mono) !important;
+  box-shadow: 4px 4px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .form-alert--success,
+[data-mode="light"] [data-theme="pixelatte"] .form-alert--success {
+  background: #f4f0e6 !important;
+  border: 2px solid #1f1d16 !important;
+  color: #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .form-alert--error,
+[data-mode="light"] [data-theme="pixelatte"] .form-alert--error {
+  background: #fee2e2 !important;
+  border: 2px solid #991b1b !important;
+  color: #991b1b !important;
+}
+
+/* Pixelatte Light Mode Experience Lightbox & Media */
+[data-mode="light"][data-theme="pixelatte"] .experience-lightbox__content,
+[data-mode="light"] [data-theme="pixelatte"] .experience-lightbox__content {
+  border-radius: 0px !important;
+  border: 4px solid #1f1d16 !important;
+  background: #ffffff !important;
+  box-shadow: 8px 8px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .experience-lightbox__bar,
+[data-mode="light"] [data-theme="pixelatte"] .experience-lightbox__bar {
+  background: #f4f0e6 !important;
+  border-top: 3px solid #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .experience-lightbox__close,
+[data-mode="light"] [data-theme="pixelatte"] .experience-lightbox__close {
+  border-radius: 0px !important;
+  border: 2px solid #1f1d16 !important;
+  background: #ffffff !important;
+  color: #1f1d16 !important;
+  box-shadow: 2px 2px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .experience-card__media-box,
+[data-mode="light"] [data-theme="pixelatte"] .experience-card__media-box {
+  border-radius: 0px !important;
+  border: 2px solid #1f1d16 !important;
+  box-shadow: 4px 4px 0px #1f1d16 !important;
+}
+
+[data-mode="light"][data-theme="pixelatte"] .experience-card__icon-box,
+[data-mode="light"] [data-theme="pixelatte"] .experience-card__icon-box {
+  border-radius: 0px !important;
+  border: 2px solid #1f1d16 !important;
+  box-shadow: 2px 2px 0px #1f1d16 !important;
 }
 
 

@@ -89,6 +89,17 @@
   color: var(--accent-neon);
   font-size: 1.4rem;
   flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.experience-card__icon-box--clickable {
+  cursor: pointer;
+}
+
+.experience-card__icon-box--clickable:hover {
+  border-color: var(--accent-neon);
+  transform: scale(1.08);
+  box-shadow: 0 0 18px var(--accent-glow);
 }
 
 .experience-card__header-info {
@@ -181,12 +192,18 @@
   inset: 0;
   background: rgba(0, 0, 0, 0.92);
   backdrop-filter: blur(14px);
-  z-index: 100005;
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 999999;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  animation: fadeIn 0.25s ease-out;
+  animation: expFadeIn 0.25s ease-out;
+}
+
+@keyframes expFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .experience-lightbox__content {
@@ -207,7 +224,7 @@
   width: 100%;
   max-height: 72vh;
   object-fit: contain;
-  background: #000000;
+  background: var(--bg-primary, #000000);
 }
 
 .experience-lightbox__bar {
@@ -215,6 +232,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   background: var(--bg-surface);
   border-top: 1px solid var(--glass-border);
 }
@@ -223,7 +241,7 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #ffffff;
   width: 38px;
@@ -240,6 +258,7 @@
 .experience-lightbox__close:hover {
   background: #ef4444;
   border-color: #ef4444;
+  color: #ffffff;
   transform: rotate(90deg);
 }
 
