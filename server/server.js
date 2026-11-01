@@ -33,6 +33,7 @@ const Skill = require("./models/Skill");
 const Project = require("./models/Project");
 const Experience = require("./models/Experience");
 const ContactInfo = require("./models/ContactInfo");
+const Certification = require("./models/Certification");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -101,7 +102,7 @@ const getHealthStatus = async (req, res) => {
   let counts = {};
   if (isConnected) {
     try {
-      const [heroCount, aboutCount, skillCount, projectCount, expCount, contactCount, messageCount] =
+      const [heroCount, aboutCount, skillCount, projectCount, expCount, contactCount, messageCount, certCount] =
         await Promise.all([
           Hero.countDocuments(),
           About.countDocuments(),
@@ -110,6 +111,7 @@ const getHealthStatus = async (req, res) => {
           Experience.countDocuments(),
           ContactInfo.countDocuments(),
           Message.countDocuments(),
+          Certification.countDocuments(),
         ]);
       counts = {
         hero: heroCount,
@@ -119,6 +121,7 @@ const getHealthStatus = async (req, res) => {
         experience: expCount,
         contact: contactCount,
         messages: messageCount,
+        certifications: certCount,
       };
     } catch {
       // ignore
@@ -158,7 +161,7 @@ app.get("/api/portfolio-data", async (req, res) => {
   }
 
   try {
-    const [hero, about, skills, projects, experience, contact] =
+    const [hero, about, skills, projects, experience, contact, certifications] =
       await Promise.all([
         Hero.findOne().sort({ updatedAt: -1 }),
         About.findOne().sort({ updatedAt: -1 }),
@@ -166,6 +169,7 @@ app.get("/api/portfolio-data", async (req, res) => {
         Project.find().sort({ order: 1, createdAt: -1 }),
         Experience.find().sort({ order: 1, createdAt: -1 }),
         ContactInfo.findOne().sort({ updatedAt: -1 }),
+        Certification.find().sort({ order: 1, createdAt: -1 }),
       ]);
 
     res.json({
@@ -177,6 +181,7 @@ app.get("/api/portfolio-data", async (req, res) => {
         projects,
         experience,
         contact,
+        certifications,
       },
     });
   } catch (err) {
@@ -260,6 +265,24 @@ app.get("/api/experience", async (req, res) => {
   }
 });
 
+// 📜 Certifications Data
+app.get("/api/certifications", async (req, res) => {
+  try {
+    const { featured, limit } = req.query;
+    const query = {};
+    if (featured === "true") query.featured = true;
+
+    let certQuery = Certification.find(query).sort({ order: 1, createdAt: -1 });
+    if (limit) certQuery = certQuery.limit(parseInt(limit, 10));
+
+    const certifications = await certQuery.exec();
+    res.json({ success: true, certifications });
+  } catch (err) {
+    console.error("Error fetching certifications data:", err);
+    res.status(500).json({ success: false, error: "Server error" });
+  }
+});
+
 // 📞 Contact Info
 app.get("/api/contact-info", async (req, res) => {
   try {
@@ -297,17 +320,20 @@ app.post("/api/contact", async (req, res) => {
 // --- Hero CRUD ---
 app.put("/api/admin/hero", requireAdmin, async (req, res) => {
   try {
-    const { name, roles, location, heroTagline, socialLinks } = req.body;
+    const { name, roles, location, heroTagline, primaryRole, statusBadge, stats, socialLinks } = req.body;
     let hero = await Hero.findOne();
     if (hero) {
       hero.name = name;
       hero.roles = roles;
       hero.location = location;
       hero.heroTagline = heroTagline;
-      hero.socialLinks = socialLinks;
+      if (primaryRole !== undefined) hero.primaryRole = primaryRole;
+      if (statusBadge !== undefined) hero.statusBadge = statusBadge;
+      if (stats !== undefined) hero.stats = stats;
+      if (socialLinks !== undefined) hero.socialLinks = socialLinks;
       await hero.save();
     } else {
-      hero = await Hero.create({ name, roles, location, heroTagline, socialLinks });
+      hero = await Hero.create({ name, roles, location, heroTagline, primaryRole, statusBadge, stats, socialLinks });
     }
     res.json({ success: true, hero });
   } catch (err) {
@@ -437,19 +463,51 @@ app.delete("/api/admin/experience/:id", requireAdmin, async (req, res) => {
   }
 });
 
+// --- Certifications CRUD ---
+app.post("/api/admin/certifications", requireAdmin, async (req, res) => {
+  try {
+    const certification = await Certification.create(req.body);
+    res.json({ success: true, certification });
+  } catch (err) {
+    console.error("Error creating certification:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.put("/api/admin/certifications/:id", requireAdmin, async (req, res) => {
+  try {
+    const certification = await Certification.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json({ success: true, certification });
+  } catch (err) {
+    console.error("Error updating certification:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.delete("/api/admin/certifications/:id", requireAdmin, async (req, res) => {
+  try {
+    await Certification.findByIdAndDelete(req.params.id);
+    res.json({ success: true, message: "Certification deleted" });
+  } catch (err) {
+    console.error("Error deleting certification:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // --- Contact Info CRUD ---
 app.put("/api/admin/contact-info", requireAdmin, async (req, res) => {
   try {
-    const { email, phone, blog, message } = req.body;
+    const { email, phone, location, blog, message } = req.body;
     let doc = await ContactInfo.findOne();
     if (doc) {
       doc.email = email;
       doc.phone = phone;
+      if (location !== undefined) doc.location = location;
       doc.blog = blog;
       doc.message = message;
       await doc.save();
     } else {
-      doc = await ContactInfo.create({ email, phone, blog, message });
+      doc = await ContactInfo.create({ email, phone, location, blog, message });
     }
     res.json({ success: true, contact: doc });
   } catch (err) {

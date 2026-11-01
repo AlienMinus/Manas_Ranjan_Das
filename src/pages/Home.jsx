@@ -24,7 +24,7 @@ function Home() {
     return <DatabaseErrorState onRetry={refreshData} error={error} />;
   }
 
-  const { name, roles, location, heroTagline, socialLinks } = hero || {};
+  const { name, primaryRole, statusBadge, roles, location, heroTagline, stats, socialLinks } = hero || {};
   const aboutText = (about?.about || "").trim();
 
   return (
@@ -32,9 +32,12 @@ function Home() {
       {/* Hero Section (Left-aligned photo, right-aligned text on large screens) */}
       <Hero
         name={name}
+        primaryRole={primaryRole}
+        statusBadge={statusBadge}
         roles={roles}
         location={location}
         tagline={heroTagline}
+        stats={stats}
         socialLinks={socialLinks}
       />
 

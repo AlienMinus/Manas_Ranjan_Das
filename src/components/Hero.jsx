@@ -14,6 +14,12 @@ const DEFAULT_HERO_SOCIALS = [
   { platform: "LinkedIn", url: "https://www.linkedin.com/in/manas-r-das/", iconLib: "fa", icon: "FaLinkedin" },
   { platform: "Instagram", url: "https://www.instagram.com/the_minus_infinity/", iconLib: "fa", icon: "FaInstagram" },
 ];
+const DEFAULT_HERO_STATS = [
+  { number: "25+", label: "Projects" },
+  { number: "5+", label: "Internships" },
+  { number: "2", label: "Research Papers" },
+  { number: "GATE", label: "AIR 4324" },
+];
 
 function getIconComponent(item) {
   const library = item.iconLib === "si" ? SiIcons : FaIcons;
@@ -22,14 +28,20 @@ function getIconComponent(item) {
 
 function Hero({
   name = "Manas Ranjan Das",
+  primaryRole = "Electrical & Computer Engineer",
+  statusBadge = "Available for Opportunities",
   roles = DEFAULT_HERO_ROLES,
   tagline = "I build intelligent systems that connect hardware, software, and people.",
   location = "Cuttack, India",
+  stats = DEFAULT_HERO_STATS,
   socialLinks = DEFAULT_HERO_SOCIALS,
 }) {
   const effectiveRoles = roles && roles.length > 0 ? roles : DEFAULT_HERO_ROLES;
   const effectiveSocials = socialLinks && socialLinks.length > 0 ? socialLinks : DEFAULT_HERO_SOCIALS;
+  const effectiveStats = stats && stats.length > 0 ? stats : DEFAULT_HERO_STATS;
   const displayName = name || "Manas Ranjan Das";
+  const displayPrimaryRole = primaryRole || "Electrical & Computer Engineer";
+  const displayStatusBadge = statusBadge || "Available for Opportunities";
 
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
@@ -55,7 +67,7 @@ function Hero({
           {/* Status Badge */}
           <div className="hero__status-badge">
             <span className="pulse-dot"></span>
-            <span>Available for Opportunities</span>
+            <span>{displayStatusBadge}</span>
           </div>
 
           {/* Avatar with Ambient Glowing Ring */}
@@ -96,7 +108,7 @@ function Hero({
 
           {/* Dynamic Rotating Roles */}
           <div className="hero__role-wrapper">
-            <span>Electrical & Computer Engineer</span>
+            <span>{displayPrimaryRole}</span>
             <span style={{ color: "var(--text-muted)", margin: "0 0.25rem" }}>|</span>
             <span className={`hero__role-tag ${fade ? "fade-role" : ""}`}>
               {effectiveRoles[index] || "Full-Stack Developer"}
@@ -139,24 +151,16 @@ function Hero({
           </div>
 
           {/* Highlights / Stats Strip */}
-          <div className="hero__stats">
-            <div className="stat-item">
-              <span className="stat-item__number">25+</span>
-              <span className="stat-item__label">Projects</span>
+          {effectiveStats && effectiveStats.length > 0 && (
+            <div className="hero__stats">
+              {effectiveStats.map((st, i) => (
+                <div className="stat-item" key={st.label + i}>
+                  <span className="stat-item__number">{st.number}</span>
+                  <span className="stat-item__label">{st.label}</span>
+                </div>
+              ))}
             </div>
-            <div className="stat-item">
-              <span className="stat-item__number">5+</span>
-              <span className="stat-item__label">Internships</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-item__number">2</span>
-              <span className="stat-item__label">Research Papers</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-item__number">GATE</span>
-              <span className="stat-item__label">AIR 4324</span>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

@@ -8,6 +8,7 @@ import {
   FaCode,
   FaBriefcase,
   FaTools,
+  FaAward,
   FaPhoneAlt,
   FaInbox,
   FaCheckCircle,
@@ -30,6 +31,7 @@ import AdminAbout from "../components/admin/AdminAbout";
 import AdminProjects from "../components/admin/AdminProjects";
 import AdminExperience from "../components/admin/AdminExperience";
 import AdminSkills from "../components/admin/AdminSkills";
+import AdminCertifications from "../components/admin/AdminCertifications";
 import AdminContact from "../components/admin/AdminContact";
 import AdminMessages from "../components/admin/AdminMessages";
 
@@ -40,12 +42,13 @@ const TABS = [
   { id: "projects", label: "Projects CRUD", icon: FaCode },
   { id: "experience", label: "Experience CRUD", icon: FaBriefcase },
   { id: "skills", label: "Skills CRUD", icon: FaTools },
+  { id: "certifications", label: "Certifications CRUD", icon: FaAward },
   { id: "contact", label: "Contact Info", icon: FaPhoneAlt },
   { id: "messages", label: "Messages Inbox", icon: FaInbox },
 ];
 
 function AdminPage() {
-  const { hero, about, skills, projects, experience, contact, refreshData } = usePortfolio();
+  const { hero, about, skills, projects, experience, contact, certifications, refreshData } = usePortfolio();
 
   const [password, setPassword] = useState(() => sessionStorage.getItem("minus_admin_pw") || "");
   const [isAuthenticated, setIsAuthenticated] = useState(() => !!sessionStorage.getItem("minus_admin_pw"));
@@ -237,6 +240,7 @@ function AdminPage() {
             skills={skills || []}
             messages={messages}
             about={about}
+            certifications={certifications || []}
           />
         )}
 
@@ -279,6 +283,15 @@ function AdminPage() {
         {activeTab === "skills" && (
           <AdminSkills
             skills={skills || []}
+            password={password}
+            onSaveSuccess={handleSaveSuccess}
+            onSaveError={handleSaveError}
+          />
+        )}
+
+        {activeTab === "certifications" && (
+          <AdminCertifications
+            certifications={certifications || []}
             password={password}
             onSaveSuccess={handleSaveSuccess}
             onSaveError={handleSaveError}

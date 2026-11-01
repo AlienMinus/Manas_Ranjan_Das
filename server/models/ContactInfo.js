@@ -5,6 +5,7 @@ const contactInfoSchema = new mongoose.Schema(
   {
     email: { type: String, required: true, trim: true },
     phone: { type: String, trim: true },
+    location: { type: String, default: "Cuttack, Odisha, India", trim: true },
     blog: { type: String, trim: true },
     message: { type: String, trim: true },
   },

@@ -21,6 +21,7 @@ function AdminOverview({
   skills = [],
   messages = [],
   about = null,
+  certifications = [],
 }) {
   const [pingLatency, setPingLatency] = useState(null);
   const [isPinging, setIsPinging] = useState(false);
@@ -28,6 +29,7 @@ function AdminOverview({
   const educationCount = about?.education?.length || 0;
   const projectCount = projects?.length || 0;
   const expCount = experience?.length || 0;
+  const certCount = certifications?.length || 0;
   const skillItemsCount = skills.reduce((acc, cat) => acc + (cat.items?.length || 0), 0);
   const messageCount = messages?.length || 0;
 
@@ -122,6 +124,11 @@ function AdminOverview({
         <div className="metric-card">
           <span className="metric-label">Career Roles</span>
           <span className="metric-value">{expCount}</span>
+        </div>
+
+        <div className="metric-card">
+          <span className="metric-label">Certifications</span>
+          <span className="metric-value" style={{ color: "#38bdf8" }}>{certCount}</span>
         </div>
 
         <div className="metric-card">

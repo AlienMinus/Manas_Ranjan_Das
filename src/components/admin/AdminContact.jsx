@@ -7,6 +7,7 @@ function AdminContact({ contact, password, onSaveSuccess, onSaveError }) {
   const [form, setForm] = useState({
     email: "",
     phone: "",
+    location: "",
     blog: "",
     message: "",
   });
@@ -17,6 +18,7 @@ function AdminContact({ contact, password, onSaveSuccess, onSaveError }) {
       setForm({
         email: contact.email || "",
         phone: contact.phone || "",
+        location: contact.location || "Cuttack, Odisha, India",
         blog: contact.blog || "",
         message: contact.message || "",
       });
@@ -75,15 +77,28 @@ function AdminContact({ contact, password, onSaveSuccess, onSaveError }) {
           </div>
         </div>
 
-        <div className="admin-form-group">
-          <label className="admin-label">Technical Blog / Medium URL</label>
-          <input
-            type="url"
-            className="admin-input"
-            value={form.blog}
-            onChange={(e) => setForm({ ...form, blog: e.target.value })}
-            placeholder="https://spectacularminus.blogspot.com"
-          />
+        <div className="admin-form-row">
+          <div className="admin-form-group">
+            <label className="admin-label">Physical Location / Base</label>
+            <input
+              type="text"
+              className="admin-input"
+              value={form.location}
+              onChange={(e) => setForm({ ...form, location: e.target.value })}
+              placeholder="Cuttack, Odisha, India"
+            />
+          </div>
+
+          <div className="admin-form-group">
+            <label className="admin-label">Technical Blog / Medium URL</label>
+            <input
+              type="url"
+              className="admin-input"
+              value={form.blog}
+              onChange={(e) => setForm({ ...form, blog: e.target.value })}
+              placeholder="https://spectacularminus.blogspot.com"
+            />
+          </div>
         </div>
 
         <div className="admin-form-group">

@@ -44,6 +44,7 @@ export async function getPortfolioData() {
     projects: json.data.projects || [],
     experience: json.data.experience || [],
     contact: json.data.contact || null,
+    certifications: json.data.certifications || [],
     source: "mongodb",
   };
 }
@@ -90,6 +91,16 @@ export async function getExperience(params = {}) {
   if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
   const json = await res.json();
   return json.experience || [];
+}
+
+// 📜 Fetch Certifications
+export async function getCertifications(params = {}) {
+  const query = new URLSearchParams(params).toString();
+  const url = `${API_BASE_URL}/certifications${query ? `?${query}` : ""}`;
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
+  const json = await res.json();
+  return json.certifications || [];
 }
 
 // 📞 Fetch Contact Info
@@ -225,6 +236,33 @@ export async function updateExperienceApi(id, data, password) {
 
 export async function deleteExperienceApi(id, password) {
   const res = await fetch(`${API_BASE_URL}/admin/experience/${id}`, {
+    method: "DELETE",
+    headers: getAdminHeaders(password),
+  });
+  return res.json();
+}
+
+// --- Certifications CRUD ---
+export async function createCertificationApi(data, password) {
+  const res = await fetch(`${API_BASE_URL}/admin/certifications`, {
+    method: "POST",
+    headers: getAdminHeaders(password),
+    body: JSON.stringify(data),
+  });
+  return res.json();
+}
+
+export async function updateCertificationApi(id, data, password) {
+  const res = await fetch(`${API_BASE_URL}/admin/certifications/${id}`, {
+    method: "PUT",
+    headers: getAdminHeaders(password),
+    body: JSON.stringify(data),
+  });
+  return res.json();
+}
+
+export async function deleteCertificationApi(id, password) {
+  const res = await fetch(`${API_BASE_URL}/admin/certifications/${id}`, {
     method: "DELETE",
     headers: getAdminHeaders(password),
   });

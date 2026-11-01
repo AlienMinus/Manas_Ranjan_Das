@@ -129,7 +129,15 @@ function AdminExperience({ experience = [], password, onSaveSuccess, onSaveError
 
       {/* Experience Modal */}
       {modalOpen && (
-        <div className="admin-modal-backdrop" onClick={() => setModalOpen(false)}>
+        <div
+          className="admin-modal-backdrop"
+          onClick={() => setModalOpen(false)}
+          onWheel={(e) => {
+            if (e.target === e.currentTarget) {
+              window.scrollBy({ top: e.deltaY, behavior: "auto" });
+            }
+          }}
+        >
           <div className="admin-modal" onClick={(e) => e.stopPropagation()}>
             <div className="admin-modal__header">
               <h3 className="admin-modal__title">{editingItem ? "Edit Experience Role" : "Add New Experience Role"}</h3>

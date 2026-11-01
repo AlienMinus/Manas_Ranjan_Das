@@ -117,7 +117,7 @@ function Contact({ contact = {} }) {
               </div>
               <div>
                 <div className="contact-channel-label">Location</div>
-                <div className="contact-channel-value">Cuttack, Odisha, India</div>
+                <div className="contact-channel-value">{contact.location || "Cuttack, Odisha, India"}</div>
               </div>
             </div>
           </div>

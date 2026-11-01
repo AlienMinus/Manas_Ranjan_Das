@@ -10,6 +10,7 @@ const INITIAL_STATE = {
   projects: [],
   experience: [],
   contact: null,
+  certifications: [],
   source: "mongodb",
 };
 
