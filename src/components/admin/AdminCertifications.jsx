@@ -231,7 +231,7 @@ function AdminCertifications({ certifications = [], password, onSaveSuccess, onS
                     </div>
                   )}
                 </td>
-                <td style={{ fontWeight: 600, color: "#ffffff", maxWidth: "240px" }}>
+                <td style={{ fontWeight: 600, color: "var(--text-primary)", maxWidth: "240px" }}>
                   {cert.title}
                   {cert.specialization && (
                     <div style={{ marginTop: "0.25rem" }}>
@@ -240,9 +240,9 @@ function AdminCertifications({ certifications = [], password, onSaveSuccess, onS
                           fontSize: "0.7rem",
                           padding: "0.15rem 0.45rem",
                           borderRadius: "4px",
-                          background: "rgba(0, 255, 102, 0.08)",
-                          color: "#86efac",
-                          border: "1px solid rgba(0, 255, 102, 0.2)",
+                          background: "var(--glass-bg)",
+                          color: "var(--accent-neon)",
+                          border: "1px solid var(--glass-border)",
                           display: "inline-block",
                         }}
                       >
@@ -440,7 +440,7 @@ function AdminCertifications({ certifications = [], password, onSaveSuccess, onS
                       padding: "0.25rem 0.65rem",
                       fontSize: "0.75rem",
                       color: "var(--accent-neon)",
-                      borderColor: "rgba(0, 255, 102, 0.4)",
+                      borderColor: "var(--accent-neon)",
                     }}
                     title="Add another certificate image (e.g. for specialization course certificates)"
                   >
@@ -518,9 +518,9 @@ function AdminCertifications({ certifications = [], password, onSaveSuccess, onS
                     padding: "0.5rem",
                     fontSize: "0.8rem",
                     color: "var(--accent-neon)",
-                    border: "1px dashed rgba(0, 255, 102, 0.4)",
+                    border: "1px dashed var(--accent-neon)",
                     borderRadius: "var(--radius-sm)",
-                    background: "rgba(0, 255, 102, 0.03)",
+                    background: "var(--glass-bg)",
                     marginTop: "0.4rem",
                     cursor: "pointer",
                   }}

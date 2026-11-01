@@ -1,14 +1,14 @@
 /* ==========================================================================
-   Music Toggle Styles
+   Music Toggle Styles - Dynamic Theme Adaptive
    ========================================================================== */
 
 .music-toggle {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  height: 44px;
+  height: 42px;
   padding: 0 1rem;
-  background: rgba(15, 23, 42, 0.85);
+  background: var(--glass-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   color: var(--text-primary);
@@ -27,16 +27,28 @@
 }
 
 .music-toggle:hover {
-  border-color: var(--accent-cyan);
-  background: rgba(30, 41, 65, 0.95);
+  border-color: var(--accent-neon);
+  background: var(--glass-bg-hover, var(--glass-bg));
+  color: var(--accent-neon);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg), 0 0 20px rgba(56, 189, 248, 0.2);
+  box-shadow: var(--shadow-lg), 0 0 20px var(--accent-glow);
 }
 
 .music-toggle--playing {
-  border-color: rgba(56, 189, 248, 0.4);
-  background: rgba(56, 189, 248, 0.12);
-  color: var(--accent-cyan);
+  border-color: var(--accent-neon);
+  background: var(--glass-bg-hover, var(--glass-bg));
+  color: var(--accent-neon);
+  box-shadow: var(--shadow-md), 0 0 15px var(--accent-glow);
+}
+
+.music-toggle__icon {
+  color: var(--accent-neon);
+  flex-shrink: 0;
+}
+
+.music-toggle__label {
+  font-size: 0.825rem;
+  font-weight: 600;
 }
 
 /* Sound Wave Equalizer Bars */
@@ -50,28 +62,27 @@
 .sound-bar {
   width: 3px;
   height: 100%;
-  background: var(--accent-cyan);
+  background: var(--accent-neon);
   border-radius: 2px;
   animation: soundBarBounce 1.2s infinite ease-in-out;
 }
 
-.sound-bar:nth-child(1) { animation-delay: 0.1s; height: 60%; }
+.sound-bar:nth-child(1) { animation-delay: 0.1s; height: 50%; }
 .sound-bar:nth-child(2) { animation-delay: 0.3s; height: 100%; }
 .sound-bar:nth-child(3) { animation-delay: 0.2s; height: 75%; }
 .sound-bar:nth-child(4) { animation-delay: 0.4s; height: 40%; }
 
 @keyframes soundBarBounce {
-  0%, 100% { transform: scaleY(0.3); }
+  0%, 100% { transform: scaleY(0.25); }
   50% { transform: scaleY(1); }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .music-toggle {
-    bottom: 16px;
-    right: 16px;
-    height: 40px;
-    padding: 0 0.8rem;
+    bottom: 20px;
+    right: 20px;
+    height: 38px;
+    padding: 0 0.85rem;
     font-size: 0.8rem;
   }
 }
-

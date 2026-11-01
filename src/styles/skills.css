@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Skills Section Styles
+   Skills Section Styles - Dynamic Theme Adaptive
    ========================================================================== */
 
 .skills__grid {
@@ -34,9 +34,9 @@
 }
 
 .skills__card:hover {
-  border-color: var(--glass-border-hover);
+  border-color: var(--accent-neon);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg), 0 0 25px rgba(56, 189, 248, 0.1);
+  box-shadow: var(--shadow-lg), 0 0 25px var(--accent-glow);
 }
 
 .skills__header {
@@ -61,7 +61,7 @@
   font-weight: 600;
   padding: 0.2rem 0.55rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--glass-bg);
   color: var(--text-secondary);
   border: 1px solid var(--glass-border);
 }
@@ -81,7 +81,7 @@
   gap: 0.5rem;
   padding: 0.5rem 0.85rem;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   color: var(--text-primary);
   font-size: 0.875rem;
@@ -90,15 +90,15 @@
 }
 
 .skills__item:hover {
-  background: rgba(56, 189, 248, 0.1);
-  border-color: rgba(56, 189, 248, 0.35);
-  color: #ffffff;
+  background: var(--glass-bg-hover, var(--glass-bg));
+  border-color: var(--accent-neon);
+  color: var(--accent-neon);
   transform: translateY(-1px);
 }
 
 .skills__icon {
   font-size: 1.1rem;
-  color: var(--accent-cyan);
+  color: var(--accent-neon);
   flex-shrink: 0;
 }
 
@@ -111,4 +111,3 @@
     padding: 1.25rem;
   }
 }
-

@@ -10,6 +10,7 @@ import {
   FaTerminal,
   FaCrown,
   FaSun,
+  FaMoon,
   FaBuilding,
   FaAdjust,
   FaGamepad,
@@ -125,17 +126,26 @@ const THEMES_CONFIG = [
 ];
 
 function AdminTheme({ password, onSaveSuccess, onSaveError }) {
-  const { theme: currentTheme, setTheme, settings, refreshData } = usePortfolio();
+  const {
+    theme: currentTheme,
+    setTheme,
+    mode: currentMode,
+    setMode,
+    settings,
+    refreshData,
+  } = usePortfolio();
   const [savingThemeId, setSavingThemeId] = useState(null);
+  const [savingMode, setSavingMode] = useState(false);
 
   const activeMasterTheme = settings?.theme || "cyberpunk";
+  const activeMasterMode = settings?.themeMode || "dark";
 
   // Quick preview locally
   const handlePreview = (themeId) => {
     setTheme(themeId, true);
   };
 
-  // Save to MongoDB site-wide for all visitors
+  // Save Theme to MongoDB site-wide for all visitors
   const handleSaveMasterTheme = async (themeId) => {
     setSavingThemeId(themeId);
     try {
@@ -152,6 +162,26 @@ function AdminTheme({ password, onSaveSuccess, onSaveError }) {
       onSaveError(err.message);
     } finally {
       setSavingThemeId(null);
+    }
+  };
+
+  // Save Mode (Dark / Light) to MongoDB site-wide
+  const handleSaveMasterMode = async (modeValue) => {
+    setSavingMode(true);
+    try {
+      const res = await updateSettingsApi({ themeMode: modeValue }, password);
+      if (res.success) {
+        setMode(modeValue, false);
+        sessionStorage.removeItem("minus_mode_preview_locked");
+        onSaveSuccess(`Portfolio Master Color Mode set to ${modeValue.toUpperCase()} in MongoDB!`);
+        refreshData();
+      } else {
+        throw new Error(res.error || "Failed to update default color mode");
+      }
+    } catch (err) {
+      onSaveError(err.message);
+    } finally {
+      setSavingMode(false);
     }
   };
 
@@ -183,6 +213,75 @@ function AdminTheme({ password, onSaveSuccess, onSaveError }) {
           >
             Live Master Theme: <strong>{activeMasterTheme.toUpperCase()}</strong>
           </span>
+        </div>
+      </div>
+
+      {/* Master Default Color Mode Toggle */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "1rem",
+          background: "var(--glass-bg)",
+          border: "1px solid var(--glass-border)",
+          borderRadius: "var(--radius-lg)",
+          padding: "1rem 1.25rem",
+          marginTop: "1.25rem",
+        }}
+      >
+        <div>
+          <h3
+            style={{
+              fontSize: "0.95rem",
+              fontWeight: 700,
+              color: "var(--text-primary)",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+            }}
+          >
+            <span>Master Default Color Mode</span>
+            <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", fontWeight: 400 }}>
+              (All 8 themes feature dedicated Dark and Light White Mode counterparts)
+            </span>
+          </h3>
+          <p style={{ color: "var(--text-muted)", fontSize: "0.8rem", marginTop: "0.2rem" }}>
+            Site-wide default for all visitors:{" "}
+            <strong style={{ color: "var(--accent-neon)" }}>{activeMasterMode.toUpperCase()}</strong> mode
+            {currentMode !== activeMasterMode && (
+              <span style={{ marginLeft: "0.5rem", color: "#facc15", fontSize: "0.75rem" }}>
+                (Currently previewing {currentMode.toUpperCase()})
+              </span>
+            )}
+          </p>
+        </div>
+
+        <div style={{ display: "flex", gap: "0.6rem", alignItems: "center" }}>
+          <button
+            type="button"
+            className={`btn ${activeMasterMode === "dark" ? "primary" : "outline"} sm`}
+            onClick={() => handleSaveMasterMode("dark")}
+            disabled={savingMode}
+            title="Set Dark Mode as site default in MongoDB"
+          >
+            <FaMoon size={12} />
+            <span>Dark Mode 🌙</span>
+            {activeMasterMode === "dark" && <FaCheck size={10} style={{ marginLeft: "0.25rem" }} />}
+          </button>
+
+          <button
+            type="button"
+            className={`btn ${activeMasterMode === "light" ? "primary" : "outline"} sm`}
+            onClick={() => handleSaveMasterMode("light")}
+            disabled={savingMode}
+            title="Set Light / White Mode as site default in MongoDB"
+          >
+            <FaSun size={12} />
+            <span>Light Mode ☀️</span>
+            {activeMasterMode === "light" && <FaCheck size={10} style={{ marginLeft: "0.25rem" }} />}
+          </button>
         </div>
       </div>
 
@@ -287,7 +386,7 @@ function AdminTheme({ password, onSaveSuccess, onSaveError }) {
                 >
                   <Icon size={16} />
                 </div>
-                <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#ffffff", margin: 0 }}>
+                <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--text-primary)", margin: 0 }}>
                   {t.name}
                 </h3>
               </div>

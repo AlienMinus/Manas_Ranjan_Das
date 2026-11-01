@@ -723,13 +723,13 @@ function CertificationsPage() {
 
             <div className="cert-lightbox__bar">
               <div>
-                <h4 style={{ color: "#ffffff", fontSize: "1.1rem", fontWeight: 700 }}>
+                <h4 style={{ color: "var(--text-primary)", fontSize: "1.1rem", fontWeight: 700 }}>
                   {activeModalCert.title}
                 </h4>
                 <p style={{ color: "var(--accent-neon)", fontSize: "0.85rem", marginTop: "0.2rem" }}>
                   Issued by {activeModalCert.issuer} {activeModalCert.issueDate ? `(${activeModalCert.issueDate})` : ""}
                   {activeModalCert.groupCerts && (
-                    <span style={{ marginLeft: "0.75rem", color: "#86efac" }}>
+                    <span style={{ marginLeft: "0.75rem", color: "var(--text-secondary)" }}>
                       • Certificate {activeModalCert.groupIndex + 1} of {activeModalCert.groupCerts.length}
                     </span>
                   )}

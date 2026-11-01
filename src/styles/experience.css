@@ -65,9 +65,9 @@
 }
 
 .experience-card:hover {
-  border-color: var(--glass-border-hover);
+  border-color: var(--accent-neon);
   transform: translateX(4px);
-  box-shadow: var(--shadow-lg), 0 0 25px rgba(0, 255, 102, 0.12);
+  box-shadow: var(--shadow-lg), 0 0 25px var(--accent-glow);
 }
 
 .experience-card__header {
@@ -81,8 +81,8 @@
   width: 46px;
   height: 46px;
   border-radius: var(--radius-md);
-  background: rgba(0, 255, 102, 0.1);
-  border: 1px solid rgba(0, 255, 102, 0.3);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,7 +121,7 @@
   margin-top: 0.35rem;
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-full);
-  background: rgba(0, 255, 102, 0.06);
+  background: var(--glass-bg);
   border: 1px solid var(--glass-border);
 }
 
@@ -135,13 +135,13 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   margin: 1rem 0 1.25rem;
-  background: radial-gradient(circle at center, #07190d 0%, #020a05 100%);
-  border: 1px solid rgba(0, 255, 102, 0.15);
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 .experience-card__img {
@@ -158,7 +158,7 @@
 .experience-card__media-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(2, 44, 20, 0.7);
+  background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -196,11 +196,11 @@
   max-height: 88vh;
   display: flex;
   flex-direction: column;
-  background: #020f08;
+  background: var(--bg-surface);
   border: 1px solid var(--accent-neon);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: 0 0 50px rgba(0, 255, 102, 0.3);
+  box-shadow: 0 0 50px var(--accent-glow, rgba(0, 0, 0, 0.5));
 }
 
 .experience-lightbox__img {
@@ -215,7 +215,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 255, 102, 0.05);
+  background: var(--bg-surface);
   border-top: 1px solid var(--glass-border);
 }
 

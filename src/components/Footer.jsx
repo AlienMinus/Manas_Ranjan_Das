@@ -20,7 +20,7 @@ function Footer({ name = "Manas Ranjan Das", onReplayIntro }) {
             © {year} <strong>{name}</strong>. All rights reserved.
           </p>
           <p className="footer__attribution">
-            Engineered with React 19, Vite & Neon Cyberpunk Modular CSS
+            Engineered with React 19, Vite & Adaptive Multi-Theme Architecture
           </p>
         </div>
 

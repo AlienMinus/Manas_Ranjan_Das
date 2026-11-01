@@ -1,7 +1,7 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { FaPalette, FaCheck } from "react-icons/fa";
+import { FaPalette, FaCheck, FaSun, FaMoon } from "react-icons/fa";
 import { usePortfolio } from "../context/usePortfolio";
 import Logo from "../assets/profile_pic.png";
 
@@ -17,7 +17,7 @@ const THEME_OPTIONS = [
 ];
 
 function Navbar() {
-  const { theme, setTheme } = usePortfolio();
+  const { theme, setTheme, mode = "dark", toggleMode } = usePortfolio();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isThemeOpen, setIsThemeOpen] = useState(false);
   const themeDropdownRef = useRef(null);
@@ -61,7 +61,12 @@ function Navbar() {
     <header className="navbar-wrapper">
       <nav className="navbar" aria-label="Main Navigation">
         {/* Brand Logo */}
-        <NavLink to="/" className="navbar__brand" onClick={closeMobileMenu}>
+        <NavLink
+          to="/"
+          className="navbar__brand"
+          onClick={closeMobileMenu}
+          title="Manas R. Das - Portfolio Home"
+        >
           <img src={Logo} alt="Manas Ranjan Das" className="navbar__brand-img" />
           <span className="navbar__brand-text">
             Manas R. Das
@@ -69,7 +74,7 @@ function Navbar() {
           </span>
         </NavLink>
 
-        {/* Desktop Links */}
+        {/* Desktop Links with Tooltips */}
         <ul className="navbar__links navbar__links--desktop">
           {links.map((link) => (
             <li key={link.path}>
@@ -79,6 +84,7 @@ function Navbar() {
                 className={({ isActive }) =>
                   "navbar__link" + (isActive ? " navbar__link--active" : "")
                 }
+                title={`Go to ${link.label}`}
               >
                 {link.label}
               </NavLink>
@@ -86,64 +92,111 @@ function Navbar() {
           ))}
         </ul>
 
-        {/* Theme Quick Switcher Pill */}
-        <div className="navbar__theme-wrapper" ref={themeDropdownRef}>
+        {/* Actions (Mode Toggle & Theme Switcher - Icons Only) */}
+        <div className="navbar__actions">
+          {/* Light / Dark Mode Toggle Button (Icon Only with Tooltip) */}
           <button
             type="button"
-            className="navbar__theme-btn"
-            onClick={() => setIsThemeOpen((prev) => !prev)}
-            aria-label="Change portfolio theme"
-            title={`Active Theme: ${theme.toUpperCase()}`}
+            className="navbar__mode-btn"
+            onClick={() => toggleMode(true)}
+            aria-label={mode === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            title={mode === "dark" ? "Switch to Light Mode (☀️)" : "Switch to Dark Mode (🌙)"}
+            data-tooltip={mode === "dark" ? "Light Mode" : "Dark Mode"}
           >
-            <FaPalette size={13} />
-            <span className="navbar__theme-btn-label">Theme</span>
+            {mode === "dark" ? (
+              <FaSun size={15} style={{ color: "#facc15" }} />
+            ) : (
+              <FaMoon size={15} style={{ color: "var(--accent-neon)" }} />
+            )}
           </button>
 
-          {isThemeOpen && (
-            <div className="navbar__theme-dropdown" role="menu">
-              <div className="navbar__theme-dropdown-header">
-                <span>Select Aesthetic Theme</span>
+          {/* Theme Switcher Button (Icon Only with Tooltip) */}
+          <div className="navbar__theme-wrapper" ref={themeDropdownRef}>
+            <button
+              type="button"
+              className="navbar__theme-btn"
+              onClick={() => setIsThemeOpen((prev) => !prev)}
+              aria-label="Change portfolio aesthetic theme"
+              title={`Theme: ${theme.charAt(0).toUpperCase() + theme.slice(1)}`}
+              data-tooltip="Theme"
+            >
+              <FaPalette size={15} />
+            </button>
+
+            {isThemeOpen && (
+              <div className="navbar__theme-dropdown" role="menu">
+                <div className="navbar__theme-dropdown-header">
+                  <span>Select Theme</span>
+                  <button
+                    type="button"
+                    className="navbar__theme-mode-toggle"
+                    onClick={() => toggleMode(true)}
+                    title={`Current: ${mode.toUpperCase()} mode. Click to switch.`}
+                  >
+                    {mode === "dark" ? (
+                      <>
+                        <FaSun size={10} style={{ color: "#facc15" }} />
+                        <span>Light</span>
+                      </>
+                    ) : (
+                      <>
+                        <FaMoon size={10} style={{ color: "var(--accent-neon)" }} />
+                        <span>Dark</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                <div className="navbar__theme-options">
+                  {THEME_OPTIONS.map((opt) => {
+                    const isSelected = theme === opt.id;
+                    return (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        className={`navbar__theme-option ${isSelected ? "navbar__theme-option--active" : ""}`}
+                        onClick={() => handleSelectTheme(opt.id)}
+                        role="menuitem"
+                        title={opt.desc}
+                      >
+                        <span
+                          className="navbar__theme-dot"
+                          style={{
+                            background: opt.color,
+                            boxShadow: `0 0 8px ${opt.color}`,
+                          }}
+                        />
+                        <div className="navbar__theme-info">
+                          <span className="navbar__theme-name">{opt.label}</span>
+                          <span className="navbar__theme-desc">{opt.desc}</span>
+                        </div>
+                        {isSelected && <FaCheck size={11} className="navbar__theme-check" />}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-              {THEME_OPTIONS.map((opt) => (
-                <button
-                  key={opt.id}
-                  type="button"
-                  className={`navbar__theme-option ${theme === opt.id ? "navbar__theme-option--active" : ""}`}
-                  onClick={() => handleSelectTheme(opt.id)}
-                >
-                  <span
-                    className="navbar__theme-dot"
-                    style={{ background: opt.color, boxShadow: `0 0 8px ${opt.color}` }}
-                  />
-                  <div className="navbar__theme-info">
-                    <span className="navbar__theme-name">{opt.label}</span>
-                    <span className="navbar__theme-desc">{opt.desc}</span>
-                  </div>
-                  {theme === opt.id && <FaCheck size={10} className="navbar__theme-check" />}
-                </button>
-              ))}
-            </div>
-          )}
+            )}
+          </div>
+
+          {/* Mobile Hamburger Toggle Button */}
+          <button
+            type="button"
+            className={`navbar__toggle ${isMobileMenuOpen ? "navbar__toggle--active" : ""}`}
+            onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            title={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
+            data-tooltip={isMobileMenuOpen ? "Close" : "Menu"}
+          >
+            <span className="navbar__toggle-bar"></span>
+            <span className="navbar__toggle-bar"></span>
+            <span className="navbar__toggle-bar"></span>
+          </button>
         </div>
 
-        {/* Mobile Hamburger Toggle Button */}
-        <button
-          type="button"
-          className={`navbar__toggle ${isMobileMenuOpen ? "navbar__toggle--active" : ""}`}
-          onClick={toggleMobileMenu}
-          aria-label="Toggle navigation menu"
-          aria-expanded={isMobileMenuOpen}
-        >
-          <span className="navbar__toggle-bar"></span>
-          <span className="navbar__toggle-bar"></span>
-          <span className="navbar__toggle-bar"></span>
-        </button>
-
-        {/* Mobile Menu Drawer */}
+        {/* Mobile Navigation Drawer */}
         <div
-          className={`navbar__mobile-drawer ${
-            isMobileMenuOpen ? "navbar__mobile-drawer--open" : ""
-          }`}
+          className={`navbar__mobile-drawer ${isMobileMenuOpen ? "navbar__mobile-drawer--open" : ""}`}
         >
           {links.map((link) => (
             <NavLink
@@ -160,6 +213,27 @@ function Navbar() {
               <span style={{ fontSize: "0.8rem", opacity: 0.6 }}>›</span>
             </NavLink>
           ))}
+
+          {/* Mobile Mode Switcher */}
+          <div className="navbar__mobile-mode-section">
+            <button
+              type="button"
+              className="navbar__mobile-mode-btn"
+              onClick={() => toggleMode(true)}
+            >
+              {mode === "dark" ? (
+                <>
+                  <FaSun size={14} style={{ color: "#facc15" }} />
+                  <span>Switch to Light Mode ☀️</span>
+                </>
+              ) : (
+                <>
+                  <FaMoon size={14} style={{ color: "var(--accent-neon)" }} />
+                  <span>Switch to Dark Mode 🌙</span>
+                </>
+              )}
+            </button>
+          </div>
 
           {/* Mobile Theme Selector */}
           <div className="navbar__mobile-theme-section">

@@ -44,7 +44,7 @@ function AdminMessages({ messages = [], password, loading, onRefresh, onSaveSucc
             <div key={msg._id} className="card" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1.25rem" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.45rem" }}>
                 <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "0.6rem" }}>
-                  <strong style={{ color: "#ffffff", fontSize: "1rem" }}>{msg.name}</strong>
+                  <strong style={{ color: "var(--text-primary)", fontSize: "1rem" }}>{msg.name}</strong>
                   <span style={{ color: "var(--accent-neon)", fontSize: "0.85rem", fontFamily: "var(--font-mono)" }}>
                     &lt;{msg.email}&gt;
                   </span>

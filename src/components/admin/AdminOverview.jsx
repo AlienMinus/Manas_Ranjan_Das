@@ -310,14 +310,14 @@ function AdminOverview({
           <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem", fontSize: "0.85rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: "0.35rem" }}>
               <span style={{ color: "var(--text-muted)" }}>Database Server</span>
-              <span style={{ color: "#ffffff", fontFamily: "var(--font-mono)" }}>
+              <span style={{ color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
                 {healthData?.mongo?.host || "localhost:27017"}
               </span>
             </div>
 
             <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: "0.35rem" }}>
               <span style={{ color: "var(--text-muted)" }}>Database Name</span>
-              <span style={{ color: "#ffffff", fontFamily: "var(--font-mono)" }}>
+              <span style={{ color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
                 {healthData?.mongo?.name || "portfolio_v1"}
               </span>
             </div>

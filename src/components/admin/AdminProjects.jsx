@@ -130,7 +130,7 @@ function AdminProjects({ projects = [], password, onSaveSuccess, onSaveError }) 
           <tbody>
             {filteredProjects.map((proj) => (
               <tr key={proj._id || proj.title}>
-                <td style={{ fontWeight: 600, color: "#ffffff", maxWidth: "220px" }}>{proj.title}</td>
+                <td style={{ fontWeight: 600, color: "var(--text-primary)", maxWidth: "220px" }}>{proj.title}</td>
                 <td style={{ maxWidth: "240px" }}>{(proj.techStack || []).join(", ")}</td>
                 <td>{(proj.tags || []).join(", ")}</td>
                 <td style={{ whiteSpace: "nowrap" }}>

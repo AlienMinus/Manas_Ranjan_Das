@@ -26,7 +26,7 @@
   width: 550px;
   max-width: 90vw;
   height: 380px;
-  background: radial-gradient(circle, rgba(0, 255, 102, 0.16) 0%, rgba(16, 185, 129, 0.08) 45%, transparent 70%);
+  background: radial-gradient(circle, var(--accent-glow, rgba(0, 255, 102, 0.16)) 0%, transparent 70%);
   filter: blur(55px);
   pointer-events: none;
   z-index: 0;
@@ -111,14 +111,14 @@
   gap: 0.5rem;
   padding: 0.35rem 0.9rem;
   border-radius: var(--radius-full);
-  background: rgba(0, 255, 102, 0.1);
-  border: 1px solid rgba(0, 255, 102, 0.3);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   color: var(--accent-neon);
   font-size: 0.825rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   margin-bottom: 1.5rem;
-  box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+  box-shadow: 0 0 15px var(--accent-glow, transparent);
   animation: fadeInDown 0.6s ease-out;
 }
 
@@ -151,8 +151,8 @@
   height: 100%;
   border-radius: 50%;
   padding: 4px;
-  background: linear-gradient(135deg, rgba(0, 255, 102, 0.8), rgba(16, 185, 129, 0.6));
-  box-shadow: var(--shadow-lg), 0 0 25px rgba(0, 255, 102, 0.35);
+  background: var(--gradient-primary);
+  box-shadow: var(--shadow-lg), 0 0 25px var(--accent-glow, transparent);
   z-index: 2;
   transition: transform var(--transition-smooth);
 }
@@ -189,8 +189,8 @@
   line-height: 1.1;
   letter-spacing: -0.03em;
   margin-bottom: 0.85rem;
-  color: #ffffff;
-  background: linear-gradient(135deg, #ffffff 40%, #86efac 100%);
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-neon) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -216,17 +216,17 @@
   pointer-events: none;
 }
 
-/* White / Neon Green Glitch Layer 1 */
+/* Glitch Layer 1 */
 .hero__name.glitch::before {
   left: 2px;
-  text-shadow: -2px 0 var(--accent-neon), 0 0 12px rgba(0, 255, 102, 0.85);
+  text-shadow: -2px 0 var(--accent-neon), 0 0 12px var(--accent-glow, transparent);
   animation: heroGlitchTop 4s infinite linear alternate-reverse;
 }
 
-/* White / Neon Green Glitch Layer 2 */
+/* Glitch Layer 2 */
 .hero__name.glitch::after {
   left: -2px;
-  text-shadow: 2px 0 #ffffff, 0 0 10px rgba(0, 255, 102, 0.75);
+  text-shadow: 2px 0 var(--text-primary), 0 0 10px var(--accent-glow, transparent);
   animation: heroGlitchBottom 3.5s infinite linear alternate-reverse;
 }
 
@@ -410,7 +410,7 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(0, 255, 102, 0.04);
+  background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   color: var(--text-secondary);
   transition: all var(--transition-normal);
@@ -418,11 +418,11 @@
 }
 
 .social__icon:hover {
-  color: #022c14;
+  color: var(--text-inverse);
   background: var(--accent-neon);
   border-color: var(--accent-neon);
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 255, 102, 0.4);
+  box-shadow: 0 6px 20px var(--accent-glow, transparent);
 }
 
 /* Stats / Highlights Banner */
@@ -433,7 +433,7 @@
   width: 100%;
   max-width: 750px;
   padding: 1.25rem;
-  background: rgba(8, 20, 12, 0.65);
+  background: var(--bg-surface);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--glass-border);

@@ -137,7 +137,7 @@ function AdminExperience({ experience = [], password, onSaveSuccess, onSaveError
                     <span style={{ color: "var(--text-muted)", fontSize: "0.75rem" }}>—</span>
                   )}
                 </td>
-                <td style={{ fontWeight: 600, color: "#ffffff" }}>{exp.role}</td>
+                <td style={{ fontWeight: 600, color: "var(--text-primary)" }}>{exp.role}</td>
                 <td style={{ color: "var(--accent-neon)" }}>{exp.company}</td>
                 <td>{exp.duration}</td>
                 <td style={{ maxWidth: "280px" }}>

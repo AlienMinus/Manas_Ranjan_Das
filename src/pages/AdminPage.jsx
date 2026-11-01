@@ -146,7 +146,7 @@ function AdminPage() {
             <FaShieldAlt />
           </div>
           <div>
-            <h1 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", color: "#ffffff" }}>
+            <h1 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", color: "var(--text-primary)" }}>
               Minus Admin Suite
             </h1>
             <p style={{ color: "var(--text-secondary)", fontSize: "0.9rem", marginTop: "0.25rem" }}>
