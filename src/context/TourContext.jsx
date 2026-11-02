@@ -16,6 +16,24 @@ export function useTour() {
   return ctx;
 }
 
+// React controlled component value setter helper
+function setNativeValue(element, value) {
+  if (!element) return;
+  const valueSetter = Object.getOwnPropertyDescriptor(element, "value")?.set;
+  const prototype = Object.getPrototypeOf(element);
+  const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, "value")?.set;
+
+  if (prototypeValueSetter && valueSetter !== prototypeValueSetter) {
+    prototypeValueSetter.call(element, value);
+  } else if (valueSetter) {
+    valueSetter.call(element, value);
+  } else {
+    element.value = value;
+  }
+  element.dispatchEvent(new Event("input", { bubbles: true }));
+  element.dispatchEvent(new Event("change", { bubbles: true }));
+}
+
 // Helper to poll for visible DOM element
 function waitForElement(selector, timeoutMs = 4000) {
   return new Promise((resolve) => {
@@ -115,41 +133,52 @@ export function TourProvider({ children }) {
       utterance.pitch = 1.0;
       utterance.volume = 0.95;
 
-      const voices = window.speechSynthesis.getVoices();
-      if (voices && voices.length > 0) {
-        const preferredVoice =
-          voices.find(
-            (v) =>
-              v.lang.startsWith("en") &&
-              (v.name.includes("Google") ||
-                v.name.includes("Natural") ||
-                v.name.includes("Samantha") ||
-                v.name.includes("Jenny") ||
-                v.name.includes("Guy") ||
-                v.name.includes("Microsoft"))
-          ) ||
-          voices.find((v) => v.lang.startsWith("en")) ||
-          voices[0];
+      const assignVoiceAndSpeak = () => {
+        const voices = window.speechSynthesis.getVoices();
+        if (voices && voices.length > 0) {
+          const preferredVoice =
+            voices.find(
+              (v) =>
+                v.lang.startsWith("en") &&
+                (v.name.includes("Google") ||
+                  v.name.includes("Natural") ||
+                  v.name.includes("Samantha") ||
+                  v.name.includes("Jenny") ||
+                  v.name.includes("Guy") ||
+                  v.name.includes("Microsoft"))
+            ) ||
+            voices.find((v) => v.lang.startsWith("en")) ||
+            voices[0];
 
-        if (preferredVoice) {
-          utterance.voice = preferredVoice;
+          if (preferredVoice) {
+            utterance.voice = preferredVoice;
+          }
         }
-      }
 
-      utterance.onend = () => {
-        speechUtteranceRef.current = null;
-        if (onComplete) onComplete();
-      };
-
-      utterance.onerror = (e) => {
-        speechUtteranceRef.current = null;
-        // Ignore deliberate cancel / interrupt errors
-        if (e.error !== "canceled" && e.error !== "interrupted") {
+        utterance.onend = () => {
+          speechUtteranceRef.current = null;
           if (onComplete) onComplete();
-        }
+        };
+
+        utterance.onerror = (e) => {
+          speechUtteranceRef.current = null;
+          if (e.error !== "canceled" && e.error !== "interrupted") {
+            if (onComplete) onComplete();
+          }
+        };
+
+        window.speechSynthesis.speak(utterance);
       };
 
-      window.speechSynthesis.speak(utterance);
+      const currentVoices = window.speechSynthesis.getVoices();
+      if (!currentVoices || currentVoices.length === 0) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          window.speechSynthesis.onvoiceschanged = null;
+          assignVoiceAndSpeak();
+        };
+      } else {
+        assignVoiceAndSpeak();
+      }
     } catch {
       speechUtteranceRef.current = null;
       if (onComplete) onComplete();
@@ -200,6 +229,19 @@ export function TourProvider({ children }) {
     (startIndex = 0) => {
       clearStepTimer();
       stopAudio();
+
+      // Prime and unlock speech synthesis immediately inside user gesture
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        try {
+          window.speechSynthesis.cancel();
+          const primeUtterance = new SpeechSynthesisUtterance("");
+          primeUtterance.volume = 0;
+          window.speechSynthesis.speak(primeUtterance);
+        } catch {
+          // Ignored
+        }
+      }
+
       setIsTourActive(true);
       setIsPaused(false);
       setCurrentStepIndex(startIndex);
@@ -361,7 +403,6 @@ export function TourProvider({ children }) {
       const element = await waitForElement(currentStep.selector);
       if (isCancelled) return;
       if (!element) {
-        // Element not found or loading, gracefully advance after short buffer
         stepTimerRef.current = setTimeout(nextStep, 2000);
         return;
       }
@@ -369,14 +410,13 @@ export function TourProvider({ children }) {
       // -------------------------------------------------------------
       // 3. Smooth scroll viewport to position element in view
       // -------------------------------------------------------------
-      // If element is not inside a fixed/sticky container, scroll into view
       const isFixedHeader = element.closest(".navbar, .music-toggle, .chatbot-toggler");
       if (!isFixedHeader) {
         element.scrollIntoView({
           behavior: "smooth",
           block: "center",
         });
-        await new Promise((r) => setTimeout(r, 450));
+        await new Promise((r) => setTimeout(r, 400));
         if (isCancelled) return;
       }
 
@@ -405,13 +445,26 @@ export function TourProvider({ children }) {
       }));
 
       // -------------------------------------------------------------
-      // 5. Dynamic Content Extraction (Projects, Experience, Certs)
+      // 5. Dynamic Content Extraction (Skills, Projects, Experience, Certs)
       // -------------------------------------------------------------
       let activeTitle = currentStep.title;
       let activeDescription = currentStep.description;
 
       if (currentStep.dynamicExtract) {
-        // Extract real project / experience / cert title & description from actual DOM
+        // Skill cards
+        const skillCat = element.querySelector(".skills__category-title");
+        const skillItems = Array.from(element.querySelectorAll(".skills__item"))
+          .map((s) => s.textContent.trim())
+          .filter(Boolean);
+
+        if (skillCat && skillCat.textContent.trim()) {
+          activeTitle = skillCat.textContent.trim();
+          if (skillItems.length > 0) {
+            activeDescription = `Comprehensive competencies in ${skillItems.slice(0, 6).join(", ")}.`;
+          }
+        }
+
+        // Project / Experience / Cert cards
         const titleNode = element.querySelector(
           ".project-card__title, .experience-card__role, .cert-card__title"
         );
@@ -437,18 +490,15 @@ export function TourProvider({ children }) {
       // -------------------------------------------------------------
       // 6. Execute step-specific simulated interactive action
       // -------------------------------------------------------------
-      await new Promise((r) => setTimeout(r, 450));
-      if (isCancelled) return;
-
       if (currentStep.action === "toggleThemeMenu") {
-        // Click theme palette button to open dropdown
+        await new Promise((r) => setTimeout(r, 400));
+        if (isCancelled) return;
         setCursorPos((prev) => ({ ...prev, isClicking: true }));
         await new Promise((r) => setTimeout(r, 220));
         if (isCancelled) return;
         setCursorPos((prev) => ({ ...prev, isClicking: false }));
         element.click();
 
-        // Hover over a theme option inside the dropdown
         await new Promise((r) => setTimeout(r, 800));
         if (isCancelled) return;
         const opt = document.querySelector(".navbar__theme-option:nth-child(2)");
@@ -461,22 +511,19 @@ export function TourProvider({ children }) {
           }));
         }
 
-        // Close menu before advancing
         await new Promise((r) => setTimeout(r, 1200));
         if (isCancelled) return;
         const dropdown = document.querySelector(".navbar__theme-dropdown");
-        if (dropdown) {
-          element.click();
-        }
+        if (dropdown) element.click();
       } else if (currentStep.action === "previewChatbot") {
-        // Click chatbot orb
+        await new Promise((r) => setTimeout(r, 400));
+        if (isCancelled) return;
         setCursorPos((prev) => ({ ...prev, isClicking: true }));
         await new Promise((r) => setTimeout(r, 220));
         if (isCancelled) return;
         setCursorPos((prev) => ({ ...prev, isClicking: false }));
         element.click();
 
-        // Hover quick prompt
         await new Promise((r) => setTimeout(r, 1000));
         if (isCancelled) return;
         const promptBtn = document.querySelector(".chatbot-messages button, .chatbot-close");
@@ -489,26 +536,26 @@ export function TourProvider({ children }) {
           }));
         }
 
-        // Close chatbot
         await new Promise((r) => setTimeout(r, 1500));
         if (isCancelled) return;
         const closeBtn = document.querySelector(".chatbot-close");
         if (closeBtn) closeBtn.click();
       } else if (currentStep.action === "previewLightbox") {
-        // Click to open photo lightbox
+        await new Promise((r) => setTimeout(r, 400));
+        if (isCancelled) return;
         setCursorPos((prev) => ({ ...prev, isClicking: true }));
         await new Promise((r) => setTimeout(r, 220));
         if (isCancelled) return;
         setCursorPos((prev) => ({ ...prev, isClicking: false }));
         element.click();
 
-        // Allow preview, then close
         await new Promise((r) => setTimeout(r, 1600));
         if (isCancelled) return;
         const closeBtn = document.querySelector(".experience-lightbox__close, .cert-lightbox__close");
         if (closeBtn) closeBtn.click();
       } else if (currentStep.action === "filterDemo") {
-        // Click category filter chip
+        await new Promise((r) => setTimeout(r, 400));
+        if (isCancelled) return;
         const filterChip = document.querySelector(".projects__filter-btn:nth-child(2)");
         if (filterChip) {
           const fRect = filterChip.getBoundingClientRect();
@@ -523,14 +570,73 @@ export function TourProvider({ children }) {
           setCursorPos((prev) => ({ ...prev, isClicking: false }));
           filterChip.click();
 
-          // Reset back to "All"
           await new Promise((r) => setTimeout(r, 1400));
           if (isCancelled) return;
           const allChip = document.querySelector(".projects__filter-btn:first-child");
           if (allChip) allChip.click();
         }
+      } else if (currentStep.action === "autoTypeMessage") {
+        // Contact Page Automation: Focus and type "Hello" into message input
+        await new Promise((r) => setTimeout(r, 300));
+        if (isCancelled) return;
+        setCursorPos((prev) => ({ ...prev, isClicking: true }));
+        await new Promise((r) => setTimeout(r, 220));
+        if (isCancelled) return;
+        setCursorPos((prev) => ({ ...prev, isClicking: false }));
+        element.focus();
+
+        const messageText = "Hello! Let's connect and discuss collaboration opportunities.";
+        for (let i = 1; i <= messageText.length; i++) {
+          if (isCancelled) return;
+          setNativeValue(element, messageText.slice(0, i));
+          await new Promise((r) => setTimeout(r, 32));
+        }
+      } else if (currentStep.action === "focusUserInputs") {
+        // Contact Page Automation: Focus circles for Name & Email
+        await new Promise((r) => setTimeout(r, 300));
+        if (isCancelled) return;
+        element.focus();
+
+        // Spotlight name input
+        const nameRect = element.getBoundingClientRect();
+        setTargetRect({
+          top: nameRect.top,
+          left: nameRect.left,
+          width: nameRect.width,
+          height: nameRect.height,
+        });
+
+        // After 2.2s, glide cursor and spotlight to email input
+        await new Promise((r) => setTimeout(r, 2200));
+        if (isCancelled) return;
+        const emailInput = document.querySelector("#contact-email");
+        if (emailInput) {
+          emailInput.focus();
+          const emailRect = emailInput.getBoundingClientRect();
+          setTargetRect({
+            top: emailRect.top,
+            left: emailRect.left,
+            width: emailRect.width,
+            height: emailRect.height,
+          });
+          setCursorPos((prev) => ({
+            ...prev,
+            x: emailRect.left + emailRect.width / 2,
+            y: emailRect.top + emailRect.height / 2,
+          }));
+        }
+      } else if (currentStep.action === "clickSubmit") {
+        // Contact Page Automation: Cursor clicks on submit button
+        await new Promise((r) => setTimeout(r, 400));
+        if (isCancelled) return;
+        setCursorPos((prev) => ({ ...prev, isClicking: true }));
+        await new Promise((r) => setTimeout(r, 240));
+        if (isCancelled) return;
+        setCursorPos((prev) => ({ ...prev, isClicking: false }));
       } else if (currentStep.action === "returnHome") {
         // Finale: click logo to return home
+        await new Promise((r) => setTimeout(r, 300));
+        if (isCancelled) return;
         setCursorPos((prev) => ({ ...prev, isClicking: true }));
         await new Promise((r) => setTimeout(r, 220));
         if (isCancelled) return;
@@ -543,7 +649,6 @@ export function TourProvider({ children }) {
       // -------------------------------------------------------------
       const handleAdvanceAfterNarration = () => {
         if (!isCancelled) {
-          // Pause 1.2s so user can absorb the focused element before advancing
           stepTimerRef.current = setTimeout(() => {
             if (currentStep.action === "returnHome") {
               stopTour();
@@ -555,10 +660,8 @@ export function TourProvider({ children }) {
       };
 
       if (isTtsEnabled) {
-        // Speak full title & description; advance only when narration completes!
         speakNarration(activeTitle, activeDescription, handleAdvanceAfterNarration);
       } else {
-        // If muted, advance based on reading word count
         const wordCount = `${activeTitle} ${activeDescription}`.split(/\s+/).length;
         const readingMs = Math.max(3800, wordCount * 280);
         stepTimerRef.current = setTimeout(handleAdvanceAfterNarration, readingMs);
@@ -572,7 +675,6 @@ export function TourProvider({ children }) {
       clearStepTimer();
       stopAudio();
 
-      // Ensure any temporary dropdown is closed
       const themeDropdown = document.querySelector(".navbar__theme-dropdown");
       if (themeDropdown) {
         const themeBtn = document.querySelector(".navbar__theme-btn");
