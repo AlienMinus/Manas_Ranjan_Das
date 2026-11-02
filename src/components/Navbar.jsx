@@ -1,8 +1,9 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { FaPalette, FaCheck, FaSun, FaMoon } from "react-icons/fa";
+import { FaPalette, FaCheck, FaSun, FaMoon, FaCompass, FaStop } from "react-icons/fa";
 import { usePortfolio } from "../context/usePortfolio";
+import { useTour } from "../context/TourContext";
 import Logo from "../assets/profile_pic.png";
 
 const THEME_OPTIONS = [
@@ -18,6 +19,7 @@ const THEME_OPTIONS = [
 
 function Navbar() {
   const { theme, setTheme, mode = "dark", toggleMode } = usePortfolio();
+  const { isTourActive, startTour, stopTour } = useTour();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isThemeOpen, setIsThemeOpen] = useState(false);
   const themeDropdownRef = useRef(null);
@@ -92,8 +94,24 @@ function Navbar() {
           ))}
         </ul>
 
-        {/* Actions (Mode Toggle & Theme Switcher - Icons Only) */}
+        {/* Actions (Tour, Mode Toggle & Theme Switcher) */}
         <div className="navbar__actions">
+          {/* Automated Tour Trigger Button (Icon Only with Tooltip) */}
+          <button
+            type="button"
+            className={`navbar__tour-btn ${isTourActive ? "navbar__tour-btn--active" : ""}`}
+            onClick={() => (isTourActive ? stopTour() : startTour(0))}
+            title={isTourActive ? "Exit Automated Tour (Esc)" : "Start Automated Full Website Tour"}
+            aria-label={isTourActive ? "Exit Tour" : "Start Tour"}
+            data-tooltip={isTourActive ? "Exit Tour" : "Tour"}
+          >
+            {isTourActive ? (
+              <FaStop size={13} style={{ color: "var(--danger, #ef4444)" }} />
+            ) : (
+              <FaCompass size={16} style={{ color: "var(--accent-neon)" }} />
+            )}
+          </button>
+
           {/* Light / Dark Mode Toggle Button (Icon Only with Tooltip) */}
           <button
             type="button"
@@ -213,6 +231,34 @@ function Navbar() {
               <span style={{ fontSize: "0.8rem", opacity: 0.6 }}>›</span>
             </NavLink>
           ))}
+
+          {/* Mobile Tour Button */}
+          <div style={{ padding: "0.5rem 0", borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}>
+            <button
+              type="button"
+              className="navbar__mobile-tour-btn"
+              onClick={() => {
+                closeMobileMenu();
+                if (isTourActive) {
+                  stopTour();
+                } else {
+                  startTour(0);
+                }
+              }}
+            >
+              {isTourActive ? (
+                <>
+                  <FaStop size={14} style={{ color: "var(--danger, #ef4444)" }} />
+                  <span>Exit Guided Tour</span>
+                </>
+              ) : (
+                <>
+                  <FaCompass size={15} style={{ color: "var(--accent-neon)" }} />
+                  <span>Start Guided Tour</span>
+                </>
+              )}
+            </button>
+          </div>
 
           {/* Mobile Mode Switcher */}
           <div className="navbar__mobile-mode-section">

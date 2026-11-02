@@ -185,12 +185,14 @@
 /* Tooltips for Nav Buttons */
 .navbar__mode-btn[data-tooltip],
 .navbar__theme-btn[data-tooltip],
+.navbar__tour-btn[data-tooltip],
 .navbar__toggle[data-tooltip] {
   position: relative;
 }
 
 .navbar__mode-btn[data-tooltip]::after,
 .navbar__theme-btn[data-tooltip]::after,
+.navbar__tour-btn[data-tooltip]::after,
 .navbar__toggle[data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
@@ -216,6 +218,7 @@
 
 .navbar__mode-btn[data-tooltip]::before,
 .navbar__theme-btn[data-tooltip]::before,
+.navbar__tour-btn[data-tooltip]::before,
 .navbar__toggle[data-tooltip]::before {
   content: '';
   position: absolute;
@@ -234,9 +237,11 @@
 
 .navbar__mode-btn[data-tooltip]:hover::after,
 .navbar__theme-btn[data-tooltip]:hover::after,
+.navbar__tour-btn[data-tooltip]:hover::after,
 .navbar__toggle[data-tooltip]:hover::after,
 .navbar__mode-btn[data-tooltip]:hover::before,
 .navbar__theme-btn[data-tooltip]:hover::before,
+.navbar__tour-btn[data-tooltip]:hover::before,
 .navbar__toggle[data-tooltip]:hover::before {
   opacity: 1;
   visibility: visible;

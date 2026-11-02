@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import TerminalIntro from "./components/TerminalIntro";
 import { PortfolioProvider } from "./context/PortfolioContext";
 import { usePortfolio } from "./context/usePortfolio";
+import { TourProvider } from "./context/TourContext";
 
 // Pages
 import Home from "./pages/Home";
@@ -84,7 +85,9 @@ function AppContent() {
 function App() {
   return (
     <PortfolioProvider>
-      <AppContent />
+      <TourProvider>
+        <AppContent />
+      </TourProvider>
     </PortfolioProvider>
   );
 }

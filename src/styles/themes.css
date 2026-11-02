@@ -296,7 +296,8 @@
 /* Liquid Glass Floating Controls (Music Toggle) */
 [data-theme="glassmorphism"] .music-toggle,
 [data-theme="glassmorphism"] .navbar__mode-btn,
-[data-theme="glassmorphism"] .navbar__theme-btn {
+[data-theme="glassmorphism"] .navbar__theme-btn,
+[data-theme="glassmorphism"] .navbar__tour-btn {
   backdrop-filter: blur(24px) saturate(200%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 50%, rgba(56, 189, 248, 0.08) 100%) !important;
@@ -824,7 +825,8 @@
 [data-theme="skeuomorphism"] .music-toggle,
 [data-theme="skeuomorphism"] .chatbot-toggler,
 [data-theme="skeuomorphism"] .navbar__mode-btn,
-[data-theme="skeuomorphism"] .navbar__theme-btn {
+[data-theme="skeuomorphism"] .navbar__theme-btn,
+[data-theme="skeuomorphism"] .navbar__tour-btn {
   background: linear-gradient(180deg, #37404d 0%, #252b34 48%, #1a1f26 52%, #222830 100%) !important;
   border: 1px solid #0c0e11 !important;
   border-top: 1.5px solid rgba(255, 255, 255, 0.32) !important;
@@ -1453,14 +1455,16 @@
 }
 
 [data-theme="pixelatte"] .navbar__mode-btn,
-[data-theme="pixelatte"] .navbar__theme-btn {
+[data-theme="pixelatte"] .navbar__theme-btn,
+[data-theme="pixelatte"] .navbar__tour-btn {
   border-radius: 0px !important;
   border: 2px solid #facc15 !important;
   box-shadow: 2px 2px 0px #000000 !important;
 }
 
 [data-theme="pixelatte"] .navbar__mode-btn:hover,
-[data-theme="pixelatte"] .navbar__theme-btn:hover {
+[data-theme="pixelatte"] .navbar__theme-btn:hover,
+[data-theme="pixelatte"] .navbar__tour-btn:hover {
   transform: translate(-1px, -1px) !important;
   box-shadow: 3px 3px 0px #000000 !important;
   border-color: #00f5d4 !important;
@@ -1595,14 +1599,16 @@
 }
 
 [data-mode="light"] .navbar__mode-btn,
-[data-mode="light"] .navbar__theme-btn {
+[data-mode="light"] .navbar__theme-btn,
+[data-mode="light"] .navbar__tour-btn {
   background: rgba(0, 0, 0, 0.04) !important;
   border-color: rgba(0, 0, 0, 0.1) !important;
   color: var(--text-primary) !important;
 }
 
 [data-mode="light"] .navbar__mode-btn:hover,
-[data-mode="light"] .navbar__theme-btn:hover {
+[data-mode="light"] .navbar__theme-btn:hover,
+[data-mode="light"] .navbar__tour-btn:hover {
   background: rgba(0, 0, 0, 0.08) !important;
   border-color: var(--accent-neon) !important;
   color: var(--accent-neon) !important;
@@ -2301,9 +2307,11 @@
 [data-mode="light"][data-theme="glassmorphism"] .music-toggle,
 [data-mode="light"][data-theme="glassmorphism"] .navbar__mode-btn,
 [data-mode="light"][data-theme="glassmorphism"] .navbar__theme-btn,
+[data-mode="light"][data-theme="glassmorphism"] .navbar__tour-btn,
 [data-mode="light"] [data-theme="glassmorphism"] .music-toggle,
 [data-mode="light"] [data-theme="glassmorphism"] .navbar__mode-btn,
-[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-btn {
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__theme-btn,
+[data-mode="light"] [data-theme="glassmorphism"] .navbar__tour-btn {
   backdrop-filter: blur(24px) saturate(200%) !important;
   -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(240, 249, 255, 0.45) 100%) !important;
@@ -2684,10 +2692,12 @@
 [data-mode="light"][data-theme="skeuomorphism"] .chatbot-toggler,
 [data-mode="light"][data-theme="skeuomorphism"] .navbar__mode-btn,
 [data-mode="light"][data-theme="skeuomorphism"] .navbar__theme-btn,
+[data-mode="light"][data-theme="skeuomorphism"] .navbar__tour-btn,
 [data-mode="light"] [data-theme="skeuomorphism"] .music-toggle,
 [data-mode="light"] [data-theme="skeuomorphism"] .chatbot-toggler,
 [data-mode="light"] [data-theme="skeuomorphism"] .navbar__mode-btn,
-[data-mode="light"] [data-theme="skeuomorphism"] .navbar__theme-btn {
+[data-mode="light"] [data-theme="skeuomorphism"] .navbar__theme-btn,
+[data-mode="light"] [data-theme="skeuomorphism"] .navbar__tour-btn {
   background: linear-gradient(180deg, #ffffff 0%, #edf1f7 48%, #dfe4ed 52%, #e5eaf2 100%) !important;
   border: 1px solid #b8bdc8 !important;
   border-top: 1.5px solid #ffffff !important;
@@ -3236,8 +3246,10 @@
 
 [data-mode="light"][data-theme="pixelatte"] .navbar__mode-btn,
 [data-mode="light"][data-theme="pixelatte"] .navbar__theme-btn,
+[data-mode="light"][data-theme="pixelatte"] .navbar__tour-btn,
 [data-mode="light"] [data-theme="pixelatte"] .navbar__mode-btn,
-[data-mode="light"] [data-theme="pixelatte"] .navbar__theme-btn {
+[data-mode="light"] [data-theme="pixelatte"] .navbar__theme-btn,
+[data-mode="light"] [data-theme="pixelatte"] .navbar__tour-btn {
   border-radius: 0px !important;
   border: 2px solid #1f1d16 !important;
   box-shadow: 2px 2px 0px #1f1d16 !important;
@@ -3360,6 +3372,74 @@
   border-radius: 0px !important;
   border: 2px solid #1f1d16 !important;
   box-shadow: 2px 2px 0px #1f1d16 !important;
+}
+
+/* ==========================================================================
+   Automated Tour Theme Enhancements
+   ========================================================================== */
+
+/* Pixelatte Theme - 8-Bit Retro Game HUD & Chunky Hard Pixel Shadows */
+[data-theme="pixelatte"] .tour-hud {
+  border-radius: 0px !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 6px 6px 0px #000000 !important;
+  font-family: var(--font-mono) !important;
+}
+
+[data-theme="pixelatte"] .tour-hud__page-badge,
+[data-theme="pixelatte"] .tour-hud__btn-icon,
+[data-theme="pixelatte"] .tour-hud__page-chip,
+[data-theme="pixelatte"] .tour-hud__control-btn,
+[data-theme="pixelatte"] .navbar__tour-btn {
+  border-radius: 0px !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+  font-family: var(--font-mono) !important;
+  text-transform: uppercase !important;
+}
+
+[data-theme="pixelatte"] .tour-spotlight__ring {
+  border-radius: 0px !important;
+  border: 3px solid #facc15 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+}
+
+/* Glassmorphism Theme - Liquid Transparent Lens Blur HUD */
+[data-theme="glassmorphism"] .tour-hud {
+  backdrop-filter: blur(40px) saturate(220%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(220%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(8, 12, 32, 0.5) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.75) !important;
+  border-left: 2px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 0 35px rgba(56, 189, 248, 0.18) !important;
+}
+
+[data-mode="light"][data-theme="glassmorphism"] .tour-hud,
+[data-mode="light"] [data-theme="glassmorphism"] .tour-hud {
+  backdrop-filter: blur(40px) saturate(220%) brightness(105%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(220%) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0.2) 45%, rgba(240, 249, 255, 0.38) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  border-top: 2.5px solid #ffffff !important;
+  box-shadow: 0 25px 65px rgba(15, 23, 42, 0.14), inset 0 2px 2px #ffffff, 0 0 35px rgba(56, 189, 248, 0.15) !important;
+}
+
+/* Skeuomorphism Theme - Tactile Stamped Depth HUD */
+[data-theme="skeuomorphism"] .tour-hud {
+  background: linear-gradient(180deg, #2a313c 0%, #1c2128 100%) !important;
+  border: 1px solid #0d0f12 !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.35) !important;
+  border-bottom: 3px solid #080a0c !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="skeuomorphism"] .navbar__tour-btn {
+  background: linear-gradient(180deg, #353e4b 0%, #20262f 100%) !important;
+  border: 1px solid #0d0f12 !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+  color: #fbbf24 !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
 }
 
 

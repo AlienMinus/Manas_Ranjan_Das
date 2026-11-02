@@ -1,0 +1,509 @@
+/* ==========================================================================
+   Automated Website Tour Animation Styles (Cursor, Spotlight & HUD)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VIRTUAL CURSOR
+   -------------------------------------------------------------------------- */
+.virtual-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 999999;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.virtual-cursor__pointer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+  transition: transform 0.15s ease-out;
+}
+
+.virtual-cursor--clicking .virtual-cursor__pointer {
+  transform: scale(0.8);
+}
+
+.virtual-cursor__aura {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 75%);
+  pointer-events: none;
+  animation: cursorPulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes cursorPulse {
+  0% { transform: scale(0.85); opacity: 0.5; }
+  100% { transform: scale(1.35); opacity: 0.95; }
+}
+
+.virtual-cursor__ripple {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-neon);
+  box-shadow: 0 0 10px var(--accent-neon);
+  transform: translate(-50%, -50%);
+  animation: cursorClickRipple 0.55s ease-out forwards;
+}
+
+@keyframes cursorClickRipple {
+  0% {
+    width: 6px;
+    height: 6px;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.2);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. TARGET SPOTLIGHT HIGHLIGHTER
+   -------------------------------------------------------------------------- */
+.tour-spotlight {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99998;
+  border-radius: var(--radius-md);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.tour-spotlight__ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--accent-neon);
+  border-radius: inherit;
+  box-shadow: 0 0 20px var(--accent-glow), inset 0 0 12px var(--accent-glow);
+  animation: spotlightPulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes spotlightPulse {
+  0% {
+    opacity: 0.65;
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 26px var(--accent-glow), inset 0 0 10px var(--accent-glow);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. FLOATING DIRECTOR HUD (HEADS-UP DISPLAY)
+   -------------------------------------------------------------------------- */
+.tour-hud {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92vw, 560px);
+  z-index: 99999;
+  background: var(--bg-surface);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
+  overflow: hidden;
+  animation: tourHudSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes tourHudSlideUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 25px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.tour-hud__progress-track {
+  width: 100%;
+  height: 3.5px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tour-hud__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-neon), var(--accent-neon-bright, #ffff00));
+  transition: width 0.35s ease-out;
+  box-shadow: 0 0 10px var(--accent-neon);
+}
+
+.tour-hud__body {
+  padding: 1.15rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.tour-hud__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.tour-hud__badge-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tour-hud__live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-neon);
+  box-shadow: 0 0 8px var(--accent-neon);
+  animation: liveDotPulse 1.2s infinite alternate;
+}
+
+@keyframes liveDotPulse {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1.25); opacity: 1; }
+}
+
+.tour-hud__page-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-neon);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--glass-border);
+}
+
+.tour-hud__step-counter {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.tour-hud__top-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.tour-hud__btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tour-hud__btn-icon:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  border-color: var(--accent-neon);
+}
+
+.tour-hud__btn-icon--exit:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+.tour-hud__btn-icon--muted {
+  opacity: 0.6;
+}
+
+.tour-hud__btn-icon--muted:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-neon);
+}
+
+/* Page Jump Menu */
+.tour-hud__page-selector {
+  background: rgba(10, 16, 12, 0.95);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.tour-hud__page-selector-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.tour-hud__page-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tour-hud__page-chip {
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tour-hud__page-chip:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text-primary);
+}
+
+.tour-hud__page-chip--active {
+  background: var(--accent-neon);
+  color: #000000;
+  font-weight: 700;
+  border-color: var(--accent-neon);
+}
+
+/* Content: Title & Narration */
+.tour-hud__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.tour-hud__title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.tour-hud__desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Footer: Controls & Hint */
+.tour-hud__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+
+.tour-hud__hint {
+  font-size: 0.72rem;
+  color: var(--text-dim, var(--text-muted));
+}
+
+.tour-hud__hint kbd {
+  display: inline-block;
+  padding: 0.1rem 0.35rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+}
+
+.tour-hud__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.tour-hud__control-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tour-hud__control-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--accent-neon);
+}
+
+.tour-hud__control-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tour-hud__control-btn--play {
+  color: var(--accent-neon);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.tour-hud__control-btn--paused {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border-color: #f59e0b;
+}
+
+.tour-hud__control-btn--primary {
+  background: var(--gradient-primary, var(--accent-neon));
+  color: #000000;
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.tour-hud__control-btn--primary:hover:not(:disabled) {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   4. NAVBAR TOUR TRIGGER BUTTON (Icon Only Action Button)
+   -------------------------------------------------------------------------- */
+.navbar__tour-btn {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--accent-neon);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.navbar__tour-btn:hover {
+  background: var(--glass-bg-hover, var(--glass-bg));
+  border-color: var(--accent-neon);
+  box-shadow: 0 0 12px var(--accent-glow, var(--accent-neon));
+  transform: translateY(-2px);
+}
+
+.navbar__tour-btn--active {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.35);
+}
+
+.navbar__tour-btn--active:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.55);
+}
+
+/* Mobile Drawer Tour Button */
+.navbar__mobile-tour-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.navbar__mobile-tour-btn:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--accent-neon);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.navbar__mobile-tour-btn--active {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* Responsive adjustment for Mobile */
+@media (max-width: 640px) {
+  .tour-hud {
+    bottom: 1rem;
+    width: 95vw;
+    border-radius: var(--radius-lg);
+  }
+
+  .tour-hud__body {
+    padding: 0.85rem 1rem;
+    gap: 0.65rem;
+  }
+
+  .tour-hud__desc {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .tour-hud__hint {
+    display: none;
+  }
+
+  .tour-hud__controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tour-hud__control-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.4rem 0.5rem;
+  }
+}
